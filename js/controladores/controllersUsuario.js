@@ -7,6 +7,26 @@ app.controller('controlMenu', function($scope, $http) {
 app.controller('controlInicio', function($scope, $http,factoryUserActual) {
   $scope.DatoTest="**Menu**";
   
+
+
+//////////////////////////////////
+
+
+///////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //TENGO QUE VALIDAR SI ESTA AUTENTICADO
 /*  if($auth.isAuthenticated())
     //muestro los botones para que ingrese al sistema
@@ -15,6 +35,7 @@ app.controller('controlInicio', function($scope, $http,factoryUserActual) {
 
    $scope.user = factoryUserActual.Logueado;
   console.info("user...",$scope.user );
+
 });
 
 
@@ -149,6 +170,9 @@ app.controller('controlUsuarioLogin', function($scope, $http, $auth, $state,fact
           
 
           alert("LOGUEADO!");
+
+      
+    
             //factoryUserActual.Logueado=$scope.usuario;
 
           $state.go("inicio");

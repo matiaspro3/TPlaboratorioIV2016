@@ -107,6 +107,14 @@ div.upload input {
     overflow: hidden !important;
 }
 
+
+div.menu {
+    padding-top:5px;
+    margin:0 auto;
+    width:960px;
+    height:45px;
+    }
+
 div.upload {
     width: 157px;
     height: 57px;

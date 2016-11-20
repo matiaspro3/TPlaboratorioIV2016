@@ -9,12 +9,18 @@ return {template : "Hola Mundo"};
 
 
 
-.directive('utnTitulo', function() {
+.directive('menuCentral', function() {
 
-return {replace : true, restrict : "MEAC", templateUrl : "templates/grillabotones.html"};
+return {replace : true, restrict : "MEAC", templateUrl : "templates/templateMenuCentral.html"};
 
 })
 
+
+.directive('menuModal', function() {
+
+return {replace : true, restrict : "MEAC", templateUrl : "templates/templateModal.html"};
+
+})
 
 
 

@@ -20,18 +20,12 @@
 
         <input type="password" id="clave" minlength="3" ng-model="usuario.password" placeholder="clave" required="true" value=""><br>
 
- <button class="button-green" id="login" ng-click="Login()" ng-disabled="myForm.$invalid"><span>Login </span></button><br><br>
-    
-<!--
 
-        <button class="button-green" data-toggle="modal" data-target="#myModal" id="login" ng-click="Login()" ng-disabled="myForm.$invalid"><span>Login </span></button><br><br>
-    
-   </div>
- <div class="modal fade" id="myModal" role="dialog">
-<menu-modal></menu-modal>
-  </div>
-    -->            <br>
-           
+
+
+        <button class="button-green" id="login" ng-click="Login()" ng-disabled="myForm.$invalid"><span>Login </span></button><br><br>
+                <br>
+                <br>
                  <button class="MiBotonUTNLinea" id="admin" ng-click="Admin()" ><span>Admin </span></button>
                   <button class="MiBotonUTNMenu" id="vende" ng-click="Encargado()" ><span>Encargado </span></button>
                    <button class="MiBotonUTNMenuInicio" id="compra" ng-click="Empleado()" ><span>Empleado </span></button>
@@ -46,10 +40,13 @@
         <button class="btn btn-github" ng-click="authenticate('github')"><a class="fa fa-github"></a> Login con GitHub</button>
 
 
+
+
+
 <img src='img/fondo1.jpg' style='position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
 -->
       </form>
- 
+    </div>
 
         
     <h1 style="color:pink;" ng-if ="!myForm.$valid">Todos los campos son obligatorios</h1>
