@@ -1,0 +1,34 @@
+
+
+<img src='img/fondo2.jpg' style='border-radius: 0px;position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;'>
+
+<div class="Frm animated flash">
+      <form class="" name="myForm">
+        <label  style="color:gray;"  class="miEstilo">Registrarse</label><br><br>
+
+        <input type="text" id="usuario" name="usuario" ng-model="usuario.usuario" placeholder="Ingrese su usuario" value="" required="true"><br>
+
+
+        <input type="email" id="email" name="email" ng-model="usuario.email" placeholder="Ingrese su email" required="true"><br>
+
+        <input type="password" id="clave" minlength="3" ng-model="usuario.password" placeholder="clave" required="true" value=""><br>
+
+    <input ng-if ="!user" type="text" id="perfil" name="perfil"  readonly=""  value="Se registrara como Cliente"><br>
+
+
+ <select ng-if ="user.perfil =='admin'"  id="perfil" name="perfil" ng-model="usuario.perfil" required="true" value="perfil">
+          <option value="enca">Encargado</option>
+          <option value="emple">Empleado</option>
+          <option value="clien">Cliente </option>
+        </select><br>
+
+
+        <button class="button-green" id="guardar" ng-click="Guardar()" ng-disabled="myForm.$invalid"><span>Registrar </span></button><br><br>
+
+
+      </form>
+    </div>
+
+    <h1 style="color:red;" ng-if ="!myForm.$valid">Todos los campos son obligatorios</h1>
+
+    <h1 style="color:green;" ng-if ="myForm.$valid">Muy bien. a Registrarse!!</h1>

@@ -1,0 +1,95 @@
+
+	<div  style="background-color: #808080 ;">
+	  <div class="container">
+		<div class="page-header" >
+			<center><h1 class="animated zoomInDown" style="color:lightblue;" >Usuarios</h1> </center>     
+		</div>
+	  	 
+		           
+					<div class="CajaInicio  animated  slideInUp">
+							<h1 style="color:yellow;">Listado de Usuarios</h1>
+							<!-- id="listaPersonas" -->
+								
+	<!-- BUSQUEDA -->
+
+			<label style="color:yellow;">Busqueda en Particular</label>
+						 
+						<input class="barraSearch" type="search" ng-model="buscarTipo.usuario" placeholder="Buscar Nombre">
+						<input class="barraSearch" type="search" ng-model="buscarTipo.email" placeholder="Buscar email">
+						<input class="barraSearch" type="search" ng-model="buscarTipo.perfil" placeholder="Buscar Perfil">
+							<li style="color:blue;" class="animate-repeat" ng-if="resultado.length == 0">
+
+							      <strong>No existen coincidencias</strong>
+							    </li>
+
+
+
+<!-- BUSQUEDA -->
+
+
+								<table class='table table-hover table-responsive ' id="listaPersonas">
+									<thead>
+										<tr>
+											<th>  Usuario   </th>				
+											<th>  Email     </th>
+											<th>  Password     </th>
+											<th>  Perfil     </th>
+											
+											<th>  BORRAR     </th>
+											<th>  EDITAR     </th>
+
+										<!--	<th>  MODIFICAR  </th>-->
+
+										</tr> 
+									</thead>
+									<!--
+									<tr ng-repeat="usuario in ListadoUsers" style="color:blue;">
+									
+										<td>{{usuario.usuario}}</td>
+										<td>{{usuario.dni}}</td>
+										<td>{{usuario.password}}</td>
+										<td>{{usuario.tipo}}</td>
+										
+										<td><button class='btn btn-danger' name='Borrar' ng-click="Borrar(usuario)">   <span class='glyphicon glyphicon-remove-circle'>&nbsp;</span>Borrar</button></td>
+										
+										<td><button class='btn btn-warning' name='Modificar' ng-click="Modificar(usuario)"><span class='glyphicon glyphicon-edit'>&nbsp;</span>Modificar</button></td>
+									
+
+
+									</tr>
+									-->
+									<tbody>
+												<tr user-list  ng-repeat="usuario in ListadoUsers | orderBy:'usuario' | filter:buscarTipo as resultado" obj="usuario">
+												
+												</tr>
+
+									</tbody>
+	
+								</table>
+							</div>
+							<!--
+							<input type="search" ng-model="q" placeholder="Buscar personas..." aria-label="buscar personas" />
+							  <ul class="example-animate-container">
+							    <li class="animate-repeat" ng-repeat="persona in ListadoPersonas| filter:q as results">
+							      [{{$index + 1}}] {{persona.nombre}} who is {{persona.apellido}} years old.
+							    </li>
+							    <li class="animate-repeat" ng-if="results.length == 0">
+							      <strong>No results found...</strong>
+							    </li>
+							  </ul>
+							-->
+						</div>
+		</div></div>
+</body>
+</html><!--
+<label>Any: <input ng-model="search.$"></label> <br>
+<label>Name only <input ng-model="search.name"></label><br>
+<label>Phone only <input ng-model="search.phone"></label><br>
+<label>Equality <input type="checkbox" ng-model="strict"></label><br>
+<table id="searchObjResults">
+  <tr><th>Name</th><th>Phone</th></tr>
+  <tr ng-repeat="friendObj in friends | filter:search:strict">
+    <td>{{friendObj.name}}</td>
+    <td>{{friendObj.phone}}</td>
+-->
+

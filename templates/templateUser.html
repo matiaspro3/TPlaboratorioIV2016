@@ -1,0 +1,14 @@
+<tr style="color:blue">
+										<td>{{objEnv.usuario}}</td>
+										<td>{{objEnv.email}}</td>
+										<td ng-if="objEnv.perfil !='admin'" >{{objEnv.password}}</td>
+										<td ng-if="objEnv.perfil =='admin'" >*********</td>
+
+										<td>{{objEnv.perfil  | filtroPerfil}}</td>
+										
+										<td><button ng-if="objEnv.perfil !='admin'" class='btn btn-danger' name='Borrar' ng-click="Borrar(objEnv)">   <span class='glyphicon glyphicon-remove-circle'>&nbsp;</span></button></td>
+										
+										<td><button ng-if="objEnv.perfil !='admin'" class='btn btn-warning' name='Modificar' ng-click="Modificar(objEnv)"><span class='glyphicon glyphicon-edit'>&nbsp;</span></button></td>
+									
+									
+</tr>

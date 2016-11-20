@@ -1,0 +1,53 @@
+    
+ <div> 
+
+
+	<ul class="nav nav-tabs ">
+
+		         <li  class="btn btn-primary animated bounceInLeft" >
+		         	<a ui-sref="inicio()">
+		         		 <span class="glyphicon glyphicon-list-alt">&nbsp;</span>
+		         		 Inicio
+		         	</a>
+		         </li>
+
+		         <li ng-if='!user'  class="btn btn-danger animated bounceInLeft" >
+		         	<a ui-sref="usuario.login()">
+		         		<span class="glyphicon glyphicon-plus-sign">&nbsp;</span>
+		         		Login
+		         	</a>
+		         </li>
+
+ 					<li ng-if='!user'  class="btn btn-success animated bounceInLeft" >
+		         	<a style="color:blue" ui-sref="usuario.registrarse()"> 
+		         		<span class="glyphicon glyphicon-th"  style="color:red;">&nbsp;</span>
+		         			Cliente Nuevo</a>
+		         		</li>
+		        
+		        
+
+
+		         <li ng-if="user.perfil =='admin'"  class="btn btn-success animated bounceInLeft" >
+		         	<a style="color:blue" ui-sref="usuario.registrarse()"> 
+		         		<span class="glyphicon glyphicon-th"  style="color:red;">&nbsp;</span>
+		         			Registrar</a>
+		         		</li>
+		         	
+
+						 <li   ng-if="user.perfil =='admin'"  class="btn btn-primary animated bounceInLeft" >
+							         	<a ng-click="Grilla()"> 
+							         		<span class="glyphicon glyphicon-list-alt" >&nbsp;</span>
+							         			Listado de Usuarios</a>
+							         		</li>
+  
+
+ 				 <div ><nombre-user  usuarito=user.usuario><nombre-user>                    </div>
+
+		        	<span id="tituloBarra"  class="animated bounceInRight"></span>
+
+
+      </ul>
+      <div ui-view name="contenido" animation="slide-left-right">
+
+
+       </div></div>
