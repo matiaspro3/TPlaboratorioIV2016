@@ -1,0 +1,64 @@
+  <div class="menu">
+        <ul class="nav">
+                                            
+            <li>
+                <a href="colecciones.html">Relojes<span class="flecha">▼</span></a>
+                    <ul>
+                                <li><a href="colecciones.html">Colecciones<span class="flecha">▼</span></a>
+                            <ul>
+                           <li><a href="colecciones.html">Tapi<span class="flecha">▼</span></a></li>
+                           </ul>
+                               </li>
+                  </ul>
+           </li>
+           <li>
+                <a href="">Usuarios<span class="flecha">▼</span></a>
+                     <ul>
+                             <li><a ng-if='!user' ui-sref="usuario.login()" class="list-group-item-success  list-group-item list-group-item-success">Login de usuarios<span class="flecha">▼</span></a></li>
+                            
+                            <li><a ng-if="user.perfil =='admin'"  ui-sref="usuario.grilla()"  class="list-group-item-success  list-group-item list-group-item-success"> Listado de Usuarios<span class="flecha">▼</span></a></li>
+
+                            <li><a ng-if="user.perfil =='admin'"  ui-sref="usuario.registrarse()" class="list-group-item-success  list-group-item list-group-item-success">Registro de usuarios<span class="flecha">▼</span></a></li>
+
+                            <li><a ng-if='user'  ui-sref="usuario.menu()"  class="list-group-item-success  list-group-item list-group-item-success">Desloguearse<span class="flecha">▼</span></a></li>
+
+                                                 
+                   </ul>
+          </li>
+          <li>
+                <a href="vistas/contactame.html">Contacto<span class="flecha">▼</span></a>
+          </li>
+      </ul>        
+</div>
+<div class="menu">
+        <ul class="nav">
+                                            
+            <li>
+                <a href="colecciones.html">Relojes<span class="flecha">▼</span></a>
+                    <ul>
+                                <li><a href="colecciones.html">Colecciones<span class="flecha">▼</span></a>
+                            <ul>
+                           <li><a href="colecciones.html">Tapi<span class="flecha">▼</span></a></li>
+                           </ul>
+                               </li>
+                  </ul>
+           </li>
+           <li>
+                <a href="">Usuarios<span class="flecha">▼</span></a>
+                     <ul>
+                             <li><a ng-if='!user' ui-sref="usuario.login()" class="list-group-item-success  list-group-item list-group-item-success">Login de usuarios<span class="flecha">▼</span></a></li>
+                            
+                            <li><a ng-if="user.perfil =='admin'"  ui-sref="usuario.grilla()"  class="list-group-item-success  list-group-item list-group-item-success"> Listado de Usuarios<span class="flecha">▼</span></a></li>
+
+                            <li><a ng-if="user.perfil =='admin'"  ui-sref="usuario.registrarse()" class="list-group-item-success  list-group-item list-group-item-success">Registro de usuarios<span class="flecha">▼</span></a></li>
+
+                            <li><a ng-if='user'  ui-sref="usuario.menu()"  class="list-group-item-success  list-group-item list-group-item-success">Desloguearse<span class="flecha">▼</span></a></li>
+
+                                                 
+                   </ul>
+          </li>
+          <li>
+                <a href="vistas/contactame.html">Contacto<span class="flecha">▼</span></a>
+          </li>
+      </ul>        
+</div>

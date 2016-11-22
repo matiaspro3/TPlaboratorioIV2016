@@ -1,33 +1,59 @@
-<div class="menu">
-        <ul class="nav">
-                                            
-            <li>
-                <a href="colecciones.html">Relojes<span class="flecha">▼</span></a>
+     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+
+                <ul class="nav navbar-nav navbar-right">
+
+
+  <div id="cssmenu" >
+            <ul >
+                
+                <li class="has-sub"><a href="#"><span>Usuarios</span></a>
                     <ul>
-                                <li><a href="colecciones.html">Colecciones<span class="flecha">▼</span></a>
+                         <li class="has-sub"><a ng-if='!user' ui-sref="usuario.login()"><span>Login de usuarios</span></a>
+                        </li>
+                        <li class="has-sub"><a ng-if="user.perfil =='admin'"  ui-sref="usuario.grilla()" ><span>Listado de Usuarios</span></a>
+                        </li>
+                        <li class="has-sub" ><a ng-if="user.perfil =='admin'"  ui-sref="usuario.registrarse()"><span>Registro de usuarios</span></a> </li>
+                        <li class="has-sub" ><a ng-if='user'  ui-sref="usuario.menu()" ><span>Desloguearse</span></a> </li>
+                      
+                    </ul>
+                </li>
+
+
+                <li class="has-sub"><a href="#"><span>Paciente</span></a>
+                    <ul>
+                        <li class="has-sub"><a href="Pacientes.aspx"><span>Nuevo</span></a> </li>
+                        <li class="has-sub"><a href="#"><span>Modificar</span></a> </li>
+                        <li class="has-sub"><a href="#" id="mnBajaPaciente" ><span>Baja</span></a>
+                        </li>
+                        <li class="has-sub"><a href="ListarPacientes.aspx"><span>Listar</span></a> </li>
+                        <li class="has-sub" ><a href="#"><span>Clave</span></a>
                             <ul>
-                           <li><a href="colecciones.html">Tapi<span class="flecha">▼</span></a></li>
-                           </ul>
-                               </li>
-                  </ul>
-           </li>
-           <li>
-                <a href="">Usuarios<span class="flecha">▼</span></a>
-                     <ul>
-                             <li><a ng-if='!user' ui-sref="usuario.login()" class="list-group-item-success  list-group-item list-group-item-success">Login de usuarios<span class="flecha">▼</span></a></li>
-                            
-                            <li><a ng-if="user.perfil =='admin'"  ui-sref="usuario.grilla()"  class="list-group-item-success  list-group-item list-group-item-success"> Listado de Usuarios<span class="flecha">▼</span></a></li>
+                                <li><a href="NewPass.aspx" id="mnCambioClave" ><span>Cambio</span></a></li>
+                                <li class="last"><a href="#" id="mnBlanqueoClave" ><span>Blqueo de Usuario</span></a></li>
+                                <li class="last"><a href="Blanqueo.aspx" id="mnBlanquearUsuario" ><span>Blanqueo de Clave</span></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
 
-                            <li><a ng-if="user.perfil =='admin'"  ui-sref="usuario.registrarse()" class="list-group-item-success  list-group-item list-group-item-success">Registro de usuarios<span class="flecha">▼</span></a></li>
 
-                            <li><a ng-if='user'  ui-sref="usuario.menu()"  class="list-group-item-success  list-group-item list-group-item-success">Desloguearse<span class="flecha">▼</span></a></li>
+                <li class="has-sub"><a href="#"><span>Auditoria</span></a>
+                    <ul>
+                        <li><a href="AuditoriaActivos.aspx" id="A1" ><span>Activos</span></a></li>
+                        <li class="last"><a href="NoActivos.aspx" id="A2" ><span>No Activos</span></a></li>
+                        <li class="last"><a href="AuditoriaGeneral.aspx" id="A3" ><span>Listado
+                            General</span></a></li>
+                    </ul>
+                </li>
 
-                                                 
-                   </ul>
-          </li>
-          <li>
-                <a href="vistas/contactame.html">Contacto<span class="flecha">▼</span></a>
-          </li>
-      </ul>        
-</div>
+                <li><a href="vistas/contactame.html"><span>Contacto</span></a></li>
+              
+            </ul><!--cierro el menu-->
 
+
+        </div> <!--cierro el menu-->    
+
+            </ul>
+
+       
+    </div>

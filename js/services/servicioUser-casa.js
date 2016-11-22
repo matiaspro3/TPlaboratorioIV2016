@@ -1,17 +1,20 @@
 angular.module('abmapp')
-.service('servicioABM', function($timeout,$http) {
-    this.Nombre = "Servicio ABM";
+.service('servicioUser', function($timeout,$http) {
+    this.Nombre = "Servicio Usuario";
    this.Borrar = Borrar;
     this.Cargar = Cargar;
     this.Alta = Alta;
     this.Modificar =Modificar;
 
-  
+
+
+
+
 
     function Cargar(){
       
       
-    return $http.get('http://localhost:8088/Labo/ws/personas')
+    return $http.get('http://localhost/Labo/ws/usuarios')
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -35,7 +38,7 @@ angular.module('abmapp')
     function Alta(persona){
       
       
-    return  $http.post('http://localhost:8088/Labo/ws/alta/' + JSON.stringify(persona))
+    return  $http.post('http://localhost/Labo/ws/altaUser/' + JSON.stringify(persona))
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -61,7 +64,7 @@ angular.module('abmapp')
     function Borrar(persona){
       
       
-    return    $http.delete('http://localhost:8088/Labo/ws/personas/' + JSON.stringify(persona.id))
+    return    $http.delete('http://localhost/Labo/ws/usuario/' + JSON.stringify(persona.id))
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -80,10 +83,10 @@ angular.module('abmapp')
     }
   
 
-    function Modificar(persona){
+    function Modificar(usuario){
       
       
-    return    $http.put('http://localhost:8088/Labo/ws/modificarPerson/' + JSON.stringify(persona))
+    return    $http.put('http://localhost/Labo/ws/modificarUser/' + JSON.stringify(usuario))
     .then(function(respuesta) {       
       
     return respuesta.data;
