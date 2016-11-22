@@ -16,6 +16,15 @@ return {replace : true, restrict : "MEAC", templateUrl : "templates/templateMenu
 })
 
 
+
+.directive('menuSucu', function() {
+
+return {replace : true, restrict : "MEAC", templateUrl : "templates/templateMenuSucursales.html"};
+
+})
+
+
+
 .directive('menuModal', function() {
 
 return {replace : true, restrict : "MEAC", templateUrl : "templates/templateModal.html"};

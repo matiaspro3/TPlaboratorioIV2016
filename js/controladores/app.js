@@ -43,7 +43,12 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
                 templateUrl : 'vistas/abstractaPersona.html',
                 controller : 'controlPersona'
             })
-  
+   .state('sucursalAlta', {
+                url : '/altaSucursal',
+                cache:false,
+                templateUrl : 'vistas/sucursalAlta.html',
+                controller : 'controlSucursalAlta'
+            })
       .state('persona.menu', {
                 url: '/menu',
                        cache:false,
@@ -157,6 +162,11 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
                     }
                 }
             })
+
+
+
+
+
 
 
              $urlRouterProvider.otherwise('/inicio');
