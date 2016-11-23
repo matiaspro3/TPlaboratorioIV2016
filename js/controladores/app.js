@@ -174,6 +174,13 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
                 })
 
 
+    .state('sucursalesGrilla', {
+                    url : '/sucursalesGrilla',
+                    cache:false,
+                    templateUrl : 'vistas/sucursalesGrilla.html',
+                    controller : 'controlSucursalesGrilla'
+                })
+
 
 
 

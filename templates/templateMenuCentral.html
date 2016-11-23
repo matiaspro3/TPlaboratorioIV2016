@@ -18,9 +18,11 @@
                     </ul>
                 </li>
 
-                <li class="has-sub"><a ng-if='user' href="#"><span>Sucursales</span></a>
+                <li class="has-sub"><a  href="#"><span>Sucursales</span></a>
                     <ul>
                          <li class="has-sub"><a  ui-sref="sucursalAlta()"><span>Alta de Sucursales</span></a>
+                        </li>
+                           <li class="has-sub"><a  ui-sref="sucursalesGrilla()"><span>Listado de Sucursales</span></a>
                         </li>
                         <li class="has-sub"><a ng-if="user.perfil =='admin'"  ui-sref="usuario.grilla()" ><span>Listado de Usuarios</span></a>
                         </li>

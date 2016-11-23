@@ -14,7 +14,8 @@
 
 			<label style="color:yellow;">Busqueda en Particular</label>
 						 
-						<input class="barraSearch" type="search" ng-model="buscarTipo.direccion" placeholder="Buscar Direccion">
+						<input class="barraSearch" type="search" ng-model="buscarTipo.produDir" placeholder="Buscar Direccion">
+						<input class="barraSearch" type="search" ng-model="buscarTipo.localDir" placeholder="Buscar Sucursal">
 							<li style="color:blue;" class="animate-repeat" ng-if="resultado.length == 0">
 
 							      <strong>No existen coincidencias</strong>
@@ -28,12 +29,20 @@
 								<table class='table table-hover table-responsive ' >
 									<thead>
 										<tr>
-											<th>  Direccion   </th>				
+											<th>  Direccion de la  Vivienda   </th>				
 											<th>  Foto 1     </th>
 											<th>  Foto 2     </th>
 											<th>  Foto 3     </th>
 											<th>  Oferta     </th>
-											
+
+								 			<th> Sucursal  </th>
+											<th> foto1 </th>
+											<th> foto2 </th>
+											<th>	foto3 </th>
+											<th>  Disponibilidad </th>
+
+
+
 											<th>  BORRAR     </th>
 											<th>  EDITAR     </th>										
 

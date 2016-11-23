@@ -1,20 +1,12 @@
 angular
 .module('abmapp')
 
-.directive('utnSaludo', function() {
-
-return {template : "Hola Mundo"};
-
-})
-
-
 
 .directive('menuCentral', function() {
 
 return {replace : true, restrict : "MEAC", templateUrl : "templates/templateMenuCentral.html"};
 
 })
-
 
 
 .directive('menuSucu', function() {
@@ -28,14 +20,6 @@ return {replace : true, restrict : "MEAC", templateUrl : "templates/templateMenu
 .directive('menuModal', function() {
 
 return {replace : true, restrict : "MEAC", templateUrl : "templates/templateModal.html"};
-
-})
-
-
-
-.directive('bandera', function() {
-
-return {scope : {mibandera : '=banderita'}, replace : true, restrict : "MEAC", templateUrl : "templates/templateBandera.html"};
 
 })
 
@@ -104,6 +88,17 @@ link: function($scope, element, attrs) {
 	
 
 return {scope : {objEnv : '=obj',Borrar: '&'}, replace : true, restrict : "MEAC", templateUrl : "templates/templateProduc.html" };
+
+
+
+})
+
+
+
+.directive('sucuList', function() {
+	
+
+return {scope : {objEnv : '=obj',Borrar: '&'}, replace : true, restrict : "MEAC", templateUrl : "templates/templateSucursales.html" };
 
 
 

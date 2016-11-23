@@ -37,7 +37,7 @@ angular.module('abmapp')
   
 function CargarSucursales(){
             
-    return $http.get('http://localhost/Labo/ws/sucursales')
+    return $http.get('http://http://matiasds.16mb.com/ws/sucursales')
     .then(function(respuesta) {       
       
     return respuesta.data;

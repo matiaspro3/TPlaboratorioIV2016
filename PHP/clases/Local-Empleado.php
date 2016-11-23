@@ -5,8 +5,15 @@ class local_empleado
 //--------------------------------------------------------------------------------//
 //--ATRIBUTOS
 	public $id_emple;
-	public $id_local;
-	
+	public $nombre;
+	public $legajo;
+	public $cargo;
+	public $id_sucu;
+	public $localDir;
+	public $fotoLocal1;
+	public $fotoLocal2;
+	public $fotoLocal3;
+	public $comprada;
 
 
 //--------------------------------------------------------------------------------//
@@ -27,7 +34,7 @@ class local_empleado
 
 
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("select * from local-empleado where id-emple =:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("select * from local_empleado where id-emple =:id");
 	//$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerUnaPersona(:id)");
 		$consulta->bindValue(':id', $idParametro, PDO::PARAM_INT);
 		$consulta->execute();
@@ -39,8 +46,22 @@ class local_empleado
 	public static function TraerTodos()
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("select * from local-empleado");
-		//$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerTodasLasPersonas() ");
+		$consulta =$objetoAccesoDato->RetornarConsulta(
+			/*"select * from local_empleado");*/
+				"select A.id_emple,
+				  A.nombre,
+				  A.legajo,
+				  A.cargo,
+				  B.id_sucu,
+				  B.localDir,
+				  B.fotoLocal1,
+				  B.fotoLocal2,
+				  B.fotoLocal3
+			from empleados A , sucursales B, local_empleado C
+			where A.id_emple = C.id_emple
+			and   B.id_sucu = C.id_local
+         ");
+
 		$consulta->execute();			
 		$arrPersonas= $consulta->fetchAll(PDO::FETCH_CLASS, "local_empleado");	
 		return $arrPersonas;
@@ -49,7 +70,7 @@ class local_empleado
 	public static function Borrar($idParametro)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("delete from local-empleado WHERE id-emple=:id");	
+		$consulta =$objetoAccesoDato->RetornarConsulta("delete from local_empleado WHERE id-emple=:id");	
 		//$consulta =$objetoAccesoDato->RetornarConsulta("CALL BorrarPersona(:id)");	
 		$consulta->bindValue(':id',$idParametro, PDO::PARAM_INT);		
 		$consulta->execute();
@@ -81,7 +102,7 @@ class local_empleado
 	public static function Insertar($producto)
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("insert into local-empleado (id-emple,id-local)values(:id-emple,:id-local)");
+		$consulta =$objetoAccesoDato->RetornarConsulta("insert into local_empleado (id-emple,id-local)values(:id-emple,:id-local)");
 		$consulta->bindValue(':id-emple', $producto->id_emple, PDO::PARAM_STR);
 		$consulta->bindValue(':id-local', $producto->id_local, PDO::PARAM_STR);
 		$consulta->execute();		

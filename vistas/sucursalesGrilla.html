@@ -1,0 +1,59 @@
+	<menu-sucu></menu-sucu>
+	<div  >
+	  <div class="container">
+		<div class="page-header" >
+
+			<center><h1 class="animated zoomInDown" style="color:lightblue;" >Sucursales</h1> </center>     
+		</div>
+
+	  	 
+		           
+					<div class="CajaInicio  animated  slideInUp">
+							<h1 style="color:yellow;">Listado de Sucursales</h1>
+							<!-- id="listaPersonas" -->
+								
+	<!-- BUSQUEDA -->
+
+			<label style="color:yellow;">Busqueda en Particular</label>
+						 
+						<input class="barraSearch" type="search" ng-model="buscarTipo.nombre" placeholder="Buscar Nombre Empleado">
+						<input class="barraSearch" type="search" ng-model="buscarTipo.localDir" placeholder="Buscar Sucursal">
+							<li style="color:blue;" class="animate-repeat" ng-if="resultado.length == 0">
+
+							      <strong>No existen coincidencias</strong>
+							    </li>
+
+
+
+<!-- BUSQUEDA -->
+
+
+								<table class='table table-hover table-responsive ' >
+									<thead>
+										<tr>
+											<th> Sucursal  </th>
+											<th> foto1 </th>
+											<th> foto2 </th>
+											<th> foto3 </th>
+											<th> Nombre Empleado   </th>
+											<th> Legajo </th>
+											<th> Cargo </th>
+											
+											<th>  BORRAR     </th>
+											<th>  EDITAR     </th>										
+
+										</tr> 
+									</thead>
+									<tbody>
+												<tr sucu-list  ng-repeat="produ in ListadoProd | orderBy:'produ' | filter:buscarTipo as resultado" obj="produ">
+												
+												</tr>
+
+									</tbody>
+	
+								</table>
+							</div>
+						</div>
+		</div></div>
+</body>
+</html>

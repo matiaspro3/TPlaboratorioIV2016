@@ -11,6 +11,7 @@ angular.module('abmapp.filtros', [])
         if (!input)
         return '';
     return perfil[input];
+    
     }
 
 });
@@ -33,7 +34,7 @@ app.filter('filtroPass', function () {
 
 app.filter('filtroOferta', function () {
    var pass = {
-       0 : 'Actualmente sin Oferta.',
+      
        1 : 'Prodiedad en Oferta.'    
       
     }
@@ -45,3 +46,33 @@ app.filter('filtroOferta', function () {
 
   });
 
+
+
+app.filter('filtroCompra', function () {
+   var pass = {
+      
+       1 : 'Prodiedad Comprada.'    
+      
+    }
+   return function (input) {
+        if (!input)
+        return 'Actualmente displible.';
+    return pass[input];
+    }
+
+  });
+
+
+
+app.filter('filtroCargo', function () {
+   var pass = {
+      'enca' : 'Encargado',
+      'emple': 'Empleado', 
+    }
+   return function (input) {
+        if (!input)
+        return '';
+    return pass[input];
+    }
+
+  });

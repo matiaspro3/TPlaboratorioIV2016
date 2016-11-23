@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2016 a las 19:32:22
+-- Tiempo de generación: 23-11-2016 a las 16:28:03
 -- Versión del servidor: 10.1.10-MariaDB
 -- Versión de PHP: 5.6.19
 
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `empleados` (
-  `id-emple` int(11) NOT NULL,
+  `id_emple` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `legajo` int(11) NOT NULL,
   `cargo` varchar(50) NOT NULL
@@ -37,7 +37,7 @@ CREATE TABLE `empleados` (
 -- Volcado de datos para la tabla `empleados`
 --
 
-INSERT INTO `empleados` (`id-emple`, `nombre`, `legajo`, `cargo`) VALUES
+INSERT INTO `empleados` (`id_emple`, `nombre`, `legajo`, `cargo`) VALUES
 (1, 'Pedro', 5898, 'enca'),
 (2, 'Martin', 5899, 'emple'),
 (3, 'Marcela', 8996, 'emple'),
@@ -50,45 +50,45 @@ INSERT INTO `empleados` (`id-emple`, `nombre`, `legajo`, `cargo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `local-empleado`
+-- Estructura de tabla para la tabla `local_empleado`
 --
 
-CREATE TABLE `local-empleado` (
-  `id-emple` int(11) NOT NULL,
-  `id-local` int(11) NOT NULL
+CREATE TABLE `local_empleado` (
+  `id_emple` int(11) NOT NULL,
+  `id_local` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `local-empleado`
+-- Volcado de datos para la tabla `local_empleado`
 --
 
-INSERT INTO `local-empleado` (`id-emple`, `id-local`) VALUES
+INSERT INTO `local_empleado` (`id_emple`, `id_local`) VALUES
 (1, 1),
 (2, 1),
 (3, 1),
-(5, 1),
 (6, 1),
 (4, 2),
 (7, 2),
-(8, 2);
+(8, 2),
+(5, 3);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `local-producto`
+-- Estructura de tabla para la tabla `local_producto`
 --
 
-CREATE TABLE `local-producto` (
-  `id-prod` int(11) NOT NULL,
-  `id-local` int(11) NOT NULL,
+CREATE TABLE `local_producto` (
+  `id_prod` int(11) NOT NULL,
+  `id_local` int(11) NOT NULL,
   `comprada` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `local-producto`
+-- Volcado de datos para la tabla `local_producto`
 --
 
-INSERT INTO `local-producto` (`id-prod`, `id-local`, `comprada`) VALUES
+INSERT INTO `local_producto` (`id_prod`, `id_local`, `comprada`) VALUES
 (1, 1, 0),
 (2, 1, 1),
 (3, 2, 0);
@@ -100,8 +100,11 @@ INSERT INTO `local-producto` (`id-prod`, `id-local`, `comprada`) VALUES
 --
 
 CREATE TABLE `productos` (
-  `id-prod` int(11) NOT NULL,
-  `direccion` varchar(50) NOT NULL,
+  `id_prod` int(11) NOT NULL,
+  `produDir` varchar(50) NOT NULL,
+  `fotoProd1` varchar(50) NOT NULL,
+  `fotoProd2` varchar(50) NOT NULL,
+  `fotoProd3` varchar(50) NOT NULL,
   `oferta` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -109,10 +112,10 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id-prod`, `direccion`, `oferta`) VALUES
-(1, 'Bacacay 3112', 0),
-(2, 'Franco 3303', 1),
-(3, 'Av. San Martin 3703', 0);
+INSERT INTO `productos` (`id_prod`, `produDir`, `fotoProd1`, `fotoProd2`, `fotoProd3`, `oferta`) VALUES
+(1, 'Bacacay 3112', '', '', '', 1),
+(2, 'Franco 3303', '', '', '', 1),
+(3, 'Av. San Martin 3703', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -121,18 +124,18 @@ INSERT INTO `productos` (`id-prod`, `direccion`, `oferta`) VALUES
 --
 
 CREATE TABLE `sucursales` (
-  `id-sucu` int(11) NOT NULL,
-  `direccion` varchar(50) NOT NULL,
-  `fotos1` varchar(50) NOT NULL,
-  `foto2` varchar(50) NOT NULL,
-  `foto3` varchar(50) NOT NULL
+  `id_sucu` int(11) NOT NULL,
+  `localDir` varchar(50) NOT NULL,
+  `fotoLocal1` varchar(50) NOT NULL,
+  `fotoLocal2` varchar(50) NOT NULL,
+  `fotoLocal3` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `sucursales`
 --
 
-INSERT INTO `sucursales` (`id-sucu`, `direccion`, `fotos1`, `foto2`, `foto3`) VALUES
+INSERT INTO `sucursales` (`id_sucu`, `localDir`, `fotoLocal1`, `fotoLocal2`, `fotoLocal3`) VALUES
 (1, 'Heleguera y Rivadavia', '', '', ''),
 (2, 'Heleguera y Bacacay', '', '', ''),
 (3, 'Heleguera y Pacheco', '', '', '');
@@ -170,33 +173,33 @@ INSERT INTO `usuarios` (`id`, `usuario`, `password`, `perfil`, `email`, `pathfot
 -- Indices de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  ADD PRIMARY KEY (`id-emple`);
+  ADD PRIMARY KEY (`id_emple`);
 
 --
--- Indices de la tabla `local-empleado`
+-- Indices de la tabla `local_empleado`
 --
-ALTER TABLE `local-empleado`
-  ADD PRIMARY KEY (`id-emple`),
-  ADD KEY `id-local` (`id-local`);
+ALTER TABLE `local_empleado`
+  ADD PRIMARY KEY (`id_emple`),
+  ADD KEY `id-local` (`id_local`);
 
 --
--- Indices de la tabla `local-producto`
+-- Indices de la tabla `local_producto`
 --
-ALTER TABLE `local-producto`
-  ADD PRIMARY KEY (`id-prod`),
-  ADD KEY `id-local` (`id-local`);
+ALTER TABLE `local_producto`
+  ADD PRIMARY KEY (`id_prod`),
+  ADD KEY `id-local` (`id_local`);
 
 --
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD PRIMARY KEY (`id-prod`);
+  ADD PRIMARY KEY (`id_prod`);
 
 --
 -- Indices de la tabla `sucursales`
 --
 ALTER TABLE `sucursales`
-  ADD PRIMARY KEY (`id-sucu`);
+  ADD PRIMARY KEY (`id_sucu`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -212,17 +215,17 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `id-emple` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_emple` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id-prod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_prod` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `sucursales`
 --
 ALTER TABLE `sucursales`
-  MODIFY `id-sucu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_sucu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
@@ -233,18 +236,18 @@ ALTER TABLE `usuarios`
 --
 
 --
--- Filtros para la tabla `local-empleado`
+-- Filtros para la tabla `local_empleado`
 --
-ALTER TABLE `local-empleado`
-  ADD CONSTRAINT `empleado` FOREIGN KEY (`id-emple`) REFERENCES `empleados` (`id-emple`),
-  ADD CONSTRAINT `local` FOREIGN KEY (`id-local`) REFERENCES `sucursales` (`id-sucu`);
+ALTER TABLE `local_empleado`
+  ADD CONSTRAINT `empleado` FOREIGN KEY (`id_emple`) REFERENCES `empleados` (`id_emple`),
+  ADD CONSTRAINT `local` FOREIGN KEY (`id_local`) REFERENCES `sucursales` (`id_sucu`);
 
 --
--- Filtros para la tabla `local-producto`
+-- Filtros para la tabla `local_producto`
 --
-ALTER TABLE `local-producto`
-  ADD CONSTRAINT `locales` FOREIGN KEY (`id-local`) REFERENCES `sucursales` (`id-sucu`),
-  ADD CONSTRAINT `producto` FOREIGN KEY (`id-prod`) REFERENCES `productos` (`id-prod`);
+ALTER TABLE `local_producto`
+  ADD CONSTRAINT `locales` FOREIGN KEY (`id_local`) REFERENCES `sucursales` (`id_sucu`),
+  ADD CONSTRAINT `producto` FOREIGN KEY (`id_prod`) REFERENCES `productos` (`id_prod`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
