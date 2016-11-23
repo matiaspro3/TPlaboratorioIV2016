@@ -1,15 +1,13 @@
 <?php
 require_once"accesoDatos.php";
-class productos
+class local_producto
 {
 //--------------------------------------------------------------------------------//
 //--ATRIBUTOS
 	public $id_producto;
-	public $direccion;
-	public $foto1;
-	public $foto2;
-	public $foto3;
-	public $oferta;
+	public $id_local;
+	public $comprada;
+
 
 //--------------------------------------------------------------------------------//
 
@@ -29,11 +27,11 @@ class productos
 
 
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("select * from productos where id-prod =:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("select * from local-producto where id-prod =:id");
 	//$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerUnaPersona(:id)");
 		$consulta->bindValue(':id', $idParametro, PDO::PARAM_INT);
 		$consulta->execute();
-		$personaBuscada= $consulta->fetchObject('productos');
+		$personaBuscada= $consulta->fetchObject('local_producto');
 		return $personaBuscada;	
 					
 	}
@@ -41,17 +39,17 @@ class productos
 	public static function TraerTodos()
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("select * from productos");
+		$consulta =$objetoAccesoDato->RetornarConsulta("select * from local-producto");
 		//$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerTodasLasPersonas() ");
 		$consulta->execute();			
-		$arrPersonas= $consulta->fetchAll(PDO::FETCH_CLASS, "productos");	
+		$arrPersonas= $consulta->fetchAll(PDO::FETCH_CLASS, "local_producto");	
 		return $arrPersonas;
 	}
 	
 	public static function Borrar($idParametro)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("delete from productos WHERE id-prod=:id");	
+		$consulta =$objetoAccesoDato->RetornarConsulta("delete from local-producto WHERE id-prod=:id");	
 		//$consulta =$objetoAccesoDato->RetornarConsulta("CALL BorrarPersona(:id)");	
 		$consulta->bindValue(':id',$idParametro, PDO::PARAM_INT);		
 		$consulta->execute();
@@ -63,23 +61,19 @@ class productos
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("
-				update productos
-				set direccion=:direccion,
-				foto1=:foto1,
-				foto2=:foto2,
-				foto3=:foto3,
-				oferta=:oferta
+				update local-producto
+				set id-prod=:id-prod,
+				id-local =:id-local,			
+				comprada=:comprada
 				WHERE id-prod=:id");
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
 			//$consulta =$objetoAccesoDato->RetornarConsulta("CALL ModificarPersona(:id,:direccion,:apellido,:foto)");
 		
-		$consulta->bindValue(':id', $producto->id, PDO::PARAM_STR);
-		$consulta->bindValue(':direccion', $producto->direccion, PDO::PARAM_STR);
-		$consulta->bindValue(':foto2', $producto->foto2, PDO::PARAM_STR);
-		$consulta->bindValue(':foto3', $producto->foto3, PDO::PARAM_STR);
+		$consulta->bindValue(':id-prod', $producto->id_producto, PDO::PARAM_STR);
+		$consulta->bindValue(':id-local', $producto->id_local, PDO::PARAM_STR);
 		$consulta->bindValue(':foto1', $producto->foto1, PDO::PARAM_STR);
-		$consulta->bindValue(':oferta', $producto->oferta, PDO::PARAM_STR);
+		$consulta->bindValue(':comprada', $producto->comprada, PDO::PARAM_STR);
 
 			return $consulta->execute();
 	}
@@ -91,12 +85,10 @@ class productos
 	public static function Insertar($producto)
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("insert into productos (direccion,foto1,foto2,foto3)values(:direccion,:foto1,:foto2,:foto3)");
-		$consulta->bindValue(':direccion', $producto->direccion, PDO::PARAM_STR);
-		$consulta->bindValue(':foto1', $producto->foto1, PDO::PARAM_STR);
-		$consulta->bindValue(':foto2', $producto->foto2, PDO::PARAM_STR);
-		$consulta->bindValue(':foto3', $producto->foto3, PDO::PARAM_STR);
-		$consulta->bindValue(':oferta', $producto->oferta, PDO::PARAM_STR);
+		$consulta =$objetoAccesoDato->RetornarConsulta("insert into local-producto (id-prod,id-local,comprada)values(:id-prod,:id-local,:comprada)");
+		$consulta->bindValue(':id-prod', $producto->id_producto, PDO::PARAM_STR);
+		$consulta->bindValue(':id-local', $producto->id_local, PDO::PARAM_STR);
+		$consulta->bindValue(':comprada', $producto->comprada, PDO::PARAM_STR);
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
 	

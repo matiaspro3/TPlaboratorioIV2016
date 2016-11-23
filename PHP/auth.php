@@ -2,7 +2,6 @@
 include_once '../jwt/vendor/autoload.php';
 use \Firebase\JWT\JWT;
 
-include "clases/Personas.php";
 include "clases/Usuarios.php";
 
 $datosDelModeloPorPOST = file_get_contents('php://input'); // Metodo para traer los datos de JS.

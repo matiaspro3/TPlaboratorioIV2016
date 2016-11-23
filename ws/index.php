@@ -22,9 +22,13 @@ header('Access-Control-Allow-Origin: *');
  * PSR-4 autoloader.
  */
 require 'vendor/autoload.php';
-require '../PHP/clases/Personas.php';
+
 require '../PHP/clases/Usuarios.php';
 require '../PHP/clases/Productos.php';
+require '../PHP/clases/Sucursales.php';
+require '../PHP/clases/Local-Empleado.php';
+require '../PHP/clases/Local-Productos.php';
+
 /**
  * Step 2: Instantiate a Slim application
  *
@@ -70,21 +74,38 @@ $app->get('/usuarios[/]', function ($request, $response, $args) {
 
 
 $app->get('/productos[/]', function ($request, $response, $args) {
-    $datos = Productos::TraerTodos();
-    $response->write(json_encode($datos))   ;//INTERNAL SERVER ERROR 500 -> Porque le es6taba devolviendo una referencia a memoria del servidor (hay que pasar un "string" del objeto transformado a json!!)
-    //$response->write("Lista de usuarios");
-    
+    $datos = productos::TraerTodos();
+    $response->write(json_encode($datos));    
     return $response;
 });
 
 
 
 
-$app->get('/usuario[/{id}[/{name}]]', function ($request, $response, $args) {
-    $response->write("Datos usuario ");
-    var_dump($args);
+$app->get('/sucursales[/]', function ($request, $response, $args) {
+    $datos = sucursales::TraerTodos();
+    $response->write(json_encode($datos));    
     return $response;
 });
+
+
+$app->get('/local_empleado[/]', function ($request, $response, $args) {
+    $datos = local_empleado::TraerTodos();
+    $response->write(json_encode($datos));    
+    return $response;
+});
+
+
+$app->get('/local_producto[/]', function ($request, $response, $args) {
+    $datos = local_producto::TraerTodos();
+    $response->write(json_encode($datos));    
+    return $response;
+});
+
+
+
+
+
 
 
 
@@ -93,6 +114,7 @@ $app->get('/usuario[/{id}[/{name}]]', function ($request, $response, $args) {
 
 
 /* FORMA DE RECIBIR POR PARAMETROS UN OBJETO EN POST
+
     POST: Para crear recursos */
 $app->post('/alta/{objeto}', function ($request, $response, $args) {
     $persona = json_decode($args['objeto']);
@@ -124,6 +146,67 @@ $app->post('/altaUser/{usuario}', function ($request, $response, $args) {
 });
 
 
+$app->post('/altaPrd/{producto}', function ($request, $response, $args) {
+    $prod = json_decode($args['producto']);
+    $datos = productos::Insertar($prod);
+
+
+    $response->write($datos);
+
+    return $response;
+});
+
+
+
+$app->post('/sucursal/{sucursal}', function ($request, $response, $args) {
+    $prod = json_decode($args['sucursal']);
+    $datos = sucursales::Insertar($prod);
+
+
+    $response->write($datos);
+
+    return $response;
+});
+
+
+
+$app->post('/local_empleado/{sucursal}', function ($request, $response, $args) {
+    $prod = json_decode($args['sucursal']);
+    $datos = local_empleado::Insertar($prod);
+
+
+    $response->write($datos);
+
+    return $response;
+});
+
+
+
+$app->post('/local_producto/{sucursal}', function ($request, $response, $args) {
+    $prod = json_decode($args['sucursal']);
+    $datos = local_producto::Insertar($prod);
+
+
+    $response->write($datos);
+
+    return $response;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // /* PUT: Para editar recursos */
 $app->put('/modificarPerson/{objeto}', function ($request, $response, $args) {
@@ -140,6 +223,56 @@ $app->put('/modificarUser/{objeto}', function ($request, $response, $args) {
     //var_dump($args);
     return $response;
 });
+
+
+$app->put('/modificarProd/{objeto}', function ($request, $response, $args) {
+    $prod = json_decode($args['objeto']);
+    $datos = productos::Modificar($prod);
+    $response->write($datos);
+    //var_dump($args);
+    return $response;
+});
+
+
+
+
+$app->put('/sucursal/{objeto}', function ($request, $response, $args) {
+    $prod = json_decode($args['objeto']);
+    $datos = sucursales::Modificar($prod);
+    $response->write($datos);
+    //var_dump($args);
+    return $response;
+});
+
+
+$app->put('/local_empleado/{objeto}', function ($request, $response, $args) {
+    $prod = json_decode($args['objeto']);
+    $datos = local_empleado::Modificar($prod);
+    $response->write($datos);
+    //var_dump($args);
+    return $response;
+});
+
+
+$app->put('/local_producto/{objeto}', function ($request, $response, $args) {
+    $prod = json_decode($args['objeto']);
+    $datos = local_producto::Modificar($prod);
+    $response->write($datos);
+    //var_dump($args);
+    return $response;
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -161,6 +294,8 @@ $datos = Persona::BorrarPersona($args['id']);
     return $response;
 });
 
+
+
 $app->delete('/usuario/{id}', function ($request, $response, $args) {
    
   /* //si pide foto 
@@ -181,13 +316,46 @@ $datos = usuario::BorrarUser($args['id']);
 
 
 
+$app->delete('/producto/{id}', function ($request, $response, $args) {
+        
+$datos = productos::Borrar($args['id']);
+    $response->write("borrado !: ");
+    //var_dump($args);
+    return $response;
+});
+
+
+
+$app->delete('/sucursales/{id}', function ($request, $response, $args) {
+        
+$datos = sucursales::Borrar($args['id']);
+    $response->write("borrado !: ");
+    //var_dump($args);
+    return $response;
+});
 
 
 
 
 
+$app->delete('/local_empleado/{id}', function ($request, $response, $args) {
+        
+$datos = local_empleado::Borrar($args['id']);
+    $response->write("borrado !: ");
+    //var_dump($args);
+    return $response;
+});
 
 
+
+
+$app->delete('/local_producto/{id}', function ($request, $response, $args) {
+        
+$datos = local_producto::Borrar($args['id']);
+    $response->write("borrado !: ");
+    //var_dump($args);
+    return $response;
+});
 
 
 

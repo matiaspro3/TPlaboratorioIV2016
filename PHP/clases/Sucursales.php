@@ -1,15 +1,14 @@
 <?php
 require_once"accesoDatos.php";
-class productos
+class sucursales
 {
 //--------------------------------------------------------------------------------//
 //--ATRIBUTOS
-	public $id_producto;
+	public $id_sucursal;
 	public $direccion;
 	public $foto1;
 	public $foto2;
 	public $foto3;
-	public $oferta;
 
 //--------------------------------------------------------------------------------//
 
@@ -24,16 +23,16 @@ class productos
 
 //--------------------------------------------------------------------------------//
 //--METODO DE CLASE
-	public static function TraerUnProducto($idParametro) 
+	public static function TraerUnasucursal($idParametro) 
 	{	
 
 
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("select * from productos where id-prod =:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("select * from sucursales where id-sucu =:id");
 	//$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerUnaPersona(:id)");
 		$consulta->bindValue(':id', $idParametro, PDO::PARAM_INT);
 		$consulta->execute();
-		$personaBuscada= $consulta->fetchObject('productos');
+		$personaBuscada= $consulta->fetchObject('sucursales');
 		return $personaBuscada;	
 					
 	}
@@ -41,17 +40,17 @@ class productos
 	public static function TraerTodos()
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("select * from productos");
+		$consulta =$objetoAccesoDato->RetornarConsulta("select * from sucursales");
 		//$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerTodasLasPersonas() ");
 		$consulta->execute();			
-		$arrPersonas= $consulta->fetchAll(PDO::FETCH_CLASS, "productos");	
+		$arrPersonas= $consulta->fetchAll(PDO::FETCH_CLASS, "sucursales");	
 		return $arrPersonas;
 	}
 	
 	public static function Borrar($idParametro)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("delete from productos WHERE id-prod=:id");	
+		$consulta =$objetoAccesoDato->RetornarConsulta("delete from sucursales WHERE id-sucu=:id");	
 		//$consulta =$objetoAccesoDato->RetornarConsulta("CALL BorrarPersona(:id)");	
 		$consulta->bindValue(':id',$idParametro, PDO::PARAM_INT);		
 		$consulta->execute();
@@ -59,27 +58,25 @@ class productos
 		
 	}
 	
-	public static function Modificar($producto)
+	public static function Modificar($sucursal)
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("
-				update productos
+				update sucursales
 				set direccion=:direccion,
 				foto1=:foto1,
 				foto2=:foto2,
 				foto3=:foto3,
-				oferta=:oferta
-				WHERE id-prod=:id");
+				WHERE id-sucu=:id");
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
 			//$consulta =$objetoAccesoDato->RetornarConsulta("CALL ModificarPersona(:id,:direccion,:apellido,:foto)");
 		
-		$consulta->bindValue(':id', $producto->id, PDO::PARAM_STR);
-		$consulta->bindValue(':direccion', $producto->direccion, PDO::PARAM_STR);
-		$consulta->bindValue(':foto2', $producto->foto2, PDO::PARAM_STR);
-		$consulta->bindValue(':foto3', $producto->foto3, PDO::PARAM_STR);
-		$consulta->bindValue(':foto1', $producto->foto1, PDO::PARAM_STR);
-		$consulta->bindValue(':oferta', $producto->oferta, PDO::PARAM_STR);
+		$consulta->bindValue(':id', $sucursal->id, PDO::PARAM_STR);
+		$consulta->bindValue(':direccion', $sucursal->direccion, PDO::PARAM_STR);
+		$consulta->bindValue(':foto2', $sucursal->foto2, PDO::PARAM_STR);
+		$consulta->bindValue(':foto3', $sucursal->foto3, PDO::PARAM_STR);
+		$consulta->bindValue(':foto1', $sucursal->foto1, PDO::PARAM_STR);
 
 			return $consulta->execute();
 	}
@@ -88,15 +85,14 @@ class productos
 
 //--------------------------------------------------------------------------------//
 
-	public static function Insertar($producto)
+	public static function Insertar($sucursal)
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("insert into productos (direccion,foto1,foto2,foto3)values(:direccion,:foto1,:foto2,:foto3)");
-		$consulta->bindValue(':direccion', $producto->direccion, PDO::PARAM_STR);
-		$consulta->bindValue(':foto1', $producto->foto1, PDO::PARAM_STR);
-		$consulta->bindValue(':foto2', $producto->foto2, PDO::PARAM_STR);
-		$consulta->bindValue(':foto3', $producto->foto3, PDO::PARAM_STR);
-		$consulta->bindValue(':oferta', $producto->oferta, PDO::PARAM_STR);
+		$consulta =$objetoAccesoDato->RetornarConsulta("insert into sucursales (direccion,foto1,foto2,foto3)values(:direccion,:foto1,:foto2,:foto3)");
+		$consulta->bindValue(':direccion', $sucursal->direccion, PDO::PARAM_STR);
+		$consulta->bindValue(':foto1', $sucursal->foto1, PDO::PARAM_STR);
+		$consulta->bindValue(':foto2', $sucursal->foto2, PDO::PARAM_STR);
+		$consulta->bindValue(':foto3', $sucursal->foto3, PDO::PARAM_STR);
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
 	

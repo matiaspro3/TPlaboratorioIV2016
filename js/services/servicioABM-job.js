@@ -11,7 +11,7 @@ angular.module('abmapp')
     function Cargar(){
       
       
-    return $http.get('http://localhost/Labo/ws/personas')
+    return $http.get('http://localhost:8088/Labo/ws/personas')
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -35,7 +35,7 @@ angular.module('abmapp')
     function Alta(persona){
       
       
-    return  $http.post('http://localhost/Labo/ws/alta/' + JSON.stringify(persona))
+    return  $http.post('http://localhost:8088/Labo/ws/alta/' + JSON.stringify(persona))
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -61,7 +61,7 @@ angular.module('abmapp')
     function Borrar(persona){
       
       
-    return    $http.delete('http://localhost/Labo/ws/personas/' + JSON.stringify(persona.id))
+    return    $http.delete('http://localhost:8088/Labo/ws/personas/' + JSON.stringify(persona.id))
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -83,7 +83,7 @@ angular.module('abmapp')
     function Modificar(persona){
       
       
-    return    $http.put('http://localhost/Labo/ws/modificarPerson/' + JSON.stringify(persona))
+    return    $http.put('http://localhost:8088/Labo/ws/modificarPerson/' + JSON.stringify(persona))
     .then(function(respuesta) {       
       
     return respuesta.data;

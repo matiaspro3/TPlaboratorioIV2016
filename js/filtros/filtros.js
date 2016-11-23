@@ -14,6 +14,7 @@ angular.module('abmapp.filtros', [])
     }
 
 });
+
 app.filter('filtroPass', function () {
    var pass = {
       ' ': '****'
@@ -24,10 +25,23 @@ app.filter('filtroPass', function () {
         if (!input)
         return '';
     return pass[input];
-    };
-
-
-
-
+    }
 
   });
+
+
+
+app.filter('filtroOferta', function () {
+   var pass = {
+       0 : 'Actualmente sin Oferta.',
+       1 : 'Prodiedad en Oferta.'    
+      
+    }
+   return function (input) {
+        if (!input)
+        return 'Actualmente sin Oferta.';
+    return pass[input];
+    }
+
+  });
+

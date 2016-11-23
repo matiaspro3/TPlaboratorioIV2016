@@ -4,6 +4,7 @@ var app = angular.module('abmapp', [
   'ui.router'
   , 'abmapp.controllersPersona'
   , 'abmapp.controllersUsuario'
+  , 'abmapp.controllersProducto'
   , 'satellizer'
   , 'angularFileUpload'
   , 'validation.match'
@@ -163,6 +164,14 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
                 }
             })
 
+
+
+    .state('productosGrilla', {
+                    url : '/productosGrilla',
+                    cache:false,
+                    templateUrl : 'vistas/productosGrilla.html',
+                    controller : 'controlProductosGrilla'
+                })
 
 
 

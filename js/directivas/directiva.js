@@ -98,5 +98,50 @@ link: function($scope, element, attrs) {
 
 })
 
+
+
+.directive('produList', function() {
+	
+
+return {scope : {objEnv : '=obj',Borrar: '&'}, replace : true, restrict : "MEAC", templateUrl : "templates/templateProduc.html" };
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //fin
  ;

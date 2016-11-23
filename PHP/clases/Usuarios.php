@@ -14,69 +14,12 @@ class usuario
 //--------------------------------------------------------------------------------//
 
 //--------------------------------------------------------------------------------//
-//--GETTERS Y SETTERS
-
-	public function Getdni()
-	{
-		return $this->dni;
-	}
-	public function Getpassword()
-	{
-		return $this->password;
-	}
-	public function Getusuario()
-	{
-		return $this->usuario;
-	}
-	public function GetFoto()
-	{
-		return $this->foto;
-	}
-	public function GetPartido()
-	{
-		return $this->partido;
-	}
-
-	public function Setdni($valor)
-	{
-		$this->dni = $valor;
-	}
-	public function Setpassword($valor)
-	{
-		$this->password = $valor;
-	}
-	public function Setpartido($valor)
-	{
-		$this->partido = $valor;
-	}
-	public function Setusuario($valor)
-	{
-		$this->usuario = $valor;
-	}
-	public function SetFoto($valor)
-	{
-		$this->foto = $valor;
-	}
+//--GETTERS Y S
 //--------------------------------------------------------------------------------//
 //--CONSTRUCTOR
-	public function __construct($usuario=NULL)
-	{
-		if($usuario != NULL){
-			$obj = Persona::TraerUnaPersona($usuario);
-			
-			$this->apellido = $obj->apellido;
-			$this->nombre = $obj->nombre;
-			$this->usuario = $usuario;
-			$this->foto = $obj->foto;
-		}
-	}
 
 //--------------------------------------------------------------------------------//
 //--TOSTRING	
-  	public function ToString()
-	{
-	  	return $this->apellido."-".$this->nombre."-".$this->usuario."-".$this->foto;
-	}
 //--------------------------------------------------------------------------------//
 
 //--------------------------------------------------------------------------------//
@@ -161,44 +104,6 @@ class usuario
 	}	
 //--------------------------------------------------------------------------------//
 
-
-
-	public static function TraerPersonasTest()
-	{
-		$arrayDePersonas=array();
-
-		$persona = new stdClass();
-		$persona->id = "4";
-		$persona->nombre = "rogelio";
-		$persona->apellido = "agua";
-		$persona->usuario = "333333";
-		$persona->foto = "333333.jpg";
-
-		//$objetJson = json_encode($persona);
-		//echo $objetJson;
-		$persona2 = new stdClass();
-		$persona2->id = "5";
-		$persona2->nombre = "Bañera";
-		$persona2->apellido = "giratoria";
-		$persona2->usuario = "222222";
-		$persona2->foto = "222222.jpg";
-
-		$persona3 = new stdClass();
-		$persona3->id = "6";
-		$persona3->nombre = "Julieta";
-		$persona3->apellido = "Roberto";
-		$persona3->usuario = "888888";
-		$persona3->foto = "888888.jpg";
-
-		$arrayDePersonas[]=$persona;
-		$arrayDePersonas[]=$persona2;
-		$arrayDePersonas[]=$persona3;
-		 
-		
-
-		return  $arrayDePersonas;
-				
-	}	
 
 
 }
