@@ -12,7 +12,7 @@ var app = angular.module('abmapp', [
   ]);
 app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
   
-  $authProvider.loginUrl = 'Labo/PHP/auth.php'; //Ruta del archivo auth que esta en jwt y direcciona a PHP
+  $authProvider.loginUrl = 'labo2/PHP/auth.php'; //Ruta del archivo auth que esta en jwt y direcciona a PHP
   $authProvider.tokenName = 'tokenTP'; //nombre largo
   $authProvider.tokenPrefix = 'Aplicacion'; //sarasa
   $authProvider.authHeader = 'data';
@@ -182,6 +182,17 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
                 })
 
 
+  .state('sucursalVer', {
+                      url: '/VerSucu',
+                             cache:false,
+                              params: {
+                  objUser: null
+                },
+                     
+                              templateUrl: 'vistas/vistaSucursal.html',
+                              controller : 'controlSucuVer'
+                     
+                  })
 
 
 

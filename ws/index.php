@@ -158,12 +158,35 @@ $app->post('/altaPrd/{producto}', function ($request, $response, $args) {
 
 
 
-$app->post('/sucursal/{sucursal}', function ($request, $response, $args) {
-    $prod = json_decode($args['sucursal']);
-    $datos = sucursales::Insertar($prod);
+$app->post('/Altasucursal/{sucursalre}', function ($request, $response, $args) {
 
+    $sucu = json_decode($args['sucursalre']);
+          // echo 'ola' ;
+// mover fotofhtfghfgh
+           if($sucu->foto1!="pordefecto.png")
+            {
+                $rutaVieja="../servidor/sucursales/".$sucu->foto1;
+                $rutaNueva="../fotos/sucursales/".$sucu->foto1;
+                copy($rutaVieja,$rutaNueva);
+           }
+         if($sucu->foto2!="pordefecto.png")
+            {
+                $rutaVieja="../servidor/sucursales/".$sucu->foto2;
+                $rutaNueva="../fotos/sucursales/".$sucu->foto2;
+                copy($rutaVieja,$rutaNueva);
+            }
+             if($sucu->foto2!="pordefecto.png")
+           {
+                $rutaVieja="../servidor/sucursales/".$sucu->foto3;
+                $rutaNueva="../fotos/sucursales/".$sucu->foto3;
+                copy($rutaVieja,$rutaNueva);
+            }
+         
+// mover foto fin
 
-    $response->write($datos);
+$datos = sucursales::Insertar($sucu);
+  //  $response->write(json_encode($datos));
+$response->write(json_encode($datos));
 
     return $response;
 });

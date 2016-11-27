@@ -23,7 +23,7 @@ angular.module('abmapp')
 //TRAER TODOS.............
     function CargarProductos(){
       
-          return $http.get('http://localhost/Labo/ws/productos')
+          return $http.get('http://localhost/labo2/ws/productos')
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -37,7 +37,7 @@ angular.module('abmapp')
   
 function CargarSucursales(){
             
-    return $http.get('http://http://matiasds.16mb.com/ws/sucursales')
+    return $http.get('http://localhost/labo2/ws/sucursales')
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -52,7 +52,7 @@ function CargarSucursales(){
 
 function CargarSucursalEmpleado(){
       
-          return $http.get('http://localhost/Labo/ws/local_empleado')
+          return $http.get('http://localhost/labo2/ws/local_empleado')
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -66,7 +66,7 @@ function CargarSucursalEmpleado(){
 
 function CargarSucursalProductos(){
       
-          return $http.get('http://localhost/Labo/ws/local_producto')
+          return $http.get('http://localhost/labo2/ws/local_producto')
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -94,7 +94,7 @@ function CargarSucursalProductos(){
 
     function AltaProductos(prod){
             
-    return  $http.post('http://localhost/Labo/ws/altaPrd/' + JSON.stringify(prod))
+    return  $http.post('http://localhost/labo2/ws/altaPrd/' + JSON.stringify(prod))
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -106,8 +106,9 @@ function CargarSucursalProductos(){
 
 
     function AltaSucursales(prod){
-            
-    return  $http.post('http://localhost/Labo/ws/sucursal/' + JSON.stringify(prod))
+    //      var reci= JSON.stringify(prod)
+      //      console.info('recivo slim',reci);
+    return  $http.post('http://localhost/labo2/ws/Altasucursal/' + JSON.stringify(prod))
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -119,7 +120,7 @@ function CargarSucursalProductos(){
 
     function AltaLocalEmpleado(prod){
             
-    return  $http.post('http://localhost/Labo/ws/local_empleado/' + JSON.stringify(prod))
+    return  $http.post('http://localhost/labo2/ws/local_empleado/' + JSON.stringify(prod))
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -132,7 +133,7 @@ function CargarSucursalProductos(){
 
     function AltaLocalProducto(prod){
             
-    return  $http.post('http://localhost/Labo/ws/local_producto/' + JSON.stringify(prod))
+    return  $http.post('http://localhost/labo2/ws/local_producto/' + JSON.stringify(prod))
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -153,7 +154,7 @@ function CargarSucursalProductos(){
 //BAJA.............
     function BorrarProducto(persona){      
     
-      return    $http.delete('http://localhost/Labo/ws/producto/' + JSON.stringify(persona.id))
+      return    $http.delete('http://localhost/labo2/ws/producto/' + JSON.stringify(persona.id))
     .then(function(respuesta) {       
           return respuesta.data;
       
@@ -164,7 +165,7 @@ function CargarSucursalProductos(){
     }
    function BorrarSucursal(persona){      
     
-      return    $http.delete('http://localhost/Labo/ws/sucursales/' + JSON.stringify(persona.id))
+      return    $http.delete('http://localhost/labo2/ws/sucursales/' + JSON.stringify(persona.id))
     .then(function(respuesta) {       
           return respuesta.data;
       
@@ -176,7 +177,7 @@ function CargarSucursalProductos(){
 
    function BorrarLocalEmpleado(persona){      
     
-      return    $http.delete('http://localhost/Labo/ws/local_empleado/' + JSON.stringify(persona.id))
+      return    $http.delete('http://localhost/labo2/ws/local_empleado/' + JSON.stringify(persona.id))
     .then(function(respuesta) {       
           return respuesta.data;
       
@@ -189,7 +190,7 @@ function CargarSucursalProductos(){
 
    function BorrarLocalProducto(persona){      
     
-      return    $http.delete('http://localhost/Labo/ws/local_producto/' + JSON.stringify(persona.id))
+      return    $http.delete('http://localhost/labo2/ws/local_producto/' + JSON.stringify(persona.id))
     .then(function(respuesta) {       
           return respuesta.data;
       
@@ -207,7 +208,7 @@ function CargarSucursalProductos(){
 //MODIFICAR.............
     function ModificarProducto(persona){
             
-    return    $http.put('http://localhost/Labo/ws/modificarProd/' + JSON.stringify(persona))
+    return    $http.put('http://localhost/labo2/ws/modificarProd/' + JSON.stringify(persona))
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -221,7 +222,7 @@ function CargarSucursalProductos(){
 
         function ModificarSucursal(persona){
             
-    return    $http.put('http://localhost/Labo/ws/sucursal/' + JSON.stringify(persona))
+    return    $http.put('http://localhost/labo2/ws/sucursal/' + JSON.stringify(persona))
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -239,7 +240,7 @@ function CargarSucursalProductos(){
 
         function ModificarLocalEmpleado(persona){
             
-    return    $http.put('http://localhost/Labo/ws/local_empleado/' + JSON.stringify(persona))
+    return    $http.put('http://localhost/labo2/ws/local_empleado/' + JSON.stringify(persona))
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -254,7 +255,7 @@ function CargarSucursalProductos(){
 
         function ModificarLocalProducto(persona){
             
-    return    $http.put('http://localhost/Labo/ws/local_producto/' + JSON.stringify(persona))
+    return    $http.put('http://localhost/labo2/ws/local_producto/' + JSON.stringify(persona))
     .then(function(respuesta) {       
       
     return respuesta.data;

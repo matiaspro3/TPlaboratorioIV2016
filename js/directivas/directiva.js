@@ -98,9 +98,19 @@ return {scope : {objEnv : '=obj',Borrar: '&'}, replace : true, restrict : "MEAC"
 .directive('sucuList', function() {
 	
 
-return {scope : {objEnv : '=obj',Borrar: '&'}, replace : true, restrict : "MEAC", templateUrl : "templates/templateSucursales.html" };
+return {scope : {objEnv : '=obj',Borrar: '&'}, replace : true, restrict : "MEAC",
+ templateUrl : "templates/templateSucursales.html",// };
+link: function($scope, element, attrs) {
 
-
+	
+			   // $scope.user=factoryUserActual.Logueado;
+//	console.info($scope.user);
+//	console.info($scope.user.perfil);
+            $scope.Ver = function(objEnv){
+            	//console.info($scope.BorrarUsuario);
+			    $scope.$parent.Ver(objEnv);
+			  }
+}}
 
 })
 
