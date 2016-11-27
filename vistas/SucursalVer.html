@@ -1,0 +1,38 @@
+                  
+<menu-sucu></menu-sucu>
+					<h1 style="color:red"> Sucursal  {{sucursal.localDir}}</h1>
+
+
+       <simple-slider style=" left: 550px;position:fixed; width:500px; height:500px; " transition-property="top" >
+    	
+        <img style='border-radius:300px;position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' src= "fotos/sucursales/{{sucursal.fotoLocal1}}"/>
+        <img style='border-radius: 300px;position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' src="fotos/sucursales/{{sucursal.fotoLocal2}}"/>
+        <img style='border-radius: 300px;position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' src="fotos/sucursales/{{sucursal.fotoLocal3}}"/>
+
+		</simple-slider>
+
+<h2 style="color:red;font-weight: 900"> Gente a su disposicion para brindarle ayuda en nuestra sucursal.</h2>
+
+
+
+
+								<table class='table table-hover table-responsive ' >
+									<thead>
+										<tr>
+											<th> Nombre  </th>
+											<th> Legajo  </th>
+											<th> Cargo  </th>
+				
+										</tr> 
+									</thead>
+									
+									<tr style="color:red;font-weight: 900" ng-repeat="sucu in ListadoSucu" style="color:red;">
+										
+										
+										<td>{{sucu.nombre}}</td>
+										<td>{{sucu.legajo}}</td>
+										<td>{{sucu.cargo | filtroPerfil}}</td>
+									
+											
+									</tr>
+								</table>

@@ -1,0 +1,72 @@
+<style>
+            .my-drop-zone { border: dotted 3px lightgray; }
+            .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+            .another-file-over-class { border: dotted 3px green; }
+            html, body { height: 100%; }
+</style>
+
+<menu-sucu></menu-sucu>
+
+
+    <div class="Frm animated bounceInLeft" style="background-color:powderblue;">
+      <form class=""  name="myForm" enctype="multipart/form-data">
+        <label class="miEstilo" id="titulo">Agregar Empleados</label><br>
+        
+
+<label >Seleccione Sucursal</label><br>
+
+<select ng-model="sucursal.elegida" required >
+
+       <option  ng-repeat="sucu in sucursalLista  | orderBy: 'localDir'">{{sucu.localDir}}</option>
+    </select>
+<br>
+
+
+
+
+<label >Seleccione Encargado</label><br>
+
+<select ng-model="sucursal.encargado" required >
+
+       <option ng-if ="dispo.cargo !='emple'"  ng-repeat="dispo in disponibles  | orderBy: dispo.legajo">{{dispo.legajo}}</option>
+    </select>
+<br>
+<label >Seleccione Empleados</label><br>
+
+
+<select ng-model="sucursal.empleado1" required >
+
+       <option ng-if ="dispo.cargo =='emple'"  ng-repeat="dispo in disponibles  | orderBy: dispo.legajo">{{dispo.legajo}}</option>
+    </select>
+<br>
+
+<select ng-model="sucursal.empleado2" ng-disabled ="!sucursal.empleado1" required >
+
+       <option ng-if ="dispo.cargo =='emple'"  ng-repeat="dispo in disponibles  | orderBy: dispo.legajo">{{dispo.legajo}}</option>
+    </select>
+
+<select ng-model="sucursal.empleado3" ng-disabled ="!sucursal.empleado2" required >
+
+       <option ng-if ="dispo.cargo =='emple'"   ng-repeat="dispo in disponibles  | orderBy: dispo.legajo">{{dispo.legajo}}</option>
+    </select>
+
+
+
+
+
+<br>
+
+
+
+
+<button  class="button-green" name="login" id="login" ng-disabled="myForm.$invalid" ng-click="Alta()"><span>Agregar </span></button>
+</form>
+</div>
+        
+
+
+        
+    <h1 style="color:red;" ng-if ="(sucursal.empleado3)&&(sucursal.empleado1==sucursal.empleado2 || sucursal.empleado1==sucursal.empleado3 || sucursal.empleado2==sucursal.empleado3)">No puede seleccionar a un empleado mas de una vez</h1>
+    <h1 style="color:red;" ng-if ="!myForm.$valid">Complete todos los campos!</h1>
+
+    <h1 style="color:blue;" ng-if ="myForm.$valid">Bien!! A Ingresarla!!</h1>

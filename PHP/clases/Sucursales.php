@@ -4,7 +4,7 @@ class sucursales
 {
 //--------------------------------------------------------------------------------//
 //--ATRIBUTOS
-	public $id_sucursal;
+	public $id_sucu;
 	public $localDir;
 	public $fotoLocal1;
 	public $fotoLocal2;
@@ -28,7 +28,7 @@ class sucursales
 
 
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("select * from sucursales where id-sucu =:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("select * from sucursales where localDir =:id");
 	//$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerUnaPersona(:id)");
 		$consulta->bindValue(':id', $idParametro, PDO::PARAM_INT);
 		$consulta->execute();

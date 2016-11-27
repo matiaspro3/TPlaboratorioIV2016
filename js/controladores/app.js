@@ -189,10 +189,29 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
                   objUser: null
                 },
                      
-                              templateUrl: 'vistas/vistaSucursal.html',
+                              templateUrl: 'vistas/sucursalVer.html',
                               controller : 'controlSucuVer'
                      
                   })
+
+
+      .state('sucursalMOD', {
+                      url: '/Modificar',
+                             cache:false,
+                              params: {
+                  objUser: null
+                },                              templateUrl: 'vistas/sucursalMOD.html',
+                              controller : 'controlSucursalMOD'
+                                })
+
+
+
+
+
+
+
+
+
 
 
 

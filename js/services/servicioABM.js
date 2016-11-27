@@ -4,6 +4,7 @@ angular.module('abmapp')
    this.CargarProductos = CargarProductos;
     this.CargarSucursales = CargarSucursales;
     this.CargarSucursalEmpleado = CargarSucursalEmpleado;
+    this.CargarSucursalEmpleadoS = CargarSucursalEmpleadoS;
     this.CargarSucursalProductos = CargarSucursalProductos;
     this.AltaProductos = AltaProductos;
     this.AltaSucursales = AltaSucursales;
@@ -17,6 +18,12 @@ angular.module('abmapp')
     this.ModificarSucursal = ModificarSucursal;
     this.ModificarLocalEmpleado = ModificarLocalEmpleado;
     this.ModificarLocalProducto = ModificarLocalProducto;
+
+ this.CargarEmpleadosDisponibles = CargarEmpleadosDisponibles;
+  this.TraerEmpleado = TraerEmpleado; 
+  this.TraerSucursal = TraerSucursal;
+
+
 
 
   
@@ -63,6 +70,88 @@ function CargarSucursalEmpleado(){
         )
 
     }
+
+
+
+
+function CargarSucursalEmpleadoS(emple){
+      
+          return $http.get('http://localhost/labo2/ws/local_empleados/' + JSON.stringify(emple))
+    .then(function(respuesta) {       
+      
+    return respuesta.data;
+      
+      },function errorCallback(response) {
+           return response; 
+             }   
+        )
+
+    }
+
+
+
+
+
+
+
+function CargarEmpleadosDisponibles(){
+      
+          return $http.get('http://localhost/labo2/ws/empleadosDispo')
+    .then(function(respuesta) {       
+      
+    return respuesta.data;
+      
+      },function errorCallback(response) {
+           return response; 
+             }   
+        )
+
+    }
+
+
+
+
+
+function TraerEmpleado(emple){
+      
+          return $http.get('http://localhost/labo2/ws/empleados/' + JSON.stringify(emple))
+    .then(function(respuesta) {       
+      
+    return respuesta.data;
+      
+      },function errorCallback(response) {
+           return response; 
+             }   
+        )
+
+    }
+
+
+
+
+function TraerSucursal(sucu){
+      
+          return $http.get('http://localhost/labo2/ws/sucursalTraer/' + JSON.stringify(sucu))
+    .then(function(respuesta) {       
+      
+    return respuesta.data;
+      
+      },function errorCallback(response) {
+           return response; 
+             }   
+        )
+
+    }
+
+
+
+
+
+
+
+
+
+
 
 function CargarSucursalProductos(){
       
@@ -118,9 +207,9 @@ function CargarSucursalProductos(){
     }
 
 
-    function AltaLocalEmpleado(prod){
+    function AltaLocalEmpleado(sucu){
             
-    return  $http.post('http://localhost/labo2/ws/local_empleado/' + JSON.stringify(prod))
+    return  $http.post('http://localhost/labo2/ws/local_empleado/' + JSON.stringify(sucu))
     .then(function(respuesta) {       
       
     return respuesta.data;

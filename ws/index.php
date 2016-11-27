@@ -25,6 +25,7 @@ require 'vendor/autoload.php';
 
 require '../PHP/clases/Usuarios.php';
 require '../PHP/clases/Productos.php';
+require '../PHP/clases/Empleados.php';
 require '../PHP/clases/Sucursales.php';
 require '../PHP/clases/Local-Empleado.php';
 require '../PHP/clases/Local-Productos.php';
@@ -94,6 +95,59 @@ $app->get('/local_empleado[/]', function ($request, $response, $args) {
     $response->write(json_encode($datos));    
     return $response;
 });
+
+
+$app->get('/local_empleados/{objeto}', function ($request, $response, $args) {
+    $idSucu = json_decode($args['objeto']);
+    $datos = local_empleado::TraerEmpleados($idSucu);
+    $response->write(json_encode($datos))   ;
+    
+    return $response;
+});
+
+
+$app->get('/empleadosDispo[/]', function ($request, $response, $args) {
+ 
+    $datos = empleados::TraerEmpleadosDisponibles();
+    $response->write(json_encode($datos))   ;
+    
+    return $response;
+});
+
+
+
+
+
+$app->get('/empleados/{objeto}', function ($request, $response, $args) {
+    $emple = json_decode($args['objeto']);
+    $datos = empleados::TraerUnEmpleado($emple);
+    $response->write(json_encode($datos))   ;
+    
+    return $response;
+});
+
+
+$app->get('/sucursalTraer/{objeto}', function ($request, $response, $args) {
+    $sucu = json_decode($args['objeto']);
+    $datos = sucursales::TraerUnasucursal($sucu);
+    $response->write(json_encode($datos))   ;
+    
+    return $response;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 $app->get('/local_producto[/]', function ($request, $response, $args) {
@@ -202,6 +256,10 @@ $app->post('/local_empleado/{sucursal}', function ($request, $response, $args) {
 
     return $response;
 });
+
+
+
+
 
 
 

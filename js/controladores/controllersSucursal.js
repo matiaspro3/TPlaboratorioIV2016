@@ -1,14 +1,27 @@
 angular.module('abmapp.controlSucursal', [])
 
 
-app.controller('controlSucursalAlta', function($scope,FileUploader,$state, $http,factoryUserActual,factorySucursal,servicioABM) {
+app.controller('controlSucursalAlta', function($scope,FileUploader,$state, $http,factoryUserActual,factoryEmpleado,factorySucursal,servicioABM) {
+
+
+
 
    $scope.user = factoryUserActual.Logueado;
 
+
+
+
 $scope.sucursal={};
-//$scope.sucursal.direccion='algo';
+$scope.empleado1={};
+$scope.empleado2={};
+$scope.empleado3={};
+$scope.encargado={};
 
 
+$scope.sucursal.encargado;  
+$scope.sucursal.empleado1;  
+$scope.sucursal.empleado3;  
+$scope.sucursal.empleado2;  
 
 
  $scope.uploader=new FileUploader({url:'servidor/archivosSucu.php'});
@@ -49,6 +62,58 @@ $scope.uploader.onSuccessItem=function(item, response, status, headers)
 
 
 
+  $scope.Mostrar=function(){
+
+    console.info('encargado...',$scope.sucursal.encargado);
+    console.info('empleado1...',$scope.sucursal.empleado1);
+    console.info('empleado2...',$scope.sucursal.empleado2);
+    console.info('empleado3...',$scope.sucursal.empleado3);
+
+
+    factoryEmpleado.TraerEmpleado($scope.sucursal.encargado).then(function(rta){
+    
+    $scope.encargado=rta;
+    console.info("encargado  factory...",$scope.encargado);
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+
+
+}
+
+    factoryEmpleado.TraerEmpleado($scope.sucursal.empleado1).then(function(rta){
+    
+    $scope.empleado1=rta;
+    console.info("empleado 1 factory...",$scope.empleado1);
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+
+
+}
+
+
+    factoryEmpleado.TraerEmpleado($scope.sucursal.empleado2).then(function(rta){
+    
+    $scope.empleado2=rta;
+    console.info("empleado 2 factory...",$scope.empleado2);
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+
+
+}
+
+    factoryEmpleado.TraerEmpleado($scope.sucursal.empleado3).then(function(rta){
+    
+    $scope.empleado3=rta;
+    console.info("empleado 3 factory...",$scope.empleado3);
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+
+
+}
+
+}
+
+
 
   $scope.Alta=function(){
 
@@ -79,7 +144,25 @@ alert("errrrro!");
 
 
 
-  }
+  }//fin alta
+
+
+
+
+factoryEmpleado.TraerDisponibles().then(function(rta){
+    console.info("disponibles...",rta);
+    $scope.disponibles=rta;
+    
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+alert("errrrro!");
+
+}
+
+
+
+
+
 
 
   
@@ -124,18 +207,32 @@ app.controller('controlSucursalesGrilla', function($scope,$state, factoryUserAct
 
 
 
-app.controller('controlSucuVer', function($scope,$state,$stateParams, $http) {
+app.controller('controlSucuVer', function($scope,$state,$stateParams, $http,factorySucursalEmpleado) {
  
 $scope.sucursal={};
 
-  $scope.sucursal.id = Number($stateParams.objUser.id);
+  $scope.sucursal.id = Number($stateParams.objUser.id_sucu);
   console.info('parammm,,,', $stateParams.objUser);
   $scope.sucursal.localDir = $stateParams.objUser.localDir;
-  $scope.sucursal.fotoLocal1= $stateParams.objUser.fotoLocal1;
-  $scope.sucursal.fotoLocal2 = $stateParams.objUser.fotoLocal2;
-  $scope.sucursal.fotoLocal3= $stateParams.objUser.fotoLocal3;
+  if ($stateParams.objUser.fotoLocal1=="")
+  $scope.sucursal.fotoLocal1= "pordefecto.png"
+else $scope.sucursal.fotoLocal1= $stateParams.objUser.fotoLocal1;
+if ($stateParams.objUser.fotoLocal2=="")
+  $scope.sucursal.fotoLocal2= "pordefecto.png"
+else $scope.sucursal.fotoLocal2= $stateParams.objUser.fotoLocal2;
+if ($stateParams.objUser.fotoLocal3=="")
+  $scope.sucursal.fotoLocal3= "pordefecto.png"
+else $scope.sucursal.fotoLocal3= $stateParams.objUser.fotoLocal3;
+  console.info('parammm,,,', $scope.sucursal);
 
 
+factorySucursalEmpleado.TraerEmpleados($scope.sucursal.id).then(function(rta){
+   
+    console.info(rta);
+$scope.ListadoSucu = rta;
+   //$state.go("inicio");
+    
+   })
 
 
 
@@ -156,3 +253,232 @@ $scope.sucursal={};
 });
 
 
+
+app.controller('controlSucursalMOD', function($scope,FileUploader,$state, $http,factoryUserActual,factorySucursalEmpleado,factoryEmpleado,factorySucursal,servicioABM) {
+
+$scope.sucursal={};
+$scope.sucursalLista={};
+$scope.sucursalElejida={};
+$scope.empleado1={};
+$scope.empleado2={};
+$scope.empleado3={};
+$scope.encargado={};
+
+
+$scope.sucursal.encargado;  
+$scope.sucursal.empleado1;  
+$scope.sucursal.empleado3;  
+$scope.sucursal.empleado2;  
+$scope.sucursal.elegida;
+
+$scope.alta1={};  
+$scope.alta2={};  
+$scope.alta3={};
+$scope.alta4={};    
+
+ 
+
+
+
+   $scope.user = factoryUserActual.Logueado;
+
+$scope.sucursales={};
+
+
+factorySucursal.TraerTodos().then(function(rta){
+  
+    $scope.sucursalLista=rta;
+//        console.info("sucur......", $scope.sucursales);
+    
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+alert("errrrro!");
+
+}
+
+
+factoryEmpleado.TraerDisponibles().then(function(rta){
+  //  console.info("disponibles...",rta);
+    $scope.disponibles=rta;
+    
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+alert("errrrro!");
+
+}
+
+
+
+
+
+
+
+
+  $scope.Alta=function(){
+
+    //console.info('encargado...',$scope.sucursal.encargado);
+    //console.info('empleado1...',$scope.sucursal.empleado1);
+    //console.info('empleado2...',$scope.sucursal.empleado2);
+   // console.info('empleado3...',$scope.sucursal.empleado3);
+   // console.info('empleado3...',$scope.sucursal.empleado3);
+
+
+////////////////
+
+ factorySucursal.TraerSucursal($scope.sucursal.elegida).then(function(rta){
+    
+    $scope.sucursalElejida=rta;
+    $scope.alta1.sucu=$scope.sucursalElejida.id_sucu;  
+    $scope.alta2.sucu=$scope.sucursalElejida.id_sucu;  
+    $scope.alta3.sucu=$scope.sucursalElejida.id_sucu;  
+    $scope.alta4.sucu=$scope.sucursalElejida.id_sucu;  
+
+  //  console.info("sucursal  factory...",$scope.sucursalElejida);
+   // console.info("sucursal  factory idddd...",$scope.alta.sucu);
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+
+
+}
+
+
+
+
+//////////
+ 
+    factoryEmpleado.TraerEmpleado($scope.sucursal.encargado).then(function(rta){
+    
+    $scope.encargado=rta;
+  
+
+  $scope.alta1.emple=$scope.encargado.id_emple; 
+
+   console.info("alta encargado...",$scope.alta1);
+
+
+    factorySucursalEmpleado.Alta($scope.alta1).then(function(rta){
+    
+    console.info("alta encargado...",rta);
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+
+
+}
+   /// console.info("encargado  factory...",$scope.encargado);
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+
+
+}
+
+
+//////////////
+
+    factoryEmpleado.TraerEmpleado($scope.sucursal.empleado1).then(function(rta){
+    
+    $scope.empleado1=rta;
+    $scope.alta2.emple=$scope.empleado1.id_emple; 
+     
+console.info("alta emple1...",$scope.alta2);
+    factorySucursalEmpleado.Alta($scope.alta2).then(function(rta){
+    
+    console.info("alta encargado...",rta);
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+
+
+}
+
+
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+
+
+}
+
+
+
+   
+
+/////////////////////
+
+    factoryEmpleado.TraerEmpleado($scope.sucursal.empleado2).then(function(rta){
+    
+    $scope.empleado2=rta;
+$scope.alta3.emple=$scope.empleado2.id_emple; 
+
+   console.info("alta emple2...",$scope.alta3);
+  factorySucursalEmpleado.Alta($scope.alta3).then(function(rta){
+    
+    console.info("alta encargado...",rta);
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+
+
+}
+
+
+
+
+    //console.info("empleado 2 factory...",$scope.empleado2);
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+
+
+}
+
+
+
+  
+
+
+///////////////
+    factoryEmpleado.TraerEmpleado($scope.sucursal.empleado3).then(function(rta){
+    
+
+    $scope.empleado3=rta;
+
+$scope.alta4.emple=$scope.empleado3.id_emple; 
+console.info("alta emple3...",$scope.alta4);
+    factorySucursalEmpleado.Alta($scope.alta4).then(function(rta){
+    
+    console.info("alta encargado...",rta);
+    $state.go('inicio');
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+
+}
+    //console.info("empleado 3 factory...",$scope.empleado3);
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+
+
+}
+
+   
+
+
+//////////
+/*
+//
+    factorySucursalEmpleado.Alta($scope.sucursal.empleado3).then(function(rta){
+    
+    $scope.empleado3=rta;
+    console.info("empleado 3 factory...",$scope.empleado3);
+   }),  function errorCallback(response) {
+        console.info("incorrecto", response);
+
+
+}
+
+*/
+
+}
+
+
+
+
+
+
+
+});

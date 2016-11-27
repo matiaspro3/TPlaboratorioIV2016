@@ -1,6 +1,6 @@
 <?php
 require_once"accesoDatos.php";
-class local_empleado
+class empleados
 {
 //--------------------------------------------------------------------------------//
 //--ATRIBUTOS
@@ -8,12 +8,6 @@ class local_empleado
 	public $nombre;
 	public $legajo;
 	public $cargo;
-	public $id_sucu;
-	public $localDir;
-	public $fotoLocal1;
-	public $fotoLocal2;
-	public $fotoLocal3;
-	public $comprada;
 
 
 //--------------------------------------------------------------------------------//
@@ -29,16 +23,16 @@ class local_empleado
 
 //--------------------------------------------------------------------------------//
 //--METODO DE CLASE
-	public static function TraerUnProducto($idParametro) 
+	public static function TraerUnEmpleado($para) 
 	{	
 
 
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("select * from local_empleado where id-emple =:id");
+		$consulta =$objetoAccesoDato->RetornarConsulta("select * from empleados where legajo =:legajo");
 	//$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerUnaPersona(:id)");
-		$consulta->bindValue(':id', $idParametro, PDO::PARAM_INT);
+		$consulta->bindValue(':legajo', $para, PDO::PARAM_INT);
 		$consulta->execute();
-		$personaBuscada= $consulta->fetchObject('local_empleado');
+		$personaBuscada= $consulta->fetchObject('empleados');
 		return $personaBuscada;	
 					
 	}
@@ -66,26 +60,26 @@ class local_empleado
 		$arrPersonas= $consulta->fetchAll(PDO::FETCH_CLASS, "local_empleado");	
 		return $arrPersonas;
 	}
-	public static function TraerEmpleados($id)
+	public static function TraerEmpleadosDisponibles()
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta(
-			/*"select * 	from local_empleado
-			where  id_local = :id_local
-*/
-				"select A.id_emple,
+		"select A.id_emple,
 				  A.nombre,
 				  A.legajo,
-				  A.cargo
-				
-			from empleados A ,  local_empleado C
-			where   C.id_local = :id_local
-			and A.id_emple = C.id_emple
+				  A.cargo				
+			from empleados A 
+
+			where id_emple not in  ( select id_emple from local_empleado)
+
+
+
+
          ");
        
-	$consulta->bindValue(':id_local', $id,PDO::PARAM_INT);
+	
 		$consulta->execute();			
-		$arrPersonas= $consulta->fetchAll(PDO::FETCH_CLASS, "local_empleado");	
+		$arrPersonas= $consulta->fetchAll(PDO::FETCH_CLASS, "empleados");	
 		return $arrPersonas;
 	}
 	public static function Borrar($idParametro)
@@ -120,12 +114,12 @@ class local_empleado
 
 //--------------------------------------------------------------------------------//
 
-	public static function Insertar($id)
+	public static function Insertar($producto)
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("insert into local_empleado (id_emple,id_local)values(:id_emple,:id_local)");
-		$consulta->bindValue(':id_emple', $id->emple, PDO::PARAM_STR);
-		$consulta->bindValue(':id_local', $id->sucu, PDO::PARAM_STR);
+		$consulta =$objetoAccesoDato->RetornarConsulta("insert into local_empleado (id-emple,id-local)values(:id-emple,:id-local)");
+		$consulta->bindValue(':id-emple', $producto->id_emple, PDO::PARAM_STR);
+		$consulta->bindValue(':id-local', $producto->id_local, PDO::PARAM_STR);
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
 	

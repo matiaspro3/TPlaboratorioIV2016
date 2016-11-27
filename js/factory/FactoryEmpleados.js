@@ -1,24 +1,33 @@
 angular
   .module('abmapp')
-  .factory('factorySucursal', function (servicioABM) {
+  .factory('factoryEmpleado', function (servicioABM) {
     var objeto = {};
     objeto.TraerTodos = TraerTodos;
     objeto.Borrar = Borrar;
     objeto.Alta = Alta;
-    objeto.TraerSucursal = TraerSucursal;
+
+objeto.TraerEmpleado = TraerEmpleado;
+        objeto.TraerDisponibles = TraerDisponibles;
     objeto.Modificar = Modificar;
     
 
     return objeto;
 
 
+    function TraerDisponibles(){
+      return servicioABM.CargarEmpleadosDisponibles();
+    }
+  
+function TraerEmpleado(emple){
+      return servicioABM.TraerEmpleado(emple);
+    }
+  
+
+
     function TraerTodos(){
       return servicioABM.CargarSucursales();
     }
   
-    function TraerSucursal(sucu){
-      return servicioABM.TraerSucursal(sucu);
-    }
 
  function Alta(producto){
        return servicioABM.AltaSucursales(producto);
