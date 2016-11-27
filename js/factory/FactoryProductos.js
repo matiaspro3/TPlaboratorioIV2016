@@ -6,7 +6,8 @@ angular
     objeto.Borrar = Borrar;
     objeto.Alta = Alta;
     objeto.Modificar = Modificar;
-    
+    objeto.TraerDisponibles=TraerDisponibles;
+    objeto.TraerProducto=TraerProducto;
 
     return objeto;
 
@@ -15,6 +16,12 @@ angular
       return servicioABM.CargarProductos();
     }
   
+    function TraerDisponibles(){
+      return servicioABM.CargarProductosDisponibles();
+    }
+    function TraerProducto(prod){
+      return servicioABM.TraerProducto(prod);
+    }
 
  function Borrar(producto){
        return servicioABM.BorrarProducto(producto);

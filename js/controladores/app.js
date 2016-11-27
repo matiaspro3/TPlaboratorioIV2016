@@ -172,7 +172,34 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
                     templateUrl : 'vistas/productosGrilla.html',
                     controller : 'controlProductosGrilla'
                 })
+  .state('productoAlta', {
+                    url : '/productosAlta',
+                    cache:false,
+                    templateUrl : 'vistas/productoAlta.html',
+                    controller : 'controlProductosAlta'
+                })
 
+
+      .state('productoMOD', {
+                      url: '/Modificar',
+                             cache:false,
+                          templateUrl: 'vistas/productoMOD.html',
+                              controller : 'controlProductoMOD'
+                                })
+
+
+
+  .state('productoVer', {
+                      url: '/VerProducto',
+                             cache:false,
+                              params: {
+                  objUser: null
+                },
+                     
+                              templateUrl: 'vistas/productoVer.html',
+                              controller : 'controlProduVer'
+                     
+                  })
 
     .state('sucursalesGrilla', {
                     url : '/sucursalesGrilla',
@@ -198,13 +225,9 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
       .state('sucursalMOD', {
                       url: '/Modificar',
                              cache:false,
-                              params: {
-                  objUser: null
-                },                              templateUrl: 'vistas/sucursalMOD.html',
+                                   templateUrl: 'vistas/sucursalMOD.html',
                               controller : 'controlSucursalMOD'
                                 })
-
-
 
 
 

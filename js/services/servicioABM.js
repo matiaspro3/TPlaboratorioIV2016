@@ -23,8 +23,8 @@ angular.module('abmapp')
   this.TraerEmpleado = TraerEmpleado; 
   this.TraerSucursal = TraerSucursal;
 
-
-
+ this.CargarProductosDisponibles = CargarProductosDisponibles;
+this.TraerProducto = TraerProducto;
 
   
 //TRAER TODOS.............
@@ -108,6 +108,19 @@ function CargarEmpleadosDisponibles(){
 
     }
 
+function CargarProductosDisponibles(){
+      
+          return $http.get('http://localhost/labo2/ws/productosDispo')
+    .then(function(respuesta) {       
+      
+    return respuesta.data;
+      
+      },function errorCallback(response) {
+           return response; 
+             }   
+        )
+
+    }
 
 
 
@@ -144,6 +157,20 @@ function TraerSucursal(sucu){
     }
 
 
+
+function TraerProducto(sucu){
+      
+          return $http.get('http://localhost/labo2/ws/productoTraer/' + JSON.stringify(sucu))
+    .then(function(respuesta) {       
+      
+    return respuesta.data;
+      
+      },function errorCallback(response) {
+           return response; 
+             }   
+        )
+
+    }
 
 
 

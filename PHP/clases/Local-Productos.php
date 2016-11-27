@@ -55,6 +55,7 @@ class local_producto
 				  A.fotoProd1,
 				  A.fotoProd2,
 				  A.fotoProd3,
+				  A.precio,
 				  A.oferta,
 				  B.id_sucu,
 				  B.localDir,
@@ -111,10 +112,11 @@ class local_producto
 	public static function Insertar($producto)
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("insert into local_producto (id-prod,id-local,comprada)values(:id-prod,:id-local,:comprada)");
-		$consulta->bindValue(':id-prod', $producto->id_producto, PDO::PARAM_STR);
-		$consulta->bindValue(':id-local', $producto->id_local, PDO::PARAM_STR);
-		$consulta->bindValue(':comprada', $producto->comprada, PDO::PARAM_STR);
+		$consulta =$objetoAccesoDato->RetornarConsulta("insert into local_producto (id_prod,id_local)values(:id_prod,:id_local)");
+
+	    $consulta->bindValue(':id_prod', $producto->prod, PDO::PARAM_STR);
+		$consulta->bindValue(':id_local', $producto->sucu, PDO::PARAM_STR);
+		//$consulta->bindValue(':comprada', 0, PDO::PARAM_STR);
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
 	
@@ -122,3 +124,4 @@ class local_producto
 	}	
 //--------------------------------------------------------------------------------//
 }
+

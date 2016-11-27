@@ -1,0 +1,50 @@
+<style>
+            .my-drop-zone { border: dotted 3px lightgray; }
+            .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+            .another-file-over-class { border: dotted 3px green; }
+            html, body { height: 100%; }
+</style>
+
+<menu-sucu></menu-sucu>
+
+
+    <div class="Frm animated bounceInLeft" style="background-color:powderblue;">
+      <form class=""  name="myForm" enctype="multipart/form-data">
+        <label class="miEstilo" id="titulo">Agregar Casas en puntos de Ventas</label><br>
+        
+
+<label ><h3>Seleccione Sucursal</h3></label><br>
+
+<select ng-model="sucursal.elegida" required >
+
+       <option  ng-repeat="sucu in sucursalLista  | orderBy: 'localDir'">{{sucu.localDir}}</option>
+    </select>
+<br>
+<!--
+<label> sucu...{{ alta.sucu}}</label> <br>
+<label>prod.. {{ alta.prod}}</label><br>
+-->
+<label ><h3>Seleccione Producto a agregar</h3></label><br>
+
+
+<select ng-model="producto.produDir" required >
+
+       <option  ng-repeat="dispo in disponibles  | orderBy: dispo.legajo">{{dispo.produDir}}</option>
+    </select>
+<br>
+
+
+
+<button  class="button-blue" name="login" id="login" ng-if="ok" ng-disabled="myForm.$invalid" ng-click="Grabar()"><span>Confirmar</span></button>
+
+
+<button  class="button-green" name="login" id="login" ng-if="!ok" ng-disabled="myForm.$invalid" ng-click="Alta()"><span>Agregar </span></button>
+</form>
+</div>
+        
+
+
+    
+    <h1 style="color:red;" ng-if ="!myForm.$valid">Complete todos los campos!</h1>
+
+    <h1 style="color:blue;" ng-if ="myForm.$valid">Bien!! A Ingresarla!!</h1>

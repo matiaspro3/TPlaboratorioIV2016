@@ -3,26 +3,9 @@ angular.module('abmapp.controlSucursal', [])
 
 app.controller('controlSucursalAlta', function($scope,FileUploader,$state, $http,factoryUserActual,factoryEmpleado,factorySucursal,servicioABM) {
 
-
-
-
    $scope.user = factoryUserActual.Logueado;
 
-
-
-
 $scope.sucursal={};
-$scope.empleado1={};
-$scope.empleado2={};
-$scope.empleado3={};
-$scope.encargado={};
-
-
-$scope.sucursal.encargado;  
-$scope.sucursal.empleado1;  
-$scope.sucursal.empleado3;  
-$scope.sucursal.empleado2;  
-
 
  $scope.uploader=new FileUploader({url:'servidor/archivosSucu.php'});
 
@@ -61,60 +44,6 @@ $scope.uploader.onSuccessItem=function(item, response, status, headers)
  };
 
 
-
-  $scope.Mostrar=function(){
-
-    console.info('encargado...',$scope.sucursal.encargado);
-    console.info('empleado1...',$scope.sucursal.empleado1);
-    console.info('empleado2...',$scope.sucursal.empleado2);
-    console.info('empleado3...',$scope.sucursal.empleado3);
-
-
-    factoryEmpleado.TraerEmpleado($scope.sucursal.encargado).then(function(rta){
-    
-    $scope.encargado=rta;
-    console.info("encargado  factory...",$scope.encargado);
-   }),  function errorCallback(response) {
-        console.info("incorrecto", response);
-
-
-}
-
-    factoryEmpleado.TraerEmpleado($scope.sucursal.empleado1).then(function(rta){
-    
-    $scope.empleado1=rta;
-    console.info("empleado 1 factory...",$scope.empleado1);
-   }),  function errorCallback(response) {
-        console.info("incorrecto", response);
-
-
-}
-
-
-    factoryEmpleado.TraerEmpleado($scope.sucursal.empleado2).then(function(rta){
-    
-    $scope.empleado2=rta;
-    console.info("empleado 2 factory...",$scope.empleado2);
-   }),  function errorCallback(response) {
-        console.info("incorrecto", response);
-
-
-}
-
-    factoryEmpleado.TraerEmpleado($scope.sucursal.empleado3).then(function(rta){
-    
-    $scope.empleado3=rta;
-    console.info("empleado 3 factory...",$scope.empleado3);
-   }),  function errorCallback(response) {
-        console.info("incorrecto", response);
-
-
-}
-
-}
-
-
-
   $scope.Alta=function(){
 
 
@@ -146,26 +75,6 @@ alert("errrrro!");
 
   }//fin alta
 
-
-
-
-factoryEmpleado.TraerDisponibles().then(function(rta){
-    console.info("disponibles...",rta);
-    $scope.disponibles=rta;
-    
-   }),  function errorCallback(response) {
-        console.info("incorrecto", response);
-alert("errrrro!");
-
-}
-
-
-
-
-
-
-
-  
 
 
 
@@ -207,8 +116,11 @@ app.controller('controlSucursalesGrilla', function($scope,$state, factoryUserAct
 
 
 
-app.controller('controlSucuVer', function($scope,$state,$stateParams, $http,factorySucursalEmpleado) {
+app.controller('controlSucuVer', function($scope,$state,$stateParams, $http,factorySucursalEmpleado,factoryUserActual) {
  
+   $scope.user = factoryUserActual.Logueado;
+
+
 $scope.sucursal={};
 
   $scope.sucursal.id = Number($stateParams.objUser.id_sucu);
@@ -254,8 +166,8 @@ $scope.ListadoSucu = rta;
 
 
 
-app.controller('controlSucursalMOD', function($scope,FileUploader,$state, $http,factoryUserActual,factorySucursalEmpleado,factoryEmpleado,factorySucursal,servicioABM) {
-
+app.controller('controlSucursalMOD', function($scope,factoryUserActual,FileUploader,$state, $http,factoryUserActual,factorySucursalEmpleado,factoryEmpleado,factorySucursal,servicioABM) {
+   $scope.user = factoryUserActual.Logueado;
 $scope.sucursal={};
 $scope.sucursalLista={};
 $scope.sucursalElejida={};

@@ -114,6 +114,13 @@ $app->get('/empleadosDispo[/]', function ($request, $response, $args) {
     return $response;
 });
 
+$app->get('/productosDispo[/]', function ($request, $response, $args) {
+ 
+    $datos = productos::TraerDisponibles();
+    $response->write(json_encode($datos))   ;
+    
+    return $response;
+});
 
 
 
@@ -136,6 +143,14 @@ $app->get('/sucursalTraer/{objeto}', function ($request, $response, $args) {
 });
 
 
+
+$app->get('/productoTraer/{objeto}', function ($request, $response, $args) {
+    $prod = json_decode($args['objeto']);
+    $datos = productos::TraerUnProducto($prod);
+    $response->write(json_encode($datos))   ;
+    
+    return $response;
+});
 
 
 
@@ -202,6 +217,31 @@ $app->post('/altaUser/{usuario}', function ($request, $response, $args) {
 
 $app->post('/altaPrd/{producto}', function ($request, $response, $args) {
     $prod = json_decode($args['producto']);
+
+// mover foto
+           if($prod->fotoProd1!="pordefecto.png")
+            {
+                $rutaVieja="../servidor/productos/".$prod->fotoProd1;
+                $rutaNueva="../fotos/productos/".$prod->fotoProd1;
+                copy($rutaVieja,$rutaNueva);
+           }
+         if($prod->fotoProd2!="pordefecto.png")
+            {
+                $rutaVieja="../servidor/productos/".$prod->fotoProd2;
+                $rutaNueva="../fotos/productos/".$prod->fotoProd2;
+                copy($rutaVieja,$rutaNueva);
+            }
+             if($prod->fotoProd3!="pordefecto.png")
+           {
+                $rutaVieja="../servidor/productos/".$prod->fotoProd3;
+                $rutaNueva="../fotos/productos/".$prod->fotoProd3;
+                copy($rutaVieja,$rutaNueva);
+            }
+         
+// mover foto fin
+
+
+
     $datos = productos::Insertar($prod);
 
 
@@ -216,7 +256,7 @@ $app->post('/Altasucursal/{sucursalre}', function ($request, $response, $args) {
 
     $sucu = json_decode($args['sucursalre']);
           // echo 'ola' ;
-// mover fotofhtfghfgh
+// mover foto
            if($sucu->foto1!="pordefecto.png")
             {
                 $rutaVieja="../servidor/sucursales/".$sucu->foto1;
@@ -229,7 +269,7 @@ $app->post('/Altasucursal/{sucursalre}', function ($request, $response, $args) {
                 $rutaNueva="../fotos/sucursales/".$sucu->foto2;
                 copy($rutaVieja,$rutaNueva);
             }
-             if($sucu->foto2!="pordefecto.png")
+             if($sucu->foto3!="pordefecto.png")
            {
                 $rutaVieja="../servidor/sucursales/".$sucu->foto3;
                 $rutaNueva="../fotos/sucursales/".$sucu->foto3;
@@ -263,9 +303,9 @@ $app->post('/local_empleado/{sucursal}', function ($request, $response, $args) {
 
 
 
-$app->post('/local_producto/{sucursal}', function ($request, $response, $args) {
-    $prod = json_decode($args['sucursal']);
-    $datos = local_producto::Insertar($prod);
+$app->post('/local_producto/{produu}', function ($request, $response, $args) {
+    $productoEmn = json_decode($args['produu']);
+    $datos = local_producto::Insertar($productoEmn);
 
 
     $response->write($datos);

@@ -9,12 +9,18 @@ return {replace : true, restrict : "MEAC", templateUrl : "templates/templateMenu
 })
 
 
+.directive('menuProd', function() {
+
+return {replace : true, restrict : "MEAC", templateUrl : "templates/templateMenuProductos.html"};
+
+})
+
+
 .directive('menuSucu', function() {
 
 return {replace : true, restrict : "MEAC", templateUrl : "templates/templateMenuSucursales.html"};
 
 })
-
 
 
 .directive('menuModal', function() {
@@ -87,9 +93,20 @@ link: function($scope, element, attrs) {
 .directive('produList', function() {
 	
 
-return {scope : {objEnv : '=obj',Borrar: '&'}, replace : true, restrict : "MEAC", templateUrl : "templates/templateProduc.html" };
+return {scope : {objEnv : '=obj',Borrar: '&'}, replace : true, restrict : "MEAC",
+ templateUrl : "templates/templateProduc.html", //};
 
+link: function($scope, element, attrs) {
 
+	
+			   // $scope.user=factoryUserActual.Logueado;
+//	console.info($scope.user);
+//	console.info($scope.user.perfil);
+            $scope.Ver = function(objEnv){
+            	//console.info($scope.BorrarUsuario);
+			    $scope.$parent.Ver(objEnv);
+			  }
+}}
 
 })
 

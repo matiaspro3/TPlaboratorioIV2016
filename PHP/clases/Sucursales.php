@@ -89,10 +89,10 @@ class sucursales
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 		$consulta =$objetoAccesoDato->RetornarConsulta("insert into sucursales (localDir,fotoLocal1,fotoLocal2,fotoLocal3)values(:direccion,:foto1,:foto2,:foto3)");
-		$consulta->bindValue(':direccion', $sucursal->localDir, PDO::PARAM_STR);
-		$consulta->bindValue(':foto1', $sucursal->fotoLocal1, PDO::PARAM_STR);
-		$consulta->bindValue(':foto2', $sucursal->fotoLocal2, PDO::PARAM_STR);
-		$consulta->bindValue(':foto3', $sucursal->fotoLocal3, PDO::PARAM_STR);
+		$consulta->bindValue(':direccion', $sucursal->direccion, PDO::PARAM_STR);
+		$consulta->bindValue(':foto1', $sucursal->foto1, PDO::PARAM_STR);
+		$consulta->bindValue(':foto2', $sucursal->foto2, PDO::PARAM_STR);
+		$consulta->bindValue(':foto3', $sucursal->foto3, PDO::PARAM_STR);
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
 	
