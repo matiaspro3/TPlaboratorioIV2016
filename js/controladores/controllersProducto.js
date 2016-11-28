@@ -241,9 +241,16 @@ $scope.ok = true;
 
 
 
-app.controller('controlProduVer', function($scope,$state,$stateParams, $http,factorySucursalEmpleado,factoryUserActual) {
+app.controller('controlProduVer', function($scope,$state,$stateParams,factorySucursalProducto, $http,factorySucursalEmpleado,factoryUserActual) {
  
    $scope.user = factoryUserActual.Logueado;
+
+
+
+  //console.info('user....', $scope.user);
+
+
+
 
 
 
@@ -253,6 +260,11 @@ $scope.sucursal={};
   $scope.sucursal.id_sucu = Number($stateParams.objUser.id_sucu);
   console.info('parammm,,,', $stateParams.objUser);
   $scope.sucursal.localDir = $stateParams.objUser.localDir;
+
+
+
+  $scope.comprada=$stateParams.objUser.comprada;
+
   if ($stateParams.objUser.fotoLocal1=="")
   $scope.sucursal.fotoLocal1= "pordefecto.png"
 else $scope.sucursal.fotoLocal1= $stateParams.objUser.fotoLocal1;
@@ -277,13 +289,18 @@ else $scope.sucursal.fotoLocal3= $stateParams.objUser.fotoLocal3;
 
 $scope.producto={};
 
+$scope.comprarProd={};
   $scope.producto.id_prod = Number($stateParams.objUser.id_prod);
+
+
+
+
   $scope.producto.precio = Number($stateParams.objUser.precio);
   $scope.producto.oferta = $stateParams.objUser.oferta;
 
-
-
-
+$scope.comprarProd.prod=$scope.producto.id_prod;
+$scope.comprarProd.user=$scope.user.id;
+  console.info('comprador....', $scope.comprarProd);
 
   console.info('parammm,,,', $stateParams.objUser);
 
@@ -305,6 +322,25 @@ else $scope.producto.fotoProd3= $stateParams.objUser.fotoProd3;
 
 
 
+
+  $scope.Comprar=function(){
+
+
+factorySucursalProducto.Modificar($scope.comprarProd).then(function(rta){
+
+console.info('modificado......', rta);
+//$scope.comprado=true;
+alert("Gracias por confiar en nosotros");
+$state.go("productosGrilla");
+
+
+
+
+
+})
+
+
+}
 
 
   $scope.Modificar=function(){

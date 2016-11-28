@@ -71,7 +71,8 @@ class usuario
 				set usuario=:nombre,
 				email=:email,
 				password=:pass,
-				perfil = :tipo
+				perfil = :tipo,
+				estado = :estado
 				WHERE id=:id");
 		//	$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();*/ 
 		//	$consulta =$objetoAccesoDato->RetornarConsulta("CALL ModificarPersona(:id,:nombre,:apellido,:foto)");
@@ -79,6 +80,7 @@ class usuario
 			$consulta->bindValue(':nombre',$idParametro->usuario, PDO::PARAM_STR);
 			$consulta->bindValue(':email', $idParametro->email, PDO::PARAM_STR);
 			$consulta->bindValue(':pass', $idParametro->password, PDO::PARAM_STR);
+			$consulta->bindValue(':estado', $idParametro->estado, PDO::PARAM_STR);
 			$consulta->bindValue(':tipo', $idParametro->perfil, PDO::PARAM_STR);
 			return $consulta->execute();
 	}

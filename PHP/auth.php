@@ -14,11 +14,13 @@ $log=usuario::TraerUnUser($usuario);
 
 if ($log!=false){	
 	$ClaveDeEncritacion = 'estaEsLaClave';
+	$token["id"] = $log->id;
 	$token["usuario"] = $log->usuario;
 	$token["email"] = $log->email;
 	$token["password"] = $log->password;
 	//$token["perfil"]="admin";
 	$token["perfil"]=$log->perfil;
+		$token["estado"] = $log->estado;
 	$token["iat"]=time();
 	$token["exp"]=time()+60;
 

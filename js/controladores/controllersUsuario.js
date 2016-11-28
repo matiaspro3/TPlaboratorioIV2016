@@ -157,13 +157,22 @@ app.controller('controlUsuarioLogin', function($scope, $http, $auth, $state,fact
     console.info("userrrrrrrrr...",$scope.usuario);
     $auth.login($scope.usuario)
     .then(function(response) {
-        console.info("correcto", response);
+
 
         //CHEQUEO DE SESION ACTIVA O NO
         if($auth.isAuthenticated()){
           console.info("token", $auth.getPayload());
           factoryUserActual.Logueado= $auth.getPayload();
-          
+
+                if (factoryUserActual.Logueado.estado!="activo")
+        {
+          //alert(factoryUserActual.Logueado.estado);
+          alert("SE ENCUENTRA DADO DE BAJA:"+factoryUserActual.Logueado.estado);
+               $auth.logout();
+              factoryUserActual.Logueado= "";
+                   $state.go("inicio");
+              }
+                  else{       console.info("correcto", response);
           //$scope.userActual= $auth.getPayload();
           //console.info("$scope.userActual", $scope.userActual);
           //console.info("$scope.userActual.perfil", $scope.userActual.perfil);
@@ -175,7 +184,9 @@ app.controller('controlUsuarioLogin', function($scope, $http, $auth, $state,fact
     
             //factoryUserActual.Logueado=$scope.usuario;
 
-          $state.go("inicio");
+          $state.go("inicio");}
+
+
         }
         else{
           console.info("no token", $auth.getPayload());
@@ -289,9 +300,10 @@ app.controller('usuarioRegistrarseMOD', function($scope, $http,FileUploader, $st
   $scope.user.email= $stateParams.objUser.email;
   $scope.user.password = Number($stateParams.objUser.password);
   $scope.user.perfil = $stateParams.objUser.perfil;
+    $scope.user.estado = $stateParams.objUser.estado;
 
 
-
+console.info("usuario a midificar;...",$scope.user);
 
 
 

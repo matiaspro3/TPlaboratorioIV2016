@@ -136,6 +136,23 @@ class local_producto
 
 //--------------------------------------------------------------------------------//
 
+	public static function Comprar($producto)
+	{
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+			$consulta =$objetoAccesoDato->RetornarConsulta("
+				update local_producto
+				set comprada=true,
+				comprador =:comp
+				WHERE id_prod=:id");
+			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
+
+			//$consulta =$objetoAccesoDato->RetornarConsulta("CALL ModificarPersona(:id,:direccion,:apellido,:foto)");
+		
+		$consulta->bindValue(':id', $producto->prod, PDO::PARAM_STR);
+		$consulta->bindValue(':comp', $producto->user, PDO::PARAM_STR);
+		
+			return $consulta->execute();
+	}
 //--------------------------------------------------------------------------------//
 
 	public static function Insertar($producto)

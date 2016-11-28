@@ -20,6 +20,12 @@
           <option value="emple">Empleado</option>
           <option value="clien">Cliente </option>
         </select><br>
+ <select  id="estado" name="estado" ng-model="user.estado" required="true" value="estado">
+          <option value="activo">Activo</option>
+          <option value="baja">Baja</option>
+          </select><br>
+
+
 
 
         <button class="button-green" id="guardar" ng-click="Modificar()" ng-disabled="myForm.$invalid"><span>Modificar </span></button><br><br>

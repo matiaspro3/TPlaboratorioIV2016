@@ -386,10 +386,11 @@ $app->put('/local_empleado/{objeto}', function ($request, $response, $args) {
 });
 
 
-$app->put('/local_producto/{objeto}', function ($request, $response, $args) {
+$app->put('/local_productoComprar/{objeto}', function ($request, $response, $args) {
     $prod = json_decode($args['objeto']);
-    $datos = local_producto::Modificar($prod);
-    $response->write($datos);
+    $datos = local_producto::Comprar($prod);
+    $response->write(json_encode($datos));
+   
     //var_dump($args);
     return $response;
 });

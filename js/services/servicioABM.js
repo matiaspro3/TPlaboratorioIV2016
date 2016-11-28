@@ -386,7 +386,7 @@ function CargarSucursalProductos(){
 
         function ModificarLocalProducto(persona){
             
-    return    $http.put('http://localhost/labo2/ws/local_producto/' + JSON.stringify(persona))
+    return    $http.put('http://localhost/labo2/ws/local_productoComprar/' + JSON.stringify(persona))
     .then(function(respuesta) {       
       
     return respuesta.data;
