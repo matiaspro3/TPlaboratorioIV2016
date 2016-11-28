@@ -37,65 +37,6 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
                 templateUrl : 'vistas/inicio.html',
                 controller : 'controlInicio'
             })
-      .state('persona', {
-                url : '/persona',
-                abstract:true,
-                       cache:false,
-                templateUrl : 'vistas/abstractaPersona.html',
-                controller : 'controlPersona'
-            })
-   .state('sucursalAlta', {
-                url : '/altaSucursal',
-                cache:false,
-                templateUrl : 'vistas/sucursalAlta.html',
-                controller : 'controlSucursalAlta'
-            })
-      .state('persona.menu', {
-                url: '/menu',
-                       cache:false,
-                views: {
-                    'contenido': {
-                        templateUrl: 'vistas/personaMenu.html',
-                        controller : 'controlPersonaMenu'
-                    }
-                }
-            })
-      .state('persona.votacion', {
-                url: '/votacion',
-                       cache:false,
-                views: {
-                    'contenido': {
-                        templateUrl: 'vistas/personaVotacion.html',
-                        controller : 'controlPersonaVotacion'
-                    }
-                }
-            })
-
-      .state('persona.modificarVotacion', {
-                      url: '/ModificarVotacion',
-                             cache:false,
-                              params: {
-                  objPersona: null
-                },
-                      views: {
-                          'contenido': {
-                              templateUrl: 'vistas/personaVotacionMOD.html',
-                              controller : 'controlPersonaVotacionMOD'
-                          }
-                      }
-                  })
-
-
-      .state('persona.grilla', {
-                url: '/grilla',
-                       cache:false,
-                views: {
-                    'contenido': {
-                        templateUrl: 'vistas/personaGrilla.html',
-                        controller : 'controlPersonaGrilla'
-                    }
-                }
-            })
 
 
 
@@ -140,7 +81,7 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
             })
 
       .state('usuario.modificar', {
-                      url: '/Modificar',
+                      url: '/ModificarUser',
                              cache:false,
                               params: {
                   objUser: null
@@ -181,7 +122,7 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
 
 
       .state('productoMOD', {
-                      url: '/Modificar',
+                      url: '/ModificarProdu',
                              cache:false,
                           templateUrl: 'vistas/productoMOD.html',
                               controller : 'controlProductoMOD'
@@ -200,6 +141,15 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
                               controller : 'controlProduVer'
                      
                   })
+
+   .state('sucursalAlta', {
+                url : '/altaSucursal',
+                cache:false,
+                templateUrl : 'vistas/sucursalAlta.html',
+                controller : 'controlSucursalAlta'
+            })
+
+ 
 
     .state('sucursalesGrilla', {
                     url : '/sucursalesGrilla',
@@ -223,13 +173,38 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
 
 
       .state('sucursalMOD', {
-                      url: '/Modificar',
+                      url: '/ModificarSucu',
                              cache:false,
                                    templateUrl: 'vistas/sucursalMOD.html',
                               controller : 'controlSucursalMOD'
                                 })
 
 
+      .state('empleadoAlta', {
+                      url: '/AltaEmple',
+                             cache:false,
+                                   templateUrl: 'vistas/empleadoAlta.html',
+                              controller : 'controlEmpleadoAlta'
+                                })
+
+
+      .state('empleadoMOD', {
+                      url: '/ModificarEmple',
+                             cache:false,
+                                        params: {
+                  objUser: null
+                },
+                                   templateUrl: 'vistas/empleadoMOD.html',
+                              controller : 'controlEmpleadoMOD'
+                                })
+
+
+      .state('empleadoGrilla', {
+                      url: '/GrillaEmple',
+                             cache:false,
+                                   templateUrl: 'vistas/empleadoGrilla.html',
+                              controller : 'controlEmpleadoGrilla'
+                                })
 
 
 

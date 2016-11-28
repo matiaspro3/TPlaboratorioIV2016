@@ -8,7 +8,7 @@ class empleados
 	public $nombre;
 	public $legajo;
 	public $cargo;
-
+	public $estado;
 
 //--------------------------------------------------------------------------------//
 
@@ -37,6 +37,20 @@ class empleados
 					
 	}
 	
+
+public static function TraerTodosTodos() 
+	{	
+
+
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		$consulta =$objetoAccesoDato->RetornarConsulta("select * from empleados");
+	    $consulta->execute();
+	  $arrPersonas= $consulta->fetchAll(PDO::FETCH_CLASS, "empleados");	
+		return $arrPersonas;	
+					
+	}
+
+
 	public static function TraerTodos()
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
@@ -93,20 +107,22 @@ class empleados
 		
 	}
 	
-	public static function Modificar($producto)
+	public static function Modificar($emple)
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("
-				update local-empleado
-				set id-emple:id-emple,
-				id-local =:id-local,			
-				WHERE id-prod=:id");
+				update empleados
+				set cargo = :cargo,
+				estado=:estado			
+				WHERE id_emple=:id_emple");
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
 			//$consulta =$objetoAccesoDato->RetornarConsulta("CALL ModificarPersona(:id,:direccion,:apellido,:foto)");
 		
-		$consulta->bindValue(':id-emple', $producto->id_emple, PDO::PARAM_STR);
-		$consulta->bindValue(':id-local', $producto->id_local, PDO::PARAM_STR);
+		$consulta->bindValue(':id_emple', $emple->id_emple, PDO::PARAM_STR);
+		$consulta->bindValue(':estado', $emple->estado, PDO::PARAM_STR);
+		$consulta->bindValue(':cargo', $emple->cargo, PDO::PARAM_STR);
+		
 		return $consulta->execute();
 	}
 
@@ -114,12 +130,13 @@ class empleados
 
 //--------------------------------------------------------------------------------//
 
-	public static function Insertar($producto)
+	public static function Insertar($empleado)
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("insert into local_empleado (id-emple,id-local)values(:id-emple,:id-local)");
-		$consulta->bindValue(':id-emple', $producto->id_emple, PDO::PARAM_STR);
-		$consulta->bindValue(':id-local', $producto->id_local, PDO::PARAM_STR);
+		$consulta =$objetoAccesoDato->RetornarConsulta("insert into empleados (nombre,legajo,cargo)values(:nombre,:legajo,:cargo)");
+		$consulta->bindValue(':cargo', $empleado->perfil, PDO::PARAM_STR);
+		$consulta->bindValue(':legajo', $empleado->legajo, PDO::PARAM_STR);
+		$consulta->bindValue(':nombre', $empleado->nombre, PDO::PARAM_STR);
 		$consulta->execute();		
 		return $objetoAccesoDato->RetornarUltimoIdInsertado();
 	

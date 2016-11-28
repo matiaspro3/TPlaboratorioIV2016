@@ -26,7 +26,10 @@ angular.module('abmapp')
  this.CargarProductosDisponibles = CargarProductosDisponibles;
 this.TraerProducto = TraerProducto;
 this.CargarSucursalProductosAlgunos = CargarSucursalProductosAlgunos;
+this.TraerEmpleados = TraerEmpleados;
+this.AltaEmpleado = AltaEmpleado;
 
+this.ModificarEmple = ModificarEmple;
   
 //TRAER TODOS.............
     function CargarProductos(){
@@ -140,6 +143,20 @@ function TraerEmpleado(emple){
 
     }
 
+function TraerEmpleados(){
+      
+          return $http.get('http://localhost/labo2/ws/empleadosTodos')
+    .then(function(respuesta) {       
+      
+    return respuesta.data;
+      
+      },function errorCallback(response) {
+           return response; 
+             }   
+        )
+
+    }
+
 
 
 
@@ -233,6 +250,19 @@ function CargarSucursalProductos(){
            return response;  }
       )
     }
+
+
+    function AltaEmpleado(emple){
+            
+    return  $http.post('http://localhost/labo2/ws/altaEmple/' + JSON.stringify(emple))
+    .then(function(respuesta) {       
+      
+    return respuesta.data;
+      },function errorCallback(response) {
+           return response;  }
+      )
+    }
+
 
 
 
@@ -365,7 +395,18 @@ function CargarSucursalProductos(){
     }
 
 
-
+   function ModificarEmple(emple){
+            
+    return    $http.put('http://localhost/labo2/ws/modificarEmple/' + JSON.stringify(emple))
+    .then(function(respuesta) {       
+      
+    return respuesta.data;
+      
+      },function errorCallback(response) {
+           return response; 
+             }   
+   )
+    }
 
 
 

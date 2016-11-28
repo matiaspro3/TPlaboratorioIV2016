@@ -25,12 +25,12 @@ function TraerEmpleado(emple){
 
 
     function TraerTodos(){
-      return servicioABM.CargarSucursales();
+      return servicioABM.TraerEmpleados();
     }
   
 
- function Alta(producto){
-       return servicioABM.AltaSucursales(producto);
+ function Alta(emple){
+       return servicioABM.AltaEmpleado(emple);
     }
 
 
@@ -39,8 +39,8 @@ function TraerEmpleado(emple){
     }
 
 
- function Modificar(producto){
-       return servicioABM.ModificarSucursal(producto);
+ function Modificar(emple){
+       return servicioABM.ModificarEmple(emple);
     }
 
 

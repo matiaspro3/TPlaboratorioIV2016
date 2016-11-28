@@ -82,6 +82,13 @@ $app->get('/productos[/]', function ($request, $response, $args) {
 
 
 
+$app->get('/empleadosTodos[/]', function ($request, $response, $args) {
+    $datos = empleados::TraerTodosTodos();
+    $response->write(json_encode($datos));    
+    return $response;
+});
+
+
 
 $app->get('/sucursales[/]', function ($request, $response, $args) {
     $datos = sucursales::TraerTodos();
@@ -225,6 +232,14 @@ $app->post('/altaUser/{usuario}', function ($request, $response, $args) {
     return $response;
 });
 
+$app->post('/altaEmple/{emple}', function ($request, $response, $args) {
+    $empleado = json_decode($args['emple']);
+    $datos = empleados::Insertar($empleado);
+    $response->write($datos);
+
+    return $response;
+});
+
 
 $app->post('/altaPrd/{producto}', function ($request, $response, $args) {
     $prod = json_decode($args['producto']);
@@ -357,9 +372,9 @@ $app->put('/modificarUser/{objeto}', function ($request, $response, $args) {
 });
 
 
-$app->put('/modificarProd/{objeto}', function ($request, $response, $args) {
-    $prod = json_decode($args['objeto']);
-    $datos = productos::Modificar($prod);
+$app->put('/modificarEmple/{objeto}', function ($request, $response, $args) {
+    $emple = json_decode($args['objeto']);
+    $datos = empleados::Modificar($emple);
     $response->write($datos);
     //var_dump($args);
     return $response;
@@ -367,6 +382,13 @@ $app->put('/modificarProd/{objeto}', function ($request, $response, $args) {
 
 
 
+$app->put('/modificarProd/{objeto}', function ($request, $response, $args) {
+    $prod = json_decode($args['objeto']);
+    $datos = productos::Modificar($prod);
+    $response->write($datos);
+    //var_dump($args);
+    return $response;
+});
 
 $app->put('/sucursal/{objeto}', function ($request, $response, $args) {
     $prod = json_decode($args['objeto']);

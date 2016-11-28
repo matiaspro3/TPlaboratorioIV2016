@@ -1,0 +1,89 @@
+  <div class=ui-base> 
+	<ul class="nav nav-tabs">
+		         <li  class="btn btn-success animated rubberBand" >
+		         	<a  style="color:red; font-weight: 900;" ui-sref="inicio()">
+		         		 <span  style="color:blue;" class="glyphicon glyphicon-list-alt">&nbsp;</span>
+		         		 Inicio
+		         	</a>
+		         </li>
+		        
+		        	
+ 				 <div ><nombre-user  usuarito=user.usuario><nombre-user>                    </div>
+      </ul>
+      </div>
+
+
+
+
+
+	<div  >
+	  <div class="container">
+		<div class="page-header" >
+
+			<center><h1 class="animated zoomInDown" style="color:lightblue;" >Empleados</h1> </center>     
+		</div>
+
+	  	 
+		           
+					<div class="CajaInicio  animated  slideInUp">
+							<h1 style="color:yellow;">Listado de Empleados</h1>
+							<!-- id="listaPersonas" -->
+								
+	<!-- BUSQUEDA -->
+
+			<label style="color:yellow;">Busqueda en Particular
+						 
+			<!--			<input class="barraSearch" type="search" ng-model="buscarTipo.nombre" placeholder="Buscar Nombre Empleado">
+				-->		<input class="barraSearch" type="search" ng-model="buscarTipo.nombre" placeholder="Buscar Nombre">
+						<input class="barraSearch" type="search" ng-model="buscarTipo.legajo" placeholder="Buscar legajo">
+
+
+
+<br>
+		<input type="checkbox" ng-model="buscarTipo.estado"     ng-true-value="'activo'" ng-false-value="'baja'"   required /> Activos
+			<input type="checkbox" ng-model="buscarTipo.estado"     ng-true-value="'baja'"   ng-false-value="'activo'"   required/>  De Baja
+		<input type="checkbox" ng-model="buscarTipo.estado"  	ng-true-value=""       ng-false-value=""    required/> Todos
+
+
+							<li style="color:blue;" class="animate-repeat" ng-if="resultado.length == 0">
+
+							      <strong>No existen coincidencias</strong>
+							    </li>
+
+</label>
+
+<!-- BUSQUEDA -->
+
+
+								<table class='table table-hover table-responsive ' >
+									<thead>
+										<tr>
+											<th> Nombre  </th>
+											<th> Legajo  </th>
+											<th> Cargo   </th>
+											<th> Estado  </th>
+
+										
+											<th> Ver Empleado  </th>										
+
+										</tr> 
+									</thead>
+	<tr style="color:red;font-weight: 900" ng-repeat="emple in ListadoEmple | orderBy:'legajo' | filter:buscarTipo as resultado">
+										
+										
+										<td>{{emple.nombre}}</td>
+										<td>{{emple.legajo}}</td>
+										<td>{{emple.cargo | filtroPerfil}}</td>
+										<td>{{emple.estado}}</td>
+																					
+							
+										<td><button class='btn btn-info' name='Ver' ng-click="Ver(emple)">   <span class='glyphicon glyphicon-edit'>&nbsp;</span>Ver</button></td>	
+
+																					
+									</tr>
+								</table>
+							</div>
+						</div>
+		</div></div>
+</body>
+</html>
