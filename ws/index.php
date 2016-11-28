@@ -391,9 +391,32 @@ $app->put('/modificarProd/{objeto}', function ($request, $response, $args) {
 });
 
 $app->put('/sucursal/{objeto}', function ($request, $response, $args) {
-    $prod = json_decode($args['objeto']);
-    $datos = sucursales::Modificar($prod);
+    $sucu = json_decode($args['objeto']);
+    
+// mover foto
+           if($sucu->fotoLocal1!="pordefecto.png")
+            {
+                $rutaVieja="../servidor/sucursales/".$sucu->fotoLocal1;
+                $rutaNueva="../fotos/sucursales/".$sucu->fotoLocal1;
+                copy($rutaVieja,$rutaNueva);
+           }
+         if($sucu->fotoLocal2!="pordefecto.png")
+            {
+                $rutaVieja="../servidor/sucursales/".$sucu->fotoLocal2;
+                $rutaNueva="../fotos/sucursales/".$sucu->fotoLocal2;
+                copy($rutaVieja,$rutaNueva);
+            }
+             if($sucu->fotoLocal3!="pordefecto.png")
+           {
+                $rutaVieja="../servidor/sucursales/".$sucu->fotoLocal3;
+                $rutaNueva="../fotos/sucursales/".$sucu->fotoLocal3;
+                copy($rutaVieja,$rutaNueva);
+            }
+         
+// mover foto fin
+$datos = sucursales::Modificar($sucu);
     $response->write($datos);
+
     //var_dump($args);
     return $response;
 });

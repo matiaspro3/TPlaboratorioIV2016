@@ -1,0 +1,131 @@
+<style>
+            .my-drop-zone { border: dotted 3px lightgray; }
+            .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+            .another-file-over-class { border: dotted 3px green; }
+            html, body { height: 100%; }
+</style>
+
+<menu-sucu></menu-sucu>
+
+
+    <div class="Frm animated bounceInLeft" style="background-color:powderblue;">
+      <form class=""  name="myForm" enctype="multipart/form-data">
+        <label class="miEstilo" id="titulo">Modificacion</label><br>
+        <label> Sucursal</label><br>
+        <input type="text" id="direccion" name="direccion" ng-model="sucursal.localDir" placeholder="Ingrese direccion" readonly="true">
+        <br>
+
+
+
+                                <table class='table table-hover table-responsive ' >
+                                    <thead>
+                                        <tr ng-if ="sucursal.fotoLocal1 !=''">
+                                          
+                                     <td ><img  style='border-radius:0px;width:15%;height:15%;z-index:-1;'
+                                     class='fotoGrilla' ng-src="./fotos/sucursales/{{sucursal.fotoLocal1}}" />
+                                     <button class='btn btn-danger' name='Ver' ng-click="EliminarFoto('fotoLocal1')">   <span class='glyphicon glyphicon-edit'>&nbsp;</span>Borrar</button></td>
+
+
+  <tr  ng-if ="sucursal.fotoLocal2 !=''">
+                                     <td><img style='border-radius:0px;width:15%;height:15%;z-index:-1;' class='fotoGrilla' ng-src="./fotos/sucursales/{{sucursal.fotoLocal2}}" />
+     <button class='btn btn-info' name='Ver' ng-click="EliminarFoto('fotoLocal2')">   <span class='glyphicon glyphicon-edit'>&nbsp;</span>Borrar</button></td>
+
+                                     </td>
+          </tr>
+
+
+
+          <tr  ng-if ="sucursal.fotoLocal3 !=''">
+                                     <td><img style='border-radius:0px;width:15%;height:15%;z-index:-1;' class='fotoGrilla' ng-src="./fotos/sucursales/{{sucursal.fotoLocal3}}" />
+     <button class='btn btn-warning' name='Ver' ng-click="EliminarFoto('fotoLocal3')">   <span class='glyphicon glyphicon-edit'>&nbsp;</span>Borrar</button></td>
+
+                                     </td>
+                                                                
+                                    </tr>
+                                    </thead>
+                            </table>
+
+
+
+
+<h1 ng-if ="!sucursal.fotoLocal1 || !sucursal.fotoLocal2 ||  !sucursal.fotoLocal3" style="color:red"> SI AGREGA IMAGENES YA NO PODRA CANCELAR LA OPERACION</h1>
+
+<div ng-if ="!sucursal.fotoLocal1 || !sucursal.fotoLocal2 ||  !sucursal.fotoLocal3">
+
+    <h5 style="color:blue" ng-if ="!sucursal.fotoLocal1 || !sucursal.fotoLocal2 || !sucursal.fotoLocal3" >Agrega Una imagen</h5>
+    
+
+    <h4 style="color:green"  ng-if ="!sucursal.fotoLocal1 && !sucursal.fotoLocal2 || !sucursal.fotoLocal1 && !sucursal.fotoLocal3 || !sucursal.fotoLocal2 && !sucursal.fotoLocal3" >Agrega una Mas!!!!!</h3>
+    
+
+
+    <h3 style="color:red" ng-if ="!sucursal.fotoLocal1 && !sucursal.fotoLocal2 && !sucursal.fotoLocal3" >Agrega Tres imagenes Nuevas!!!!!</h3>
+
+    <!--<div nv-file-drop="" uploader="uploader" options="{ url: '/foo' }"> -->
+    <div nv-file-drop="" uploader="uploader">
+        <div nv-file-over="" uploader="uploader" over-class="another-file-over-class" class="well my-drop-zone">
+            Arrastra aqui las fotos que quieras.
+        </div>
+    </div>
+</div>
+
+<div >
+    
+    <p>Cantidad de Fotos : {{ uploader.queue.length }}</p>
+
+<table class='table table-hover table-responsive' align="center">
+    <thead>
+        <tr>
+            <th >Nombre</th>
+            <th ng-show="uploader.isHTML5">Tamaño</th>
+            <th ng-show="uploader.isHTML5">Progreso</th>
+            <th>Estado</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in uploader.queue">
+            <td>
+              <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+            </td>
+            <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+            <td ng-show="uploader.isHTML5">
+                <div class="progress" style="margin-bottom: 0;">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                </div>
+            </td>
+            <td class="text-center">
+                <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+            </td>
+            <td nowrap>
+           <!--     <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                    <span class="glyphicon glyphicon-upload"></span> Subir 
+                </button>
+               
+
+                <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> Cancelar
+                </button>
+               -->
+
+                <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                    <span class="glyphicon glyphicon-trash"></span> Remover
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<button  class="button-green"  ng-disabled="myForm.$invalid" ng-click="Modi()"><span>Modificar Sucursal </span></button>
+<button  class="button-green" ng-if="cancelar" ui-sref="sucursalesGrilla()"><span>Cancelar </span></button>
+</form>
+</div>
+        
+
+
+  
+    <h1 style="color:red;" ng-if ="!myForm.$valid">Complete todos los campos!</h1>
+
+    <h1 style="color:blue;" ng-if ="myForm.$valid">Bien!! A Ingresarla!!</h1>

@@ -117,6 +117,125 @@ app.controller('controlSucursalesGrilla', function($scope,$state, factoryUserAct
 
 
 
+app.controller('controlSucuModificar', function($scope,FileUploader,$state,$stateParams, $http,factorySucursal,factoryUserActual) {
+
+
+ console.info('recivo en sucu Modificar,', $stateParams.objUser);
+
+
+       $scope.cancelar=true;
+   $scope.user = factoryUserActual.Logueado;
+
+$scope.sucursal={};
+$scope.buckUp={};
+  
+  $scope.sucursal.idMuestras = Number($stateParams.objUser.idMuestras);
+
+
+  $scope.sucursal.localDir = $stateParams.objUser.localDir;
+  
+ $scope.sucursal.fotoLocal1= $stateParams.objUser.fotoLocal1;
+
+   $scope.sucursal.fotoLocal2= $stateParams.objUser.fotoLocal2;
+
+ $scope.sucursal.fotoLocal3= $stateParams.objUser.fotoLocal3;
+
+  console.info('objeto sucursal....', $scope.sucursal);
+
+  $scope.buckUp.foto1=$scope.sucursal.fotoLocal1;
+  $scope.buckUp.foto2=$scope.sucursal.fotoLocal2;
+  $scope.buckUp.foto3=$scope.sucursal.fotoLocal3;
+
+
+
+  $scope.EliminarFoto=function(foto){
+           
+  var pregunta = confirm("Seguro desea Eliminar esta foto?");
+                if (pregunta == true) {
+                            if (foto=='fotoLocal1'){
+                                 
+                                  $scope.sucursal.fotoLocal1 = '';
+                              
+                              }
+                              else  if (foto=='fotoLocal2')
+                              {
+                                  $scope.sucursal.fotoLocal2 = '';
+                              }    
+                              else   if (foto=='fotoLocal3')
+                              {
+                                  $scope.sucursal.fotoLocal3 = '';
+                              }
+
+
+                } else {
+                   // alert("Cancelado.");
+                }
+              
+
+  }
+
+
+ $scope.uploader=new FileUploader({url:'servidor/archivosSucu.php'});
+$scope.uploader.onAfterAddingFile = function(item) {
+        $scope.cancelar=false;
+                                        if (!$scope.sucursal.fotoLocal1)
+                                          {
+                                            item.file.name =$scope.sucursal.localDir+'-1.jpg';
+                                            $scope.sucursal.fotoLocal1=$scope.sucursal.localDir+'-1.jpg';
+                                          }else if (!$scope.sucursal.fotoLocal2)
+                                          {
+                                            item.file.name =$scope.sucursal.localDir+'-2.jpg';
+                                            $scope.sucursal.fotoLocal2=$scope.sucursal.localDir+'-2.jpg';
+                                          } else if (!$scope.sucursal.fotoLocal3)
+                                          {item.file.name =$scope.sucursal.localDir+'-3.jpg';
+                                          $scope.sucursal.fotoLocal3=$scope.sucursal.localDir+'-3.jpg';
+                                          }
+
+
+                      item.upload();
+
+
+                        };
+
+                        $scope.uploader.onSuccessItem=function(item, response, status, headers)
+                          {
+
+                               $scope.uploader.onBeforeUploadItem(item);
+                         };
+
+
+
+  $scope.Modi=function(){
+console.info('a modificarrr....',$scope.sucursal);
+               factorySucursal.Modificar($scope.sucursal).then(function(rta){
+
+  console.info('modificado....',rta);
+  $state.go('sucursalesGrilla');
+    
+
+    
+   })         
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
+
+
+
+
+
+
 app.controller('controlSucuVer', function($scope,$state,$stateParams, $http,factorySucursalEmpleado,factorySucursalProducto,factoryUserActual) {
  console.info('recivo estp,', $stateParams.objUser);
    $scope.user = factoryUserActual.Logueado;
@@ -170,14 +289,9 @@ alert("errrrro!");
 
   $scope.Modificar=function(){
 
-/*
-   factoryUserActual.Modificar($scope.user).then(function(rta){
-    console.info("Modificar ookk...");
-      $state.go('usuario.grilla');
-  }
 
 
-)*/
+    $state.go('sucursalModificar', {objUser:$scope.sucursal});
 
 }
 

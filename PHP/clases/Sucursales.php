@@ -63,20 +63,19 @@ class sucursales
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("
 				update sucursales
-				set direccion=:direccion,
-				foto1=:foto1,
-				foto2=:foto2,
-				foto3=:foto3,
-				WHERE id-sucu=:id");
+				set fotoLocal1=:fotoLocal1,
+				fotoLocal2=:fotoLocal2,
+				fotoLocal3=:fotoLocal3
+				WHERE id_sucu=:id");
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
-			//$consulta =$objetoAccesoDato->RetornarConsulta("CALL ModificarPersona(:id,:direccion,:apellido,:foto)");
+			//$consulta =$objetoAccesoDato->RetornarConsulta("CALL ModificarPersona(:id,:localDir,:apellido,:foto)");
 		
-		$consulta->bindValue(':id', $sucursal->id, PDO::PARAM_STR);
-		$consulta->bindValue(':direccion', $sucursal->direccion, PDO::PARAM_STR);
-		$consulta->bindValue(':foto2', $sucursal->foto2, PDO::PARAM_STR);
-		$consulta->bindValue(':foto3', $sucursal->foto3, PDO::PARAM_STR);
-		$consulta->bindValue(':foto1', $sucursal->foto1, PDO::PARAM_STR);
+		$consulta->bindValue(':id', $sucursal->idMuestras, PDO::PARAM_STR);
+		
+		$consulta->bindValue(':fotoLocal2', $sucursal->fotoLocal2, PDO::PARAM_STR);
+		$consulta->bindValue(':fotoLocal3', $sucursal->fotoLocal3, PDO::PARAM_STR);
+		$consulta->bindValue(':fotoLocal1', $sucursal->fotoLocal1, PDO::PARAM_STR);
 
 			return $consulta->execute();
 	}
