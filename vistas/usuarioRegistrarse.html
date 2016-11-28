@@ -13,7 +13,7 @@
 
         <input type="password" id="clave" minlength="3" ng-model="usuario.password" placeholder="clave" required="true" value=""><br>
 
-    <input ng-if ="!user" type="text" id="perfil" name="perfil"  readonly=""  value="Se registrara como Cliente"><br>
+    <input ng-if ="!user || user.perfil !='admin'   " type="text" id="perfil" name="perfil"  readonly=""  value="Se registrara como Cliente"><br>
 
 
  <select ng-if ="user.perfil =='admin'"  id="perfil" name="perfil" ng-model="usuario.perfil" required="true" value="perfil">

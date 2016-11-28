@@ -3,7 +3,10 @@
 
 <div class="Frm animated flash">
       <form class="" name="myForm">
-        <label  style="color:gray;"  class="miEstilo">Modificar Datos</label><br><br>
+<label  style="color:gray;"  class="miEstilo">Modificar Datos</label><br><br>
+      
+      <div ng-if="userActual.perfil=='admin'">
+        
 
         <input type="text" id="usuario" name="usuario" ng-model="user.usuario" placeholder="Ingrese su usuario" value="" required="true"><br>
 
@@ -20,13 +23,36 @@
           <option value="emple">Empleado</option>
           <option value="clien">Cliente </option>
         </select><br>
+
+
+        
  <select  id="estado" name="estado" ng-model="user.estado" required="true" value="estado">
           <option value="activo">Activo</option>
           <option value="baja">Baja</option>
+
+
           </select><br>
 
+        </div>
+
+<div ng-if="userActual.perfil=='enca'">
+                <input type="text" id="usuario" name="usuario" ng-model="user.usuario" value="" readonly="true"><br>
 
 
+        <input type="email" id="email" name="email" ng-model="user.email"  readonly="true"><br>
+
+          <input type="text"  ng-model="user.perfil"  readonly="true"><br>   
+
+
+        
+ <select  id="estado" name="estado" ng-model="user.estado"  value="estado">
+          <option value="activo">Activo</option>
+          <option value="baja">Baja</option>
+
+
+          </select><br>
+
+        </div>
 
         <button class="button-green" id="guardar" ng-click="Modificar()" ng-disabled="myForm.$invalid"><span>Modificar </span></button><br><br>
 

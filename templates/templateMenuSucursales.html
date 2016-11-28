@@ -9,7 +9,7 @@
 		         </li>
 
 
-						    <li  class="btn btn-success animated rubberBand" >
+						    <li ng-if="user.perfil =='admin'"   class="btn btn-success animated rubberBand" >
 								         	<a  style="color:red; font-weight: 900;" ui-sref="sucursalAlta()">
 								         		 <span  style="color:blue;" class="glyphicon glyphicon-list-alt">&nbsp;</span>
 								         		 Alta de Sucursales
@@ -22,7 +22,7 @@
 		         		<span  style="color:blue" class="glyphicon glyphicon-th" >&nbsp;</span>
 		         			Listado de Sucursales</a>
 		         		</li>
-		        	<li  class="btn btn-info animated rubberBand" >
+		        	<li  ng-if="user.perfil =='admin'"  class="btn btn-info animated rubberBand" >
 		         	<a  style="color:red; font-weight: 900;" ui-sref="sucursalMOD()"> 
 		         		<span  style="color:blue" class="glyphicon glyphicon-th" >&nbsp;</span>
 		         			Asignar Empleados</a>

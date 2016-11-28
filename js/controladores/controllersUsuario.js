@@ -233,6 +233,13 @@ if (!$scope.usuario.perfil)
 //console.info('nullloo',$scope.usuario.perfil);
 $scope.usuario.perfil ='clien';
 }
+
+else  if ($scope.usuario.perfil !='admin')
+{
+
+$scope.usuario.perfil ='clien';
+}
+
 factoryUserActual.Alta($scope.usuario).then(function(rta){
     console.info("ALTA ookk...");
 
@@ -292,6 +299,9 @@ app.controller('controlUsuarioGrilla', function($scope, $http, $state, $auth,fac
 
 
 app.controller('usuarioRegistrarseMOD', function($scope, $http,FileUploader, $state,$stateParams, factoryUserActual) {
+
+$scope.userActual= factoryUserActual.Logueado;
+
   $scope.user={};
 
   $scope.user.id = Number($stateParams.objUser.id);
