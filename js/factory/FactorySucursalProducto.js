@@ -3,6 +3,7 @@ angular
   .factory('factorySucursalProducto', function (servicioABM) {
     var objeto = {};
     objeto.TraerTodos = TraerTodos;
+        objeto.TraerTodosSucu = TraerTodosSucu;
     objeto.Borrar = Borrar;
     objeto.Alta = Alta;
     objeto.Modificar = Modificar;
@@ -15,6 +16,9 @@ angular
       return servicioABM.CargarSucursalProductos();
     }
   
+    function TraerTodosSucu(sucu){
+      return servicioABM.CargarSucursalProductosAlgunos(sucu);
+    }
 
  function Alta(producto){
        return servicioABM.AltaLocalProducto(producto);

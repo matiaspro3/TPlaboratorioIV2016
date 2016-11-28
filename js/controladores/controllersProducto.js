@@ -21,6 +21,7 @@ app.controller('controlProductosGrilla', function($scope,$state, $http,factorySu
 
 
   $scope.Ver=function(sucu){
+    console.info('enviandoooo produ..',sucu);
   $state.go('productoVer', {objUser:sucu});
   
   }
@@ -245,11 +246,44 @@ app.controller('controlProduVer', function($scope,$state,$stateParams, $http,fac
    $scope.user = factoryUserActual.Logueado;
 
 
+
+
+$scope.sucursal={};
+
+  $scope.sucursal.id_sucu = Number($stateParams.objUser.id_sucu);
+  console.info('parammm,,,', $stateParams.objUser);
+  $scope.sucursal.localDir = $stateParams.objUser.localDir;
+  if ($stateParams.objUser.fotoLocal1=="")
+  $scope.sucursal.fotoLocal1= "pordefecto.png"
+else $scope.sucursal.fotoLocal1= $stateParams.objUser.fotoLocal1;
+if ($stateParams.objUser.fotoLocal2=="")
+  $scope.sucursal.fotoLocal2= "pordefecto.png"
+else $scope.sucursal.fotoLocal2= $stateParams.objUser.fotoLocal2;
+if ($stateParams.objUser.fotoLocal3=="")
+  $scope.sucursal.fotoLocal3= "pordefecto.png"
+else $scope.sucursal.fotoLocal3= $stateParams.objUser.fotoLocal3;
+  console.info('parammm,,,', $scope.sucursal);
+
+
+  $scope.Ver=function(sucu){
+
+    console.info("encviando..",sucu);
+
+
+
+  $state.go('sucursalVer', {objUser:sucu});
+  
+  }
+
 $scope.producto={};
 
-  $scope.producto.id = Number($stateParams.objUser.id_prod);
+  $scope.producto.id_prod = Number($stateParams.objUser.id_prod);
   $scope.producto.precio = Number($stateParams.objUser.precio);
   $scope.producto.oferta = $stateParams.objUser.oferta;
+
+
+
+
 
   console.info('parammm,,,', $stateParams.objUser);
 

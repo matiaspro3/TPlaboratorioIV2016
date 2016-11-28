@@ -25,6 +25,7 @@ angular.module('abmapp')
 
  this.CargarProductosDisponibles = CargarProductosDisponibles;
 this.TraerProducto = TraerProducto;
+this.CargarSucursalProductosAlgunos = CargarSucursalProductosAlgunos;
 
   
 //TRAER TODOS.............
@@ -180,9 +181,9 @@ function TraerProducto(sucu){
 
 
 
-function CargarSucursalProductos(){
+function CargarSucursalProductosAlgunos(prod){
       
-          return $http.get('http://localhost/labo2/ws/local_producto')
+          return $http.get('http://localhost/labo2/ws/local_productosAlgunos/'+ JSON.stringify(prod))
     .then(function(respuesta) {       
       
     return respuesta.data;
@@ -199,6 +200,20 @@ function CargarSucursalProductos(){
 
 
 
+
+function CargarSucursalProductos(){
+      
+          return $http.get('http://localhost/labo2/ws/local_producto')
+    .then(function(respuesta) {       
+      
+    return respuesta.data;
+      
+      },function errorCallback(response) {
+           return response; 
+             }   
+        )
+
+    }
 
 
 

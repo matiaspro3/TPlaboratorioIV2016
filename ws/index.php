@@ -175,6 +175,17 @@ $app->get('/local_producto[/]', function ($request, $response, $args) {
 
 
 
+$app->get('/local_productosAlgunos/{objeto}', function ($request, $response, $args) {
+    $prod = json_decode($args['objeto']);
+//var_dump("expression");
+  //  var_dump($prod);
+    $datos = local_producto::TraerTodosSucu($prod);
+    $response->write(json_encode($datos))   ;
+   // var_dump("devolucion");
+   // var_dump($datos);
+    return $response;
+});
+
 
 
 

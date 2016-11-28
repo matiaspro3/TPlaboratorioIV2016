@@ -73,6 +73,35 @@ class local_producto
 		return $arrPersonas;
 	}
 	
+	public static function TraerTodosSucu($sucu)
+	{
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		$consulta =$objetoAccesoDato->RetornarConsulta(
+	 /*" select  id_prod  from local_producto");*/
+		    	"select A.id_prod,
+					  A.produDir,
+					  A.fotoProd1,
+					  A.fotoProd2,
+					  A.fotoProd3,
+					  A.precio,
+					  A.oferta,
+					  B.id_sucu,
+					  B.localDir,
+					  B.fotoLocal1,
+					  B.fotoLocal2,
+					  B.fotoLocal3,
+					  C.comprada
+				from productos A , sucursales B, local_producto C
+				where  C.id_local =:sucursal
+				and	  A.id_prod = C.id_prod
+				and   B.id_sucu = C.id_local
+         ");
+		//$consulta =$objetoAccesoDato->RetornarConsulta("CALL TraerTodasLasPersonas() ");
+		$consulta->bindValue(':sucursal', $sucu, PDO::PARAM_STR);
+		$consulta->execute();			
+		$arrPersonas= $consulta->fetchAll(PDO::FETCH_CLASS, "local_producto");	
+		return $arrPersonas;
+	}
 	public static function Borrar($idParametro)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 

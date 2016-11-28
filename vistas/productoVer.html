@@ -22,6 +22,8 @@
 											<th> Direccion  </th>
 											<th> Precio en Dollares</th>
 											<th> Oferta  </th>
+											<th>Disponible en Sucursal</th>
+											<th>Ir a Sucursal</th>
 				
 										</tr> 
 									</thead>
@@ -32,7 +34,8 @@
 										<td>{{producto.produDir}}</td>
 										<td>{{producto.precio}}</td>
 										<td>{{producto.oferta | filtroOferta}}</td>
+										<td>{{sucursal.localDir}}</td>
 									
-											
+										<td><button class='btn btn-info' name='Ver' ng-click="Ver(sucursal)">   <span class='glyphicon glyphicon-edit'>&nbsp;</span>Ver</button></td>								
 									</tr>
 								</table>

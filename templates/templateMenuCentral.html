@@ -10,7 +10,7 @@
                     <ul>
                          <li class="has-sub"><a ng-if='!user' ui-sref="usuario.login()"><span>Login de usuarios</span></a>
                         </li>
-                        <li class="has-sub"><a ng-if="user.perfil =='admin'"  ui-sref="usuario.grilla()" ><span>Listado de Usuarios</span></a>
+                        <li class="has-sub"><a ng-if="user.perfil =='admin'"  ui-sref="usuario.grilla()" ><span>Listado de Empleados</span></a>
                         </li>
                         <li class="has-sub" ><a ng-if="user.perfil =='admin'"  ui-sref="usuario.registrarse()"><span>Registro de usuarios</span></a> </li>
                         <li class="has-sub" ><a ng-if='user'  ui-sref="usuario.menu()" ><span>Desloguearse</span></a> </li>

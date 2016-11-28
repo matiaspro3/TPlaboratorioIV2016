@@ -11,7 +11,7 @@
 
 		</simple-slider>
 
-<h2 style="color:red;font-weight: 900"> Gente a su disposicion para brindarle ayuda en nuestra sucursal.</h2>
+<h2 style="color:red;font-weight: 900"> Personal a su disposicion para brindarle ayuda en nuestra sucursal.</h2>
 
 
 
@@ -36,3 +36,43 @@
 											
 									</tr>
 								</table>
+
+
+<h2 style="color:red;font-weight: 900"> Personal a su disposicion para brindarle ayuda en nuestra sucursal.</h2>
+
+
+
+
+								<table class='table table-hover table-responsive ' >
+									<thead>
+										<tr>
+											<th>  Direccion de la  Vivienda   </th>				
+										
+											<th>  Oferta     </th>
+
+									
+										
+											<th>  Disponibilidad </th>
+										
+											<th>  Mas Detalles     </th>										
+
+				
+										</tr> 
+									</thead>
+									
+									<tr style="color:red;font-weight: 900" ng-repeat="prod in ListadoProductos " style="color:red;">
+									
+									
+										<td>{{prod.produDir}}</td>
+								
+										<td>{{prod.oferta | filtroOferta}}</td>
+																			
+										<td>{{prod.comprada | filtroCompra}}</td>	
+									
+																
+										<td><button class='btn btn-info' name='Ver' ng-click="Ver(prod)">   <span class='glyphicon glyphicon-edit'>&nbsp;</span>Ver</button></td>	
+										
+									</tr>
+								</table>
+
+

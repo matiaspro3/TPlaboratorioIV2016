@@ -105,10 +105,11 @@ app.controller('controlSucursalesGrilla', function($scope,$state, factoryUserAct
 
   $scope.Traer();
 
-  $scope.Ver=function(sucu){
-  $state.go('sucursalVer', {objUser:sucu});
-  
-  }
+    $scope.Ver=function(sucu){
+      console.info("encviando..",sucu);
+    $state.go('sucursalVer', {objUser:sucu});
+    
+    }
 
 
 });
@@ -116,14 +117,13 @@ app.controller('controlSucursalesGrilla', function($scope,$state, factoryUserAct
 
 
 
-app.controller('controlSucuVer', function($scope,$state,$stateParams, $http,factorySucursalEmpleado,factoryUserActual) {
- 
+app.controller('controlSucuVer', function($scope,$state,$stateParams, $http,factorySucursalEmpleado,factorySucursalProducto,factoryUserActual) {
+ console.info('recivo estp,', $stateParams.objUser);
    $scope.user = factoryUserActual.Logueado;
 
-
 $scope.sucursal={};
-
-  $scope.sucursal.id = Number($stateParams.objUser.id_sucu);
+  
+  $scope.sucursal.idMuestras = Number($stateParams.objUser.id_sucu);
   console.info('parammm,,,', $stateParams.objUser);
   $scope.sucursal.localDir = $stateParams.objUser.localDir;
   if ($stateParams.objUser.fotoLocal1=="")
@@ -138,16 +138,35 @@ else $scope.sucursal.fotoLocal3= $stateParams.objUser.fotoLocal3;
   console.info('parammm,,,', $scope.sucursal);
 
 
-factorySucursalEmpleado.TraerEmpleados($scope.sucursal.id).then(function(rta){
+/*
+factorySucursalProducto.TraerTodosSucu($scope.sucursal.id).success(function(rta) { 
+ console.info(rta);
+$scope.ListadoProductos = rta;
+}).error(function() { alert("errrrro!"); })
+  */
+
+
+
+factorySucursalEmpleado.TraerEmpleados($scope.sucursal.idMuestras).then(function(rta){
    
     console.info(rta);
 $scope.ListadoSucu = rta;
+    console.info('$scope.ListadoSucu ....',$scope.ListadoSucu );
    //$state.go("inicio");
     
-   })
+     }),  function error(response) {
+        console.info("incorrecto", response);
+alert("errrrro!");
+
+}
 
 
 
+
+  $scope.Ver=function(sucu){
+  $state.go('productoVer', {objUser:sucu});
+  
+  }
 
   $scope.Modificar=function(){
 
@@ -162,10 +181,42 @@ $scope.ListadoSucu = rta;
 
 }
 
+console.info('id....',$scope.sucursal);
+factorySucursalProducto.TraerTodosSucu($scope.sucursal.idMuestras).then(function(rta){
+   
+    console.info('algooo....',rta);
+$scope.ListadoProductos = rta;
+
+
+
+console.info('lista de productos ....',$scope.ListadoProductos);
+console.info('lista dir....',$scope.ListadoProductos.produDir);
+console.info('lista. oferta...',$scope.ListadoProductos.oferta);
+console.info('lista. comprada..',$scope.ListadoProductos.comprada);
+   //$state.go("inicio");
+    
+   }) .catch(function(rta) {
+      alert("errrrro!");  // Catch and handle exceptions from success/error/finally functions
+    })
+
+
 });
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+  
 app.controller('controlSucursalMOD', function($scope,factoryUserActual,FileUploader,$state, $http,factoryUserActual,factorySucursalEmpleado,factoryEmpleado,factorySucursal,servicioABM) {
    $scope.user = factoryUserActual.Logueado;
 $scope.sucursal={};

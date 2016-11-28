@@ -12,10 +12,28 @@
 								
 	<!-- BUSQUEDA -->
 
-			<label style="color:yellow;">Busqueda en Particular</label>
-						 
-						<input class="barraSearch" type="search" ng-model="buscarTipo.produDir" placeholder="Buscar Direccion">
-						<input class="barraSearch" type="search" ng-model="buscarTipo.localDir" placeholder="Buscar Sucursal">
+			<label style="color:yellow;">Busqueda en Particular
+						  
+				<!--	
+			<input class="barraSearch" type="search" ng-model="buscarTipo.oferta" placeholder="Buscar Sucursal">
+
+		-->
+		<input class="barraSearch" type="search" ng-model="buscarTipo.produDir" placeholder="Buscar Direccion">
+						<input class="barraSearch" type="search" ng-model="buscarTipo.localDir" placeholder="Buscar Sucursal"> <br>
+
+        
+
+		<input type="checkbox" ng-model="buscarTipo.oferta"     ng-true-value="0" ng-false-value="1"   required /> Sin oferta 
+		<input type="checkbox" ng-model="buscarTipo.oferta"     ng-true-value="1" ng-false-value="0"   required/> En oferta
+		<input type="checkbox" ng-model="buscarTipo.oferta"  	ng-true-value=""  ng-false-value=""    required/> Todas
+
+
+</label>
+
+
+
+
+
 							<li style="color:blue;" class="animate-repeat" ng-if="resultado.length == 0">
 
 							      <strong>No existen coincidencias</strong>
@@ -42,7 +60,7 @@
 										</tr> 
 									</thead>
 									<tbody>
-												<tr produ-list  ng-repeat="produ in ListadoProd | orderBy:'produ' | filter:buscarTipo as resultado" obj="produ">
+												<tr produ-list  ng-repeat="produ in ListadoProd | orderBy:'produ'  | filter:buscarTipo as resultado"  obj="produ">
 												
 												</tr>
 
