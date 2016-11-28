@@ -1,0 +1,59 @@
+                  
+  <div class=ui-base> 
+  <ul class="nav nav-tabs">
+             <li  class="btn btn-success animated rubberBand" >
+              <a  style="color:red; font-weight: 900;" ui-sref="inicio()">
+                 <span  style="color:blue;" class="glyphicon glyphicon-list-alt">&nbsp;</span>
+                 Inicio
+              </a>
+             </li>
+            
+              
+         <div ><nombre-user  usuarito=user.usuario><nombre-user>                    </div>
+      </ul>
+      </div>
+
+					<h1 style="color:red"> Pedidos</h1>
+
+
+
+<h2 style="color:red;font-weight: 900"> </h2>
+
+
+
+
+								<table class='table table-hover table-responsive ' >
+									<thead>
+										<tr>
+											<th>  Direccion de la  Vivienda   </th>				
+												<th>Precio en Dollares</th>
+											<th>  Promocion     </th>
+
+																	
+											<th>  Solicitud de compra realizada por </th>
+										<th>Estado del usuario</th>
+											<th> Punto de Venta     </th>										
+
+				
+										</tr> 
+									</thead>
+									
+									<tr style="color:red;font-weight: 900" ng-repeat="pedido in ListadoPedidos " style="color:red;">
+									
+										<td>{{pedido.produDir}}</td>
+											<td>{{pedido.precio}}</td>
+	<td>{{pedido.oferta | filtroOferta}}</td>
+<td>{{pedido.usuario}}</td>										
+										<td>{{pedido.estado}}</td>	
+										<td>{{pedido.localDir}}</td>
+									
+									
+									
+										
+									
+											<!--					
+										<td><button class='btn btn-info' name='Ver' ng-click="Ver(pedido)">   <span class='glyphicon glyphicon-edit'>&nbsp;</span>Ver</button></td>	
+										-->
+									</tr>
+								</table>
+   <button class="MiBotonUTN" ui-sref="productosGrilla()" ><span>Realizar Pedido Nuevo </span></button>

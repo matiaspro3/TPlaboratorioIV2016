@@ -18,7 +18,7 @@
                     </ul>
                 </li>
 
-                <li class="has-sub"><a href="#"><span>Empleados</span></a>
+                <li ng-if="user.perfil =='admin'"  class="has-sub"><a href="#"><span>Empleados</span></a>
                     <ul>
                         <li class="has-sub"><a ui-sref="empleadoGrilla()"><span>Listado de Empleados</span></a> </li>
                         <li class="has-sub"><a ui-sref="empleadoAlta()"><span>Alta de Empleado</span></a> </li>
@@ -26,7 +26,7 @@
                     </ul>
                 </li>
                 
-                <li class="has-sub"><a  href="#"><span>Sucursales</span></a>
+                <li ng-if="user.perfil =='admin'"  class="has-sub"><a  href="#"><span>Sucursales</span></a>
                     <ul>
                          <li class="has-sub"><a  ui-sref="sucursalAlta()"><span>Alta de Sucursales</span></a>
                         </li>
@@ -38,11 +38,12 @@
                       
                     </ul>
                 </li>
-                <li class="has-sub"><a href="#"><span>Productos</span></a>
+                <li  class="has-sub"><a href="#"><span>Productos</span></a>
                     <ul>
-                        <li class="has-sub"><a ui-sref="productosGrilla()"><span>Grilla</span></a> </li>
-                        <li class="has-sub"><a ui-sref="productoAlta()"><span>Alta de Productos</span></a> </li>
-                        <li class="has-sub"><a  ui-sref="productoMOD()"><span>Sucursales Agregar Productos</span></a>
+                        <li class="has-sub"><a ui-sref="productosGrilla()"><span>Inmuebles </span></a> </li>
+                        <li class="has-sub"><a ui-sref="productoAlta()"><span>Alta de Vivienda</span></a> </li>
+                        <li class="has-sub"><a  ui-sref="productoMOD()"><span>Sucursales Agregar Viviendas</span></a>
+                        <li class="has-sub"><a ui-sref="pedidos()"><span>Pedidos</span></a> </li>
                         </li>
                     </ul>
                 </li>

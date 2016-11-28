@@ -28,7 +28,7 @@ this.TraerProducto = TraerProducto;
 this.CargarSucursalProductosAlgunos = CargarSucursalProductosAlgunos;
 this.TraerEmpleados = TraerEmpleados;
 this.AltaEmpleado = AltaEmpleado;
-
+this.TraerPedidos=TraerPedidos;
 this.ModificarEmple = ModificarEmple;
   
 //TRAER TODOS.............
@@ -46,6 +46,22 @@ this.ModificarEmple = ModificarEmple;
 
     }
   
+
+function TraerPedidos(){
+            
+    return $http.get('http://localhost/labo2/ws/pedidos')
+    .then(function(respuesta) {       
+      
+    return respuesta.data;
+      
+      },function errorCallback(response) {
+           return response; 
+             }   
+        )
+
+    }
+  
+
 function CargarSucursales(){
             
     return $http.get('http://localhost/labo2/ws/sucursales')

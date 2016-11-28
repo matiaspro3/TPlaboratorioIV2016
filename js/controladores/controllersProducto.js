@@ -325,22 +325,34 @@ else $scope.producto.fotoProd3= $stateParams.objUser.fotoProd3;
 
   $scope.Comprar=function(){
 
+          
+  var pregunta = confirm("Seguro desea Comprar esta Propiedad?");
+                if (pregunta == true) {                        
+
 
 factorySucursalProducto.Modificar($scope.comprarProd).then(function(rta){
 
 console.info('modificado......', rta);
 //$scope.comprado=true;
-alert("Gracias por confiar en nosotros");
+alert("Gracias por confiar en nosotros...Se agrego su solicitiud a la lista de pedidos");
 $state.go("productosGrilla");
 
-
-
-
+          
 
 })
+      } else {
+                   // alert("Cancelado.");
+                }
+              
+
+  }
 
 
-}
+
+
+
+
+
 
 
   $scope.Modificar=function(){
@@ -355,5 +367,32 @@ $state.go("productosGrilla");
 )*/
 
 }
+
+});
+
+app.controller('controlPedidos', function($scope,$state, $http,factorySucursalProducto,factoryUserActual) {
+  
+
+
+   $scope.user = factoryUserActual.Logueado;
+   console.info("user personaaaa...",$scope.user );
+
+  $scope.Traer=function(){
+
+   factorySucursalProducto.TraerPedidos().then(function(rta){
+        $scope.ListadoPedidos = rta;
+  console.info('pedidosssss..',$scope.ListadoPedidos);
+    });
+
+  }
+
+  $scope.Traer();
+
+
+  $scope.Ver=function(sucu){/*
+    console.info('enviandoooo produ..',sucu);
+  $state.go('productoVer', {objUser:sucu});
+  */
+  }
 
 });

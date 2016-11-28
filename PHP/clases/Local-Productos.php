@@ -45,6 +45,30 @@ class local_producto
 					
 	}
 	
+	public static function TraerPedidos()
+	{
+		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
+		$consulta =$objetoAccesoDato->RetornarConsulta(
+						"select a.id_prod,
+						a.id_local,
+						d.localDir,
+						b.produDir,
+						b.precio,
+						b.oferta,
+						c.usuario,
+						c.estado
+						from local_producto a, productos b, usuarios c , sucursales d
+						where comprada=true
+						and a.id_prod=b.id_prod
+						and c.id = a.comprador
+						and d.id_sucu = a.id_local"
+						         );
+		
+		$consulta->execute();			
+		$arrPersonas= $consulta->fetchAll(PDO::FETCH_CLASS, "local_producto");	
+		return $arrPersonas;
+	}
+	
 	public static function TraerTodos()
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 

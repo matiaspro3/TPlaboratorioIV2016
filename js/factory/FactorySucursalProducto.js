@@ -7,8 +7,7 @@ angular
     objeto.Borrar = Borrar;
     objeto.Alta = Alta;
     objeto.Modificar = Modificar;
-    
-
+    objeto.TraerPedidos=TraerPedidos;
     return objeto;
 
 
@@ -19,7 +18,9 @@ angular
     function TraerTodosSucu(sucu){
       return servicioABM.CargarSucursalProductosAlgunos(sucu);
     }
-
+  function TraerPedidos(){
+      return servicioABM.TraerPedidos();
+    }
  function Alta(producto){
        return servicioABM.AltaLocalProducto(producto);
     }

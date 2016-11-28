@@ -89,6 +89,13 @@ $app->get('/empleadosTodos[/]', function ($request, $response, $args) {
 });
 
 
+$app->get('/pedidos[/]', function ($request, $response, $args) {
+    $datos = local_producto::TraerPedidos();
+    $response->write(json_encode($datos));    
+    return $response;
+});
+
+
 
 $app->get('/sucursales[/]', function ($request, $response, $args) {
     $datos = sucursales::TraerTodos();

@@ -222,7 +222,12 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
                               controller : 'controlEmpleadoGrilla'
                                 })
 
-
+  .state('pedidos', {
+                    url : '/pedidos',
+                    cache:false,
+                    templateUrl : 'vistas/pedidos.html',
+                    controller : 'controlPedidos'
+                })
 
 
 
