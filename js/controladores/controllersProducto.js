@@ -169,6 +169,7 @@ $scope.Grabar=function(){
     factorySucursalProducto.Alta($scope.alta).then(function(rta){
     
     console.info("alta producto.................",rta);
+    $state.go('productosGrilla');
       //  $state.go('inicio');
    }),  function errorCallback(response) {
         console.info("incorrecto", response);

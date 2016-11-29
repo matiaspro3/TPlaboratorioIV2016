@@ -1,0 +1,56 @@
+        <menu-prod></menu-prod>
+					<h1 style="color:red"> Casa en venta en {{producto.produDir}}</h1>
+
+
+       <simple-slider style=" left: 550px;position:fixed; width:500px; height:500px; " transition-property="top" >
+    	
+        <img style='border-radius:300px;position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' src= "fotos/productos/{{producto.fotoProd1}}"/>
+        <img style='border-radius: 300px;position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' src="fotos/productos/{{producto.fotoProd2}}"/>
+        <img style='border-radius: 300px;position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' src="fotos/productos/{{producto.fotoProd3}}"/>
+
+		</simple-slider>
+
+<!--
+<h2 style="color:red;font-weight: 900"> Gente a su disposicion para brindarle ayuda en nuestra producto.</h2>
+-->
+
+			
+
+								<table class='table table-hover table-responsive ' >
+									<thead>
+										<tr>
+											<th> Direccion  </th>
+											<th> Precio en Dollares</th>
+											<th> Oferta  </th>
+											<th>Disponible en Sucursal</th>
+											<th>Ir a Sucursal</th>
+				
+										</tr> 
+									</thead>
+									
+									<tr style="color:red;font-weight: 900">
+										
+										
+										<td>{{producto.produDir}}</td>
+										<td>{{producto.precio}}</td>
+										<td>{{producto.oferta | filtroOferta}}</td>
+										<td>{{sucursal.localDir}}</td>
+									
+										<td><button class='btn btn-info' name='Ver' ng-click="Ver(sucursal)">   <span class='glyphicon glyphicon-edit'>&nbsp;</span>Ver</button></td>								
+									</tr>
+								</table>
+
+                 <button class="MiBotonUTNLinea" ng-if="!comprada"  ng-click="Comprar()" ><span>Comprar </span></button>
+										<br>
+										<br>
+										<br>
+										
+										<ng-map	 center="-34.683754,-58.489640" zoom="15" style="width: 100%;height: 100% !important;">
+											 <control name="overviewMap" opened="true" />
+<marker icon="./img/casa.png" icon.scale="0.1" position="-34.683754,-58.489640"></marker>
+
+										</ng-map>
+										<br>
+										<br>
+										<br>
+		<button class="MiBotonUTNMenu" ng-if="comprada"  ><span>PROPIEDAD COMPRADA </span></button>

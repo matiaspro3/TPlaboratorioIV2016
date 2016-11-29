@@ -1,7 +1,7 @@
 
 //var app = angular.module('abmapp', ['ui.router','abmapp.factoryPersona', 'abmapp.servicioABM','abmapp.controllersPersona', 'abmapp.controllersUsuario', 'satellizer', 'angularFileUpload', 'validation.match']);
 var app = angular.module('abmapp', [
-  'ui.router'
+  'ui.router','ngMap',
   , 'abmapp.controllersUsuario'
   , 'abmapp.controllersProducto'
   , 'satellizer'

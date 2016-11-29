@@ -239,7 +239,7 @@ console.info('a modificarrr....',$scope.sucursal);
 app.controller('controlSucuVer', function($scope,$state,$stateParams, $http,factorySucursalEmpleado,factorySucursalProducto,factoryUserActual) {
  console.info('recivo estp,', $stateParams.objUser);
    $scope.user = factoryUserActual.Logueado;
-
+ console.info('userrr en ver sucu..', $scope.user);
 $scope.sucursal={};
   
   $scope.sucursal.idMuestras = Number($stateParams.objUser.id_sucu);

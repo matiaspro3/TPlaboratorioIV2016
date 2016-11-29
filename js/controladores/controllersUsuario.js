@@ -97,6 +97,18 @@ factoryUserActual.Logueado= "";
 
 app.controller('controlUsuarioLogin', function($scope, $http, $auth, $state,factoryUserActual) {
 
+
+
+
+
+
+
+
+
+
+
+
+
   $scope.usuario = {};
 //  $scope.usuario.usuario = "lala";
 // $scope.usuario.dni = 5656;
