@@ -15,14 +15,14 @@
 
 <label >Seleccione Sucursal</label><br>
 
-<select ng-model="sucursal.elegida" required >
+<select ng-click="BuscarEmpleados()" ng-model="sucursal.elegida" required >
 
-       <option  ng-repeat="sucu in sucursalLista  | orderBy: 'localDir'">{{sucu.localDir}}</option>
+       <option   ng-repeat="sucu in sucursalLista  | orderBy: 'localDir'">{{sucu.localDir}}</option>
     </select>
 <br>
 
 
-
+<div ng-if="sucursal.elegida">
 
 <label >Seleccione Encargado</label><br>
 
@@ -51,7 +51,7 @@
     </select>
 
 
-
+</div>
 
 
 <br>

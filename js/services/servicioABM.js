@@ -352,9 +352,9 @@ function CargarSucursalProductos(){
       )
     }
 
-   function BorrarLocalEmpleado(persona){      
+   function BorrarLocalEmpleado(id){      
     
-      return    $http.delete('http://localhost/labo2/ws/local_empleado/' + JSON.stringify(persona.id))
+      return    $http.delete('http://localhost/labo2/ws/local_empleado/' + JSON.stringify(id))
     .then(function(respuesta) {       
           return respuesta.data;
       

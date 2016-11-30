@@ -127,7 +127,7 @@ app.controller('controlSucursalesGrilla', function($scope,$state, factoryUserAct
 
 
 
-app.controller('controlSucuModificar', function($scope,FileUploader,$state,$stateParams, $http,factorySucursal,factoryUserActual) {
+app.controller('controlSucuModificar', function($scope,factorySucursalEmpleado,FileUploader,$state,$stateParams, $http,factorySucursal,factoryUserActual) {
 
 
  console.info('recivo en sucu Modificar,', $stateParams.objUser);
@@ -215,20 +215,104 @@ $scope.uploader.onAfterAddingFile = function(item) {
 
 
 
-  $scope.Modi=function(){
-console.info('a modificarrr....',$scope.sucursal);
-               factorySucursal.Modificar($scope.sucursal).then(function(rta){
 
-  console.info('modificado....',rta);
-  $state.go('sucursalesGrilla');
-    
+///empleados de sucu
 
-    
-   })         
+  $scope.empleado1={}; 
+  $scope.empleado1ID; 
+  $scope.empleado2={};
+  $scope.empleado2ID; 
+  $scope.empleado3={};
+  $scope.empleado3ID; 
+  $scope.encargado={};
+  $scope.encargadoID;  
+  
+
+factorySucursalEmpleado.TraerEmpleados($scope.sucursal.idMuestras).then(function(rta){
+
+  
+
+
+for (x=0;x<rta.length;x++){
+      
+          if (rta[x].cargo=='enca')
+          {
+      $scope.encargado = rta[x];
+      $scope.encargadoID = rta[x].id_emple;
+        console.info('encargado en verr...',$scope.encargado); 
+
+        }else 
+          {
+
+                    if (jQuery.isEmptyObject($scope.empleado1))
+                        {
+                      $scope.empleado1= rta[x];
+                     $scope.empleado1ID= rta[x].id_emple;
+                    console.info('empleado  1 en verr...',$scope.empleado1);  
+
+                    }else if (jQuery.isEmptyObject($scope.empleado2))
+                        {
+                      $scope.empleado2= rta[x];
+                      $scope.empleado2ID= rta[x].id_emple;
+                    console.info('empleado  2 en verr...',$scope.empleado2);  
+
+                  }else if (jQuery.isEmptyObject($scope.empleado3 ))
+                        {
+                      $scope.empleado3= rta[x];
+                      $scope.empleado3ID= rta[x].id_emple;
+                    console.info('empleado  3 en verr...',$scope.empleado3);  
+                  }
+        }
+
+}
+
+
+   
+     })
+
+
+
+$scope.EliminarEmple=function(cargo)
+{
+      if (cargo=='emple1')
+              {
+                  $scope.empleado1={};
+                  $scope.elmiminado1=true;
+
+              }
+      else if (cargo=='emple2')
+              {
+                  $scope.empleado2={};
+                  $scope.elmiminado2=true;
+
+              }
+        else if (cargo=='emple3')
+              {
+                  $scope.empleado3={};
+                  $scope.elmiminado3=true;
+
+              }
+        else if (cargo=='enca')
+              {
+
+                    if (jQuery.isEmptyObject($scope.empleado1 ) && jQuery.isEmptyObject($scope.empleado3 ) && jQuery.isEmptyObject($scope.empleado2 ))
+                        {
+                  $scope.encargado={};
+                  $scope.elmiminadoEnca=true;
+                        }else {
+
+                              alert("De de baja todos los empleados antes de eliminar al encargado");
+
+                                }
+
+              }
+
+
 }
 
 
 
+////fin empleados de sucu
 
 
 
@@ -236,9 +320,79 @@ console.info('a modificarrr....',$scope.sucursal);
 
 
 
+//////// modifico tablas
 
 
 
+  $scope.Modi=function(){
+
+
+                      if (!$scope.sucursal.fotoLocal1)
+                      {
+
+                      $scope.sucursal.fotoLocal1='pordefecto.png';
+                      }
+
+                      if (!$scope.sucursal.fotoLocal2)
+                      {
+
+                      $scope.sucursal.fotoLocal2='pordefecto.png';
+                      }
+
+                      if (!$scope.sucursal.fotoLocal3)
+                      {
+
+                      $scope.sucursal.fotoLocal3='pordefecto.png';
+                      }
+
+console.info('a modificarrr....',$scope.sucursal);
+               factorySucursal.Modificar($scope.sucursal).then(function(rta){
+
+
+                            if (jQuery.isEmptyObject($scope.empleado1))
+                                      {
+                                     factorySucursalEmpleado.Borrar($scope.empleado1ID).then(function(rta){
+                                              console.info('borre el empleado 1...',$scope.empleado1ID);             
+
+                                              })
+
+                            }
+
+                            if (jQuery.isEmptyObject($scope.empleado2))
+                                      {
+                                   factorySucursalEmpleado.Borrar($scope.empleado2ID).then(function(rta){
+                                              console.info('borre el empleado 2...',$scope.empleado2ID);             
+
+                                              })
+                                }
+                            if (jQuery.isEmptyObject($scope.empleado3 ))
+                                      {                             
+
+                                          factorySucursalEmpleado.Borrar($scope.empleado3ID).then(function(rta){
+                                              console.info('borre el empleado 3...',$scope.empleado3ID);             
+
+                                              })
+                                        }
+    
+                            if (jQuery.isEmptyObject($scope.encargado ))
+                                      {                             
+
+                                          factorySucursalEmpleado.Borrar($scope.encargadoID).then(function(rta){
+                                              console.info('borre el encargado...',$scope.encargadoID);             
+
+                                              })
+                                        }
+                                        $state.go('sucursalesGrilla');
+
+               })         
+}
+
+//////////////// modifico tablas fin
+
+
+
+
+//fin ctrl modi
 });
 
 
@@ -278,8 +432,10 @@ $scope.ListadoProductos = rta;
 
 factorySucursalEmpleado.TraerEmpleados($scope.sucursal.idMuestras).then(function(rta){
    
-    console.info(rta);
+    console.info('empleados en sucu...',rta);
 $scope.ListadoSucu = rta;
+
+
     console.info('$scope.ListadoSucu ....',$scope.ListadoSucu );
    //$state.go("inicio");
     
@@ -396,6 +552,8 @@ var resultado;
 
   
 app.controller('controlSucursalMOD', function($scope,factoryUserActual,FileUploader,$state, $http,factoryUserActual,factorySucursalEmpleado,factoryEmpleado,factorySucursal,servicioABM) {
+   $scope.empleados=false;
+console.log("controler cargado");
    $scope.user = factoryUserActual.Logueado;
 $scope.sucursal={};
 $scope.sucursalLista={};
@@ -449,8 +607,27 @@ alert("errrrro!");
 }
 
 
+$scope.BuscarEmpleados= function(){
+
+       factorySucursal.TraerSucursal($scope.sucursal.elegida).then(function(rta){
+    
+    $scope.sucursalElejida=rta;
+    $scope.alta1.sucu=$scope.sucursalElejida.id_sucu;  
+    $scope.alta2.sucu=$scope.sucursalElejida.id_sucu;  
+    $scope.alta3.sucu=$scope.sucursalElejida.id_sucu;  
+    $scope.alta4.sucu=$scope.sucursalElejida.id_sucu;  
+
+  console.info('e$scope.sucursalElejidaa...',$scope.sucursalElejida);
+factorySucursalEmpleado.TraerEmpleados($scope.sucursalElejida.id_sucu).then(function(rta){
+   
+    console.info('empleados en sucursalElejida...',rta);
+})
 
 
+
+ 
+   })
+}
 
 
 
@@ -463,24 +640,16 @@ alert("errrrro!");
    // console.info('empleado3...',$scope.sucursal.empleado3);
    // console.info('empleado3...',$scope.sucursal.empleado3);
 
+/*sucursal.elegida
+factorySucursalEmpleado.TraerEmpleados($scope.sucursalElejida.id_sucu).then(function(rta){
+   
+    console.info('empleados en sucursalElejida...',rta);
+})
+*/
 
 ////////////////
 
- factorySucursal.TraerSucursal($scope.sucursal.elegida).then(function(rta){
-    
-    $scope.sucursalElejida=rta;
-    $scope.alta1.sucu=$scope.sucursalElejida.id_sucu;  
-    $scope.alta2.sucu=$scope.sucursalElejida.id_sucu;  
-    $scope.alta3.sucu=$scope.sucursalElejida.id_sucu;  
-    $scope.alta4.sucu=$scope.sucursalElejida.id_sucu;  
 
-  //  console.info("sucursal  factory...",$scope.sucursalElejida);
-   // console.info("sucursal  factory idddd...",$scope.alta.sucu);
-   }),  function errorCallback(response) {
-        console.info("incorrecto", response);
-
-
-}
 
 
 

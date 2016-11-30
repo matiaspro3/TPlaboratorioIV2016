@@ -91,7 +91,7 @@ class local_empleado
 	public static function Borrar($idParametro)
 	{	
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("delete from local_empleado WHERE id-emple=:id");	
+		$consulta =$objetoAccesoDato->RetornarConsulta("delete from local_empleado WHERE id_emple=:id");	
 		//$consulta =$objetoAccesoDato->RetornarConsulta("CALL BorrarPersona(:id)");	
 		$consulta->bindValue(':id',$idParametro, PDO::PARAM_INT);		
 		$consulta->execute();
@@ -103,16 +103,16 @@ class local_empleado
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
 			$consulta =$objetoAccesoDato->RetornarConsulta("
-				update local-empleado
-				set id-emple:id-emple,
-				id-local =:id-local,			
-				WHERE id-prod=:id");
+				update local_empleado
+				set id_emple:id_emple,
+					id_local =:id_local,			
+				WHERE id_emple=:id");
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso();
 
 			//$consulta =$objetoAccesoDato->RetornarConsulta("CALL ModificarPersona(:id,:direccion,:apellido,:foto)");
 		
-		$consulta->bindValue(':id-emple', $producto->id_emple, PDO::PARAM_STR);
-		$consulta->bindValue(':id-local', $producto->id_local, PDO::PARAM_STR);
+		$consulta->bindValue(':id_emple', $producto->id_emple, PDO::PARAM_STR);
+		$consulta->bindValue(':id_local', $producto->id_local, PDO::PARAM_STR);
 		return $consulta->execute();
 	}
 
