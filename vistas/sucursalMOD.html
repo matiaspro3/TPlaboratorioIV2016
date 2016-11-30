@@ -22,8 +22,13 @@
 <br>
 
 
+
+
+
+
 <div ng-if="sucursal.elegida">
 
+<div  ng-if="!mostrarEnca">  
 <label >Seleccione Encargado</label><br>
 
 <select ng-model="sucursal.encargado" required >
@@ -31,34 +36,63 @@
        <option ng-if ="dispo.cargo !='emple'"  ng-repeat="dispo in disponibles  | orderBy: dispo.legajo">{{dispo.legajo}}</option>
     </select>
 <br>
+</div>   
+<div  ng-if="mostrarEnca"> 
+<input type="text"   ng-model=" encargado.legajo"  readonly="true">
+</div> 
+
+
+
+
+
 <label >Seleccione Empleados</label><br>
 
 
+<div  ng-if="mostrarEmple1"> 
+<input type="text"   ng-model=" sucursal.empleado1.legajo"  readonly="true">
+</div> 
+
+<div  ng-if="!mostrarEmple1">
 <select ng-model="sucursal.empleado1" required >
 
        <option ng-if ="dispo.cargo =='emple'"  ng-repeat="dispo in disponibles  | orderBy: dispo.legajo">{{dispo.legajo}}</option>
     </select>
 <br>
 
-<select ng-model="sucursal.empleado2" ng-disabled ="!sucursal.empleado1" required >
+</div>
+
+
+
+
+<div  ng-if="mostrarEmple2"> 
+<input type="text"   ng-model=" sucursal.empleado2.legajo"  readonly="true">
+</div> 
+
+<div ng-if="!mostrarEmple2">
+<select ng-model="sucursal.empleado2"  required >
 
        <option ng-if ="dispo.cargo =='emple'"  ng-repeat="dispo in disponibles  | orderBy: dispo.legajo">{{dispo.legajo}}</option>
     </select>
 
-<select ng-model="sucursal.empleado3" ng-disabled ="!sucursal.empleado2" required >
+</div>
+
+
+<div  ng-if="mostrarEmple3"> 
+<input type="text"   ng-model=" sucursal.empleado3.legajo"  readonly="true">
+</div> 
+
+<div  ng-if="!mostrarEmple3">
+<select ng-model="sucursal.empleado3"  required >
 
        <option ng-if ="dispo.cargo =='emple'"   ng-repeat="dispo in disponibles  | orderBy: dispo.legajo">{{dispo.legajo}}</option>
     </select>
-
 
 </div>
 
 
 <br>
 
-
-
-
+</div>
 <button  class="button-green" name="login" id="login" ng-disabled="myForm.$invalid" ng-click="Alta()"><span>Agregar </span></button>
 </form>
 </div>
