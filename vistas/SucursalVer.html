@@ -74,6 +74,23 @@
 										
 									</tr>
 								</table>
+<br>
+<br>
+										<br>
+										<br>
+<button class="MiBotonUTN"  ng-click="buscar()" ><span> Ver direccion en el mapa</span></button>
+<br>
 
+				<ng-map	ng-if='visible'  center="{{coorMapa}}" zoom="15" style="width: 100%;height: 100% !important;">
+											 <control name="overviewMap" opened="true" />
+							<marker icon="./img/casa.png" icon.scale="0.1" position="{{coorMapa}}"></marker>
+					<!--	<shape name="circle" radius="40" center="[-34.683754,-58.489640]" radius="40" />-->
+
+
+
+										</ng-map>
+										<br>
+										<br>
+								
 <button class="MiBotonUTNMenu"  ng-if="user.perfil=='enca' || user.perfil=='admin' " ng-click="Modificar()"><span>Cambiar Datos de esta sucursal
  </span></button>

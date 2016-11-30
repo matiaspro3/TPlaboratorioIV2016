@@ -40,14 +40,25 @@ $scope.empleado={};
 
   $scope.Alta=function(){
 
-      console.info("producto a guardar SLIM:    .......",$scope.empleado);
+      console.info("empleado a guardar SLIM:    .......",$scope.empleado);
       
 factoryEmpleado.Alta($scope.empleado).then(function(rta){
     console.info("ALTA ookk...",rta);
+      
+  var pregunta = confirm("¿Desea dar de alta otro empleado?");
+                if (pregunta == true) {
+
+               //$state.go("empleadoAlta");
+                $scope.empleado={};
+                } else {
+                    $state.go("inicio");
+                }
+              
+/*
      alert("Empleado REGISTRADO SLIM!");
 
      $state.go("inicio");
-    
+  */  
    }) 
 
 
@@ -80,7 +91,7 @@ $scope.empleado={};
 
   $scope.empleado.cargo = $stateParams.objUser.cargo;
    $scope.empleado.estado = $stateParams.objUser.estado;
-    $scope.empleado.legajo = $stateParams.objUser.legajo;
+    $scope.empleado.legajo = Number($stateParams.objUser.legajo);
      $scope.empleado.nombre = $stateParams.objUser.nombre;
 
 

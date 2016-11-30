@@ -45,12 +45,20 @@
 										<br>
 										<br>
 										<br>
-				<ng-map	 center="-34.683754,-58.489640" zoom="15" style="width: 100%;height: 100% !important;">
+										
+<button class="MiBotonUTN"  ng-click="buscar()" ><span> Ver inmueble en el mapa</span></button>
+<br>
+
+				<ng-map	ng-if='visible'  center="{{coorMapa}}" zoom="15" style="width: 100%;height: 100% !important;">
 											 <control name="overviewMap" opened="true" />
-							<marker icon="./img/casa.png" icon.scale="0.1" position="-34.683754,-58.489640"></marker>
+							<marker icon="./img/casa.png" icon.scale="0.1" position="{{coorMapa}}"></marker>
+					<!--	<shape name="circle" radius="40" center="[-34.683754,-58.489640]" radius="40" />-->
+
+
 
 										</ng-map>
 										<br>
 										<br>
 										<br>
+
 		<button class="MiBotonUTNMenu" ng-if="comprada"  ><span>PROPIEDAD COMPRADA </span></button>

@@ -88,14 +88,22 @@ if (!$scope.producto.oferta)
   $scope.producto.oferta=false;
 factoryProductos.Alta($scope.producto).then(function(rta){
     console.info("ALTA ookk...",rta);
-     alert("producto REGISTRADO SLIM!");
-     $state.go("inicio");
-    
-   }),  function errorCallback(response) {
-        console.info("incorrecto", response);
-alert("errrrro!");
 
-}
+ var pregunta = confirm("¿Desea dar de alta otro Inmueble?");
+                if (pregunta == true) {
+
+               //$state.go("empleadoAlta");
+                $scope.producto={};
+                } else {
+                    $state.go("inicio");
+                }
+              
+//     alert("producto REGISTRADO SLIM!");
+  //   $state.go("inicio");
+    
+
+
+   })
 
 
 
@@ -244,24 +252,16 @@ $scope.ok = true;
 
 app.controller('controlProduVer', function($scope,$state,$stateParams,factorySucursalProducto, $http,factorySucursalEmpleado,factoryUserActual) {
  
-   $scope.user = factoryUserActual.Logueado;
+   console.log($stateParams.objUser.produDir);
 
 
-
+ $scope.user = factoryUserActual.Logueado;
   //console.info('user....', $scope.user);
-
-
-
-
-
-
-
 $scope.sucursal={};
 
   $scope.sucursal.id_sucu = Number($stateParams.objUser.id_sucu);
   console.info('parammm,,,', $stateParams.objUser);
   $scope.sucursal.localDir = $stateParams.objUser.localDir;
-
 
 
   $scope.comprada=$stateParams.objUser.comprada;
@@ -281,9 +281,6 @@ else $scope.sucursal.fotoLocal3= $stateParams.objUser.fotoLocal3;
   $scope.Ver=function(sucu){
 
     console.info("encviando..",sucu);
-
-
-
   $state.go('sucursalVer', {objUser:sucu});
   
   }
@@ -292,9 +289,6 @@ $scope.producto={};
 
 $scope.comprarProd={};
   $scope.producto.id_prod = Number($stateParams.objUser.id_prod);
-
-
-
 
   $scope.producto.precio = Number($stateParams.objUser.precio);
   $scope.producto.oferta = $stateParams.objUser.oferta;
@@ -320,10 +314,6 @@ else $scope.producto.fotoProd3= $stateParams.objUser.fotoProd3;
 
   console.info('producto......', $scope.producto);
 
-
-
-
-
   $scope.Comprar=function(){
 
           
@@ -344,32 +334,74 @@ $state.go("productosGrilla");
       } else {
                    // alert("Cancelado.");
                 }
-              
-
   }
 
 
 
 
+/////// mapa
+
+$scope.visible=false;
 
 
 
+$scope.buscar=function(){
 
-
-  $scope.Modificar=function(){
-
-/*
-   factoryUserActual.Modificar($scope.user).then(function(rta){
-    console.info("Modificar ookk...");
-      $state.go('usuario.grilla');
-  }
-
-
-)*/
+      $scope.coorMapa=resultado.lat()+','+resultado.lng();
+      console.info('$scope.coorMapa....',$scope.coorMapa);
+        $scope.visible=true;
+        
 
 }
 
+ 
+   $scope.productoMapa = $scope.producto.produDir + ', Ciudad Autónoma de Buenos Aires, Argentina';
+
+var resultado;
+  var direccion = $scope.productoMapa;
+
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({address: direccion}, function(results, status) {
+
+    if (status == google.maps.GeocoderStatus.OK) {
+      resultado = results[0].geometry.location;
+      console.info('direccion....',direccion);
+      console.info('results[0]....',results[0]);
+      console.info('resultado....',resultado);
+      console.info('resultado.lat....',resultado.lat());
+      console.info('resultado.lng....',resultado.lng());
+     // setTimeout($scope.buscar, 5000);
+
+      }
+  }
+)
+////////// mapa fin
+ 
+
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.controller('controlPedidos', function($scope,$state, $http,factorySucursalProducto,factoryUserActual) {
   

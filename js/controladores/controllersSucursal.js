@@ -10,26 +10,26 @@ $scope.sucursal={};
  $scope.uploader=new FileUploader({url:'servidor/archivosSucu.php'});
 
 
-$scope.sucursal.foto1='pordefecto.png';
-$scope.sucursal.foto2='pordefecto.png';
-$scope.sucursal.foto3='pordefecto.png';
+$scope.sucursal.fotoLocal1='pordefecto.png';
+$scope.sucursal.fotoLocal2='pordefecto.png';
+$scope.sucursal.fotoLocal3='pordefecto.png';
 
 
 
 
 $scope.uploader.onAfterAddingFile = function(item) {
 
-if ($scope.sucursal.foto1=='pordefecto.png')
+if ($scope.sucursal.fotoLocal1=='pordefecto.png')
 {
-  item.file.name =$scope.sucursal.direccion+'-1.jpg';
-  $scope.sucursal.foto1=$scope.sucursal.direccion+'-1.jpg';
+  item.file.name =$scope.sucursal.localDir+'-1.jpg';
+  $scope.sucursal.fotoLocal1=$scope.sucursal.localDir+'-1.jpg';
 }else if ($scope.sucursal.foto2=='pordefecto.png')
 {
-  item.file.name =$scope.sucursal.direccion+'-2.jpg';
-  $scope.sucursal.foto2=$scope.sucursal.direccion+'-2.jpg';
+  item.file.name =$scope.sucursal.localDir+'-2.jpg';
+  $scope.sucursal.fotoLocal2=$scope.sucursal.localDir+'-2.jpg';
 } else 
-{item.file.name =$scope.sucursal.direccion+'-3.jpg';
-$scope.sucursal.foto3=$scope.sucursal.direccion+'-3.jpg';
+{item.file.name =$scope.sucursal.localDir+'-3.jpg';
+$scope.sucursal.fotoLocal3=$scope.sucursal.localDir+'-3.jpg';
 }
 
 item.upload();
@@ -60,22 +60,32 @@ $scope.uploader.onSuccessItem=function(item, response, status, headers)
 factorySucursal.sucu=$scope.sucursal;
 
 servicioABM.AltaSucursales($scope.sucursal).then(function(rta){
-    console.info("ALTA ookk...",rta);
-     alert("sucursal REGISTRADO SLIM!");
-     $state.go("inicio");
     
-   }),  function errorCallback(response) {
-        console.info("incorrecto", response);
-alert("errrrro!");
+    console.info("ALTA ookk...",rta);
+    
+ var pregunta = confirm("¿Desea dar de alta otra Sucursal?");
+                if (pregunta == true) {
 
-}
+               //$state.go("empleadoAlta");
+                $scope.sucursal={};
+                } else {
+                    $state.go("inicio");
+                }
+              
+    // alert("sucursal REGISTRADO SLIM!");
+     //$state.go("inicio");
+    
 
+
+
+   })
 
 
 
   }//fin alta
 
 
+ 
 
 
 
@@ -314,6 +324,60 @@ console.info('lista. comprada..',$scope.ListadoProductos.comprada);
     })
 
 
+
+
+
+/////// mapa
+
+$scope.visible=false;
+
+
+
+$scope.buscar=function(){
+
+      $scope.coorMapa=resultado.lat()+','+resultado.lng();
+      console.info('$scope.coorMapa....',$scope.coorMapa);
+        $scope.visible=true;
+        
+
+}
+
+  
+   $scope.sucursalMapa =  $scope.sucursal.localDir + ', Ciudad Autónoma de Buenos Aires, Argentina';
+
+var resultado;
+  var direccion = $scope.sucursalMapa;
+
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({address: direccion}, function(results, status) {
+
+    if (status == google.maps.GeocoderStatus.OK) {
+      resultado = results[0].geometry.location;
+      console.info('direccion....',direccion);
+      console.info('results[0]....',results[0]);
+      console.info('resultado....',resultado);
+      console.info('resultado.lat....',resultado.lat());
+      console.info('resultado.lng....',resultado.lng());
+     // setTimeout($scope.buscar, 5000);
+
+      }
+  }
+)
+////////// mapa fin
+
+
+
+
+
+
+
+
+
+
+
+
+//fin
 });
 
 

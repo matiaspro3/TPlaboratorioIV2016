@@ -290,22 +290,22 @@ $app->post('/Altasucursal/{sucursalre}', function ($request, $response, $args) {
     $sucu = json_decode($args['sucursalre']);
           // echo 'ola' ;
 // mover foto
-           if($sucu->foto1!="pordefecto.png")
+           if($sucu->fotoLocal1!="pordefecto.png")
             {
-                $rutaVieja="../servidor/sucursales/".$sucu->foto1;
-                $rutaNueva="../fotos/sucursales/".$sucu->foto1;
+                $rutaVieja="../servidor/sucursales/".$sucu->fotoLocal1;
+                $rutaNueva="../fotos/sucursales/".$sucu->fotoLocal1;
                 copy($rutaVieja,$rutaNueva);
            }
-         if($sucu->foto2!="pordefecto.png")
+         if($sucu->fotoLocal2!="pordefecto.png")
             {
-                $rutaVieja="../servidor/sucursales/".$sucu->foto2;
-                $rutaNueva="../fotos/sucursales/".$sucu->foto2;
+                $rutaVieja="../servidor/sucursales/".$sucu->fotoLocal2;
+                $rutaNueva="../fotos/sucursales/".$sucu->fotoLocal2;
                 copy($rutaVieja,$rutaNueva);
             }
-             if($sucu->foto3!="pordefecto.png")
+             if($sucu->fotoLocal3!="pordefecto.png")
            {
-                $rutaVieja="../servidor/sucursales/".$sucu->foto3;
-                $rutaNueva="../fotos/sucursales/".$sucu->foto3;
+                $rutaVieja="../servidor/sucursales/".$sucu->fotoLocal3;
+                $rutaNueva="../fotos/sucursales/".$sucu->fotoLocal3;
                 copy($rutaVieja,$rutaNueva);
             }
          

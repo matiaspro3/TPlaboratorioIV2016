@@ -1,5 +1,5 @@
 <?php
-require_once"accesoDatos.php";
+require_once"AccesoDatos.php";
 require_once"Productos.php";
 require_once"Sucursales.php";
 class local_producto
