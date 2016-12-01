@@ -13,4 +13,44 @@
       </div>
 
 
-<highchart id="chart1" config="chartConfig"></highchart>
+   
+<button class="MiBotonUTN" ng-Click="Grafico('1')">Ventas Segun Sucursales</button>
+<button class="MiBotonUTN" ng-Click="Grafico('2')">Ventas Por Local Empleado</button>
+<button class="MiBotonUTN" ng-Click="Grafico('3')">Comparativo Ventas ultima semana</button>
+
+
+<highchart ng-if="mostrar1" id="chart1" config="chartConfig"></highchart>
+
+<highchart ng-if="mostrar2" id="chart2" config="chartConfig2"></highchart>
+
+<highchart ng-if="mostrar4" id="chart3" config="chartConfig3"></highchart>
+<br>
+<br>
+
+<div ng-if="mostrar3 && !mostrar4" >
+<label style="color:gray" >Seleccione Empleados</label><br>
+
+<select ng-model="empleado1.nombre" required >
+
+       <option  ng-repeat="dispo in ListEmpleados  | orderBy: dispo.nombre">{{dispo.nombre}}</option>
+
+    </select>	
+
+
+       <select ng-model="empleado2.nombre" required >
+
+       <option  ng-repeat="dispo in ListEmpleados  | orderBy: dispo.nombre">{{dispo.nombre}}</option>
+    </select>
+
+<button class="MiBotonUTN" ng-if ="(empleado1.nombre && empleado2.nombre && empleado1.nombre !=empleado2.nombre)" ng-Click="Buscar()">Mostrar Emple</button>
+
+
+
+    
+    <h1 style="color:red;" ng-if ="(empleado1.nombre && empleado2.nombre && empleado1.nombre==empleado2.nombre)">No puede seleccionar a un empleado mas de una vez</h1>
+    </div>
+
+
+
+
+

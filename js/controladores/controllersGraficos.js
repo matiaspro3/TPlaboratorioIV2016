@@ -1,69 +1,96 @@
 angular.module('abmapp.controllersGraficos', [])
 
 
-app.controller('controlGraficos', function($scope,$state, $http,factorySucursalProducto) {
+app.controller('controlGraficos', function($scope,$state, $http,factorySucursalProducto,factoryEmpleado) {
 //////pedidos
+$scope.ListadoSucur=[];
 
    factorySucursalProducto.TraerPedidos().then(function(rta){
-        $scope.ListadoPedidos = rta;
+$scope.ListadoPedidos = rta;
   console.info('pedidosssss..',$scope.ListadoPedidos);
 
-$scope.sucursales={};
-$scope.sucursales.id_local=[];
 
+for (i in $scope.ListadoPedidos) { 
+$scope.ListadoSucur.push('['+$scope.ListadoPedidos[i].localDir+','+'25'+']');
+}
 
-/*
-$scope.ListadoPedidos.forEach(function(pedido){
-				    switch (pedido.tipo){
-				    	case "Accidente":
-				    			$scope.cantidadAccidente = parseInt($scope.cantidadAccidente) + 1;
-				    		break;
-				    	case "Averia en vehiculo":
-				    			$scope.cantidadFalla = parseInt($scope.cantidadFalla) + 1;
-				    		break;
-				    	case "Animales sueltos":
-				    			$scope.cantidadAnimales = parseInt($scope.cantidadAnimales) + 1;
-				    		break;
-				    	case "Necesidad de Ambulancia":
-				    			$scope.cantidadAmbulancia = parseInt($scope.cantidadAmbulancia) + 1;
-				    		break;
-				    	case "Incendio":
-				    			$scope.cantidadIncendio = parseInt($scope.cantidadIncendio) + 1;
-				    		break;
-				    	case "Arbol Caido":
-				    			$scope.cantidadArbol = parseInt($scope.cantidadArbol) + 1;
-				    		break;
-				    	case "Nieve en el Camino":
-				    			$scope.cantidadNieve = parseInt($scope.cantidadNieve) + 1;
-				    		break;
-				    }
-		  		});
-
-
-*/
+console.info('$scope.ListadoSucur..',$scope.ListadoSucur);
 
 
 console.info('sucursales..',$scope.sucursales);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     });
+//
+
+
+factoryEmpleado.TraerTodos().then(function(rta){
+    console.info("disponibles...",rta);
+    $scope.ListEmpleados=rta;
+    
+   })
+///
+
+
+
+
+
+$scope.empleado1={};
+$scope.empleado2={};
+
+
+
+
+	
+
+$scope.mostrar1=false;
+$scope.mostrar2=false;
+$scope.mostrar3=false;
+
+
+$scope.Grafico=function(algo){
+	switch (algo){
+						    	case "1":
+						    				$scope.mostrar1=true;
+						    				$scope.mostrar2=false;
+						    						$scope.mostrar3=false;$scope.mostrar4=false;
+
+						    		break;
+								case "2":
+						    				$scope.mostrar2=true;
+						    					$scope.mostrar1=false;
+						    						$scope.mostrar3=false;
+						    						$scope.mostrar4=false;
+						    		break;
+						    	case "3":
+						    				$scope.mostrar3=true;
+						    				$scope.mostrar2=false;
+						    						$scope.mostrar1=false;
+
+						    		break;
+
+
+
+}
+
+
+
+}
+var nombre1;
+var nombre2;
+
+$scope.Buscar=function()
+{
+console.info('...................',$scope.empleado1);
+console.info($scope.empleado1.nombre);
+ nombre1=$scope.empleado1.nombre;
+nombre2=$scope.empleado2.nombre;
+console.info('nombre..',nombre1);
+						    				$scope.mostrar4=true;
+}
+
+
 ////////
 $scope.chartConfig = {
   options: {
@@ -111,28 +138,20 @@ $scope.chartConfig = {
             type: 'pie',
             name: 'Viviendas Vendidas',
             data: [
-                ['Firefox', 12.0],
-                ['IE', 26.8],
-            /*    {
-                    name: 'Chrome',
-                    y: 12.8,
-                    sliced: true,
-                    selected: true
-                },
-               */ ['Safari', 8.5],
-                ['Opera', 6.2],
-                ['Others', 0.7]
-            ]
-        
+            			    ['Helguera 998', 26],
+            			    ['Pacheco 2612', 25],
+            			    ['Cabildo 9984', 10],
+            			    ['Bauness 3566', 7],
+							['Nazca 315', 12],
+            			    ['Av. San Martin 2013', 18],
+							['Franco 3330', 32],
+							['Av. Belgrano 2368', 17],
 
-
-
-    //  comentario al seleccionar la linea// no funca sin esto
-//     data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                  ]
   }],
-  //Title configuration (optional)
+  //nombre del grf
   title: {
-      text: 'De Muestra'
+      text: 'Venta segun sucursales'
   },
 /* para uno de barra
   loading: false,
@@ -160,10 +179,130 @@ $scope.chartConfig = {
       height: 500 //alto
   },
   //function (optional)
-  func: function (chart) {
-      //setup some logic for the chart
-  }
+ 
 };
+$scope.chartConfig2 = {
+           chart: {
+            type: 'bar',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Ventas por local/empleado'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}'
+                }
+            }
+        },
+        series: [{
+            type: 'bar',
+            name: 'Ventas',
+            data: [ [], 
+              		    ['Helguera 998', 26],
+            			    ['Pacheco 2612', 25],
+            			    ['Cabildo 9984', 10],
+            			    ['Bauness 3566', 7],
+							['Nazca 315', 12],
+            			    ['Av. San Martin 2013', 18],
+							['Franco 3330', 32],
+							['Av. Belgrano 2368', 17],
+
+            ]
+        }],
+
+
+
+
+
+
+   
+};
+
+$scope.chartConfig3 = {
+   chart: {
+            type: 'areaspline'
+        },
+        title: {
+            text: 'Comparativo de Ventas'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 150,
+            y: 100,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+        },
+        xAxis: {
+            categories: [
+                'Lunes',
+                'Martes',
+                'Miercoles',
+                'Jueves',
+                'Viernes'
+            ],
+            plotBands: [{ // visualize the weekend
+                from: 2.5,
+                to: 4.5,
+                color: 'rgba(68, 170, 213, .2)'
+            }]
+        },
+        yAxis: {
+            title: {
+                text: 'Unidades Vendidas'
+            },
+
+            categories:[
+'0','1','2','3','4','5','6'
+            ]
+
+        },
+
+
+
+        tooltip: {
+            shared: true,
+           // valueSuffix: ' units'
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            areaspline: {
+                fillOpacity: 0.5
+            }
+        },
+        series: [{
+           // name: nombre1,
+           name: 'Empleado 1',
+            data: [3, 4, 3, 5, 4]
+        }, {
+           // name: nombre2,
+           name: 'Empleado 2',
+            data: [1, 6, 4, 3, 3]
+        }]
+};
+
+
+
+
+
+
 
 
 //////temaaaa
@@ -378,4 +517,11 @@ Highcharts.setOptions(Highcharts.theme);
 				    series: [{
 				        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
 				        */
+
+
+
+
+
+
 });
+
