@@ -27,6 +27,23 @@ app.controller('controlEmpleadoGrilla', function($scope,$state, $http,factoryEmp
   
   }
 
+
+    $scope.Exportar = function (tablaParametro) {
+        var blob = new Blob([document.getElementById(tablaParametro).innerHTML], {
+            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+        });
+        saveAs(blob, "Lista de Empleados.xls");
+    };
+
+
+
+
+
+
+
+
+
+
 });
 
   

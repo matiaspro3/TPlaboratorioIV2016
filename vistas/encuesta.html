@@ -1,0 +1,81 @@
+  <div class=ui-base> 
+	<ul class="nav nav-tabs">
+		         <li  class="btn btn-success animated rubberBand" >
+		         	<a  style="color:red; font-weight: 900;" ui-sref="inicio()">
+		         		 <span  style="color:blue;" class="glyphicon glyphicon-list-alt">&nbsp;</span>
+		         		 Inicio
+		         	</a>
+		         </li>
+		        
+		        	
+ 				 <div ><nombre-user  usuarito=user.usuario><nombre-user>                    </div>
+      </ul>
+      </div>
+
+<div style="color:blue;font-weight: 900">
+<h1>ENCUESTA DE SATISFACCION</h1>
+
+  <simple-slider style=" left: 550px;position:fixed; width:500px; height:500px; " transition-property="top" >
+    	
+        <img style='border-radius:300px;position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' src= "fotos/productos/{{producto.fotoProd1}}"/>
+        <img style='border-radius: 300px;position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' src="fotos/productos/{{producto.fotoProd2}}"/>
+        <img style='border-radius: 300px;position:fixed;top:0px;left:0px;width:100%;height:100%;z-index:-1;' src="fotos/productos/{{producto.fotoProd3}}"/>
+
+		</simple-slider>
+
+      
+      <br>
+      <br>
+   <div style="color:lightblue;font-weight: 600"> 
+   <h2> ¿Que le parecio el timpo de la operacion? </h2>
+	 <div style="color:red">
+   				<input type="radio" name="select"> Poco
+   							<input type="radio" name="select"> Medio
+   										<input type="radio" name="select"> Normal
+   													<input type="radio" name="select"> Mucho
+   </div>
+   				<br>
+
+
+   					<h2>¿El personal que lo contacto que le parecio?</h2>
+   					<div style="color:red">
+				   		<input type="checkbox" name="select"> Atento
+   							<input type="checkbox" name="select"> Respetuoso
+  										<input type="checkbox" name="select"> Amable
+   													<input type="checkbox" name="select"> Desatento
+   													<input type="checkbox" name="select"> Despreocupado
+   													<input type="checkbox" name="select"> Maleducado
+
+
+</div>
+   				<br>
+   				<h2>Ingrese una sugerencia sobre el servicio</h2>
+   					<div style="color:red">
+        <input type="text"  required="true">
+        <br>
+</div>
+   				<h2>Ingrese un calificacion al servicio</h2>
+   					<div style="color:red">
+        <input type="number" min="0" max="10" required="true">
+        <br>
+        </div>
+
+   				<h2>¿Nos volveria a elegir?</h2>
+   					<div style="color:red">
+<select  required >
+
+       <option>Nunca Mas </option>
+       <option>Tal vez </option>
+       <option>Puede Ser </option>
+       <option>Seguramente </option>
+       <option>Los recomendaria </option>
+    </select>
+    </div>
+<br><br><br>
+			 <li class="has-sub" ><a ui-sref="inicio()" ><h4>Gracias por realizar esta encuesta...</h4></a> </li>
+<br>
+<br>
+<br>
+<br>
+
+</div>

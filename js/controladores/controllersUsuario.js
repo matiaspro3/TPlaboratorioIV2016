@@ -266,9 +266,42 @@ factoryUserActual.Alta($scope.usuario).then(function(rta){
 
 
 
-app.controller('controlUsuarioGrilla', function($scope, $http, $state, $auth,factoryUserActual) {
-    
+app.controller('controlUsuarioGrilla', function($scope,$http, $state, $auth,factoryUserActual) {
+  
+$scope.userActual= factoryUserActual.Logueado;
+
+
+    $scope.Exportar = function (tablaParametro) {
+        var blob = new Blob([document.getElementById(tablaParametro).innerHTML], {
+            type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+        });
+        saveAs(blob, "Lista de Usuarios.xls");
+    };
+
+
+    /*
    
+ $scope.exportToExcel=function(tableId){ // ex: '#my-table'
+            var exportHref=factoryExcel.tableToExcel(tableId,'sheet name');
+          $timeout(function(){location.href=exportHref;},100); // trigger download
+        }
+
+$scope.exportAction = function(){ 
+      switch($scope.export_action){ 
+          case 'pdf': $scope.$broadcast('export-pdf', {}); 
+                      break; 
+          case 'excel': $scope.$broadcast('export-excel', {}); 
+                      break; 
+          case 'doc': $scope.$broadcast('export-doc', {});
+                      break; 
+          default: console.log('no event caught'); 
+       }
+}
+*/
+
+
+
+
 
 
   $scope.Traer=function(){

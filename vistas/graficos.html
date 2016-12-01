@@ -24,8 +24,13 @@
 <highchart ng-if="mostrar2" id="chart2" config="chartConfig2"></highchart>
 
 <highchart ng-if="mostrar4" id="chart3" config="chartConfig3"></highchart>
+<label  style="color:gray" ng-if="mostrar4">Empleado 1 : {{empleado1.nombre}}</label>
+<label  style="color:gray" ng-if="mostrar4">.Empleado 2 : {{empleado2.nombre}}</label>
+
+
 <br>
 <br>
+
 
 <div ng-if="mostrar3 && !mostrar4" >
 <label style="color:gray" >Seleccione Empleados</label><br>

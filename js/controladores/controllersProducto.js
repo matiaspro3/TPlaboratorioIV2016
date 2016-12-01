@@ -1,6 +1,31 @@
 angular.module('abmapp.controllersProducto', [])
 
 
+app.controller('controlEncuesta', function($scope,$state,$stateParams, $http,factoryUserActual) {
+
+
+   $scope.user = factoryUserActual.Logueado;
+   console.info("user personaaaa...",$scope.user );
+   console.info("producto personaaaa...",$stateParams.obj);
+
+$scope.producto={};
+
+$scope.producto.fotoProd1= $stateParams.obj.fotoProd1;
+$scope.producto.fotoProd2= $stateParams.obj.fotoProd2;
+$scope.producto.fotoProd3= $stateParams.obj.fotoProd3;
+
+
+
+
+
+
+
+
+
+
+});
+
+
 app.controller('controlProductosGrilla', function($scope,$state, $http,factorySucursalProducto,factoryUserActual) {
 	
 
@@ -326,17 +351,24 @@ factorySucursalProducto.Modificar($scope.comprarProd).then(function(rta){
 console.info('modificado......', rta);
 //$scope.comprado=true;
 alert("Gracias por confiar en nosotros...Se agrego su solicitiud a la lista de pedidos");
-$state.go("productosGrilla");
-
-          
+   
+  var encuenta = confirm("Desea contestar unas preguntas sobre el confort del sericio?");
+                if (encuenta == true) { 
+                  console.info('envio  emcuesta----',$scope.producto);
+                $state.go("encuesta",{obj:$scope.producto});  
+               } else {
+                  alert("Gracias de Todas Formas.");
+                  $state.go("productosGrilla");
+                }
 
 })
       } else {
                    // alert("Cancelado.");
                 }
-  }
 
 
+
+}
 
 
 /////// mapa

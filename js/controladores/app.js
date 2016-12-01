@@ -236,6 +236,15 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
                     templateUrl : 'vistas/graficos.html',
                     controller : 'controlGraficos'
                 })
+  .state('encuesta', {
+                    url : '/encuesta',
+                    cache:false,
+                     params: {
+                  obj: null
+                },
+                    templateUrl : 'vistas/encuesta.html',
+                    controller : 'controlEncuesta'
+                })
 
 
 
