@@ -256,7 +256,7 @@ for (x=0;x<rta.length;x++){
                       $scope.empleado2ID= rta[x].id_emple;
                     console.info('empleado  2 en verr...',$scope.empleado2);  
 
-                  }else if (jQuery.isEmptyObject($scope.empleado3 ))
+                  }else if (jQuery.isEmptyObject($scope.empleado3))
                         {
                       $scope.empleado3= rta[x];
                       $scope.empleado3ID= rta[x].id_emple;
@@ -295,7 +295,7 @@ $scope.EliminarEmple=function(cargo)
         else if (cargo=='enca')
               {
 
-                    if (jQuery.isEmptyObject($scope.empleado1 ) && jQuery.isEmptyObject($scope.empleado3 ) && jQuery.isEmptyObject($scope.empleado2 ))
+                    if (jQuery.isEmptyObject($scope.empleado1) && jQuery.isEmptyObject($scope.empleado3) && jQuery.isEmptyObject($scope.empleado2))
                         {
                   $scope.encargado={};
                   $scope.elmiminadoEnca=true;
@@ -348,40 +348,57 @@ $scope.EliminarEmple=function(cargo)
 console.info('a modificarrr....',$scope.sucursal);
                factorySucursal.Modificar($scope.sucursal).then(function(rta){
 
+console.info('$scope.empleado1....',$scope.empleado1);
+console.info('$scope.encargado....',$scope.encargado);
+console.info('$scope.empleado3....',$scope.empleado3);
+console.info('$scope.empleado2....',$scope.empleado2);
 
                             if (jQuery.isEmptyObject($scope.empleado1))
-                                      {
-                                     factorySucursalEmpleado.Borrar($scope.empleado1ID).then(function(rta){
+                                      {   if($scope.empleado1ID){
+                                     factorySucursalEmpleado.Borrar($scope.empleado1ID).then(function(rta2){
                                               console.info('borre el empleado 1...',$scope.empleado1ID);             
+                                              console.info('borre el empleado 1  rta2...',rta2);       
+                                  
 
                                               })
+                                   }
 
                             }
 
                             if (jQuery.isEmptyObject($scope.empleado2))
-                                      {
-                                   factorySucursalEmpleado.Borrar($scope.empleado2ID).then(function(rta){
+                                      {if($scope.empleado2ID){
+                                   factorySucursalEmpleado.Borrar($scope.empleado2ID).then(function(rta3){
                                               console.info('borre el empleado 2...',$scope.empleado2ID);             
-
+                                               console.info('borre el empleado 2  rta3...',rta3);        
                                               })
+                                 }
                                 }
-                            if (jQuery.isEmptyObject($scope.empleado3 ))
+                            if (jQuery.isEmptyObject($scope.empleado3))
                                       {                             
+                                        if($scope.empleado3ID){
 
-                                          factorySucursalEmpleado.Borrar($scope.empleado3ID).then(function(rta){
+                                          factorySucursalEmpleado.Borrar($scope.empleado3ID).then(function(rta4){
                                               console.info('borre el empleado 3...',$scope.empleado3ID);             
+                                              console.info('borre el empleado 3  rta4...',rta4);       
 
                                               })
                                         }
+                                          }
     
-                            if (jQuery.isEmptyObject($scope.encargado ))
+                            if (jQuery.isEmptyObject($scope.encargado))
                                       {                             
-
-                                          factorySucursalEmpleado.Borrar($scope.encargadoID).then(function(rta){
+                                  if($scope.encargadoID){
+                                          factorySucursalEmpleado.Borrar($scope.encargadoID).then(function(rta5){
                                               console.info('borre el encargado...',$scope.encargadoID);             
-
+                                                console.info('borre el enca  rta5...',rta5);       
                                               })
                                         }
+                                        }
+
+console.info('$scope.empleado1 des....',$scope.empleado1);
+console.info('$scope.encargado ces....',$scope.encargado);
+console.info('$scope.empleado3 des....',$scope.empleado3);
+console.info('$scope.empleado2  des....',$scope.empleado2);
                                         $state.go('sucursalesGrilla');
 
                })         

@@ -2,7 +2,8 @@
 //var app = angular.module('abmapp', ['ui.router','abmapp.factoryPersona', 'abmapp.servicioABM','abmapp.controllersPersona', 'abmapp.controllersUsuario', 'satellizer', 'angularFileUpload', 'validation.match']);
 var app = angular.module('abmapp', [
   'ui.router','ngMap',
-  , 'abmapp.controllersUsuario'
+  'highcharts-ng',
+   , 'abmapp.controllersUsuario'
   , 'abmapp.controllersProducto'
   , 'satellizer'
   , 'angularFileUpload'
@@ -228,6 +229,12 @@ app.config(function($stateProvider, $urlRouterProvider, $authProvider) {
                     controller : 'controlPedidos'
                 })
 
+ .state('graficos', {
+                    url : '/graficos',
+                    cache:false,
+                    templateUrl : 'vistas/graficos.html',
+                    controller : 'controlGraficos'
+                })
 
 
 

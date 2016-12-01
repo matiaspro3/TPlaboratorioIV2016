@@ -41,7 +41,7 @@
 									</tr>
 								</table>
 
-                 <button class="MiBotonUTNLinea" ng-if="!comprada"  ng-click="Comprar()" ><span>Comprar </span></button>
+                 <button class="MiBotonUTNLinea" ng-if="comprada==0"  ng-click="Comprar()" ><span>Comprar </span></button>
 										<br>
 										<br>
 										<br>
@@ -61,4 +61,4 @@
 										<br>
 										<br>
 
-		<button class="MiBotonUTNMenu" ng-if="comprada"  ><span>PROPIEDAD COMPRADA </span></button>
+		<button class="MiBotonUTNMenu" ng-if="comprada==1"  ><span>PROPIEDAD COMPRADA </span></button>

@@ -13,7 +13,7 @@
                         <li class="has-sub"><a ng-if="user.perfil =='admin' || user.perfil=='enca'"  ui-sref="usuario.grilla()" ><span>Usuarios permitidos</span></a>
                         </li>
                         <li class="has-sub" ><a ng-if="user.perfil =='admin'"  ui-sref="usuario.registrarse()"><span>Registro de usuarios</span></a> </li>
-                        <li class="has-sub" ><a ng-if="user.perfil !='clien'"  ui-sref="usuario.registrarse()"><span>Registro de cliente</span></a> 
+                        <li class="has-sub" ><a ng-if="user.perfil =='emple' || user.perfil =='enca'"  ui-sref="usuario.registrarse()"><span>Registro de cliente</span></a> 
                         <li class="has-sub" ><a ng-if='user'  ui-sref="usuario.menu()" ><span>Desloguearse</span></a> </li>
                       
                     </ul>
@@ -72,6 +72,8 @@
                     </ul>
                 </li>
 -->
+                    <li  ng-if="user.perfil =='admin'"  class="has-sub"><a ui-sref="graficos()"><span>Gaficos</span></a> </li>
+
                 <li><a href="vistas/contactame.html"><span>Contacto</span></a></li>
               
             </ul><!--cierro el menu-->

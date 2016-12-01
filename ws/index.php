@@ -524,8 +524,8 @@ $datos = sucursales::Borrar($args['id']);
 
 
 $app->delete('/local_empleado/{id}', function ($request, $response, $args) {
-        
-$datos = local_empleado::Borrar($args['id']);
+       $emple = json_decode($args['id']); 
+$datos = local_empleado::Borrar($emple);
     $response->write(json_encode($datos));
     //var_dump($args);
     return $response;
