@@ -95,18 +95,9 @@ factoryUserActual.Logueado= "";
 
 });
 
-app.controller('controlUsuarioLogin', function($scope, $http, $auth, $state,factoryUserActual) {
+app.controller('controlUsuarioLogin', function($scope, $http, $auth, $state,factoryUserActual,spinnerService) {
 
-
-
-
-
-
-
-
-
-
-
+$scope.mostrarMiSpinner=false;
 
 
   $scope.usuario = {};
@@ -165,6 +156,12 @@ app.controller('controlUsuarioLogin', function($scope, $http, $auth, $state,fact
 
   $scope.Login = function(){
 
+$scope.mostrarMiSpinner=true;
+  spinnerService.show('spinnerMioSolo');
+
+    //    spinnerService.hide('spinnerMioSolo');
+
+    
     //Esto es una llamada equivalente a $http
     console.info("userrrrrrrrr...",$scope.usuario);
     $auth.login($scope.usuario)

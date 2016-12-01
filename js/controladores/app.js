@@ -2,6 +2,7 @@
 //var app = angular.module('abmapp', ['ui.router','abmapp.factoryPersona', 'abmapp.servicioABM','abmapp.controllersPersona', 'abmapp.controllersUsuario', 'satellizer', 'angularFileUpload', 'validation.match']);
 var app = angular.module('abmapp', [
   'ui.router','ngMap',
+  'angularSpinners',
   'highcharts-ng',
    , 'abmapp.controllersUsuario'
   , 'abmapp.controllersProducto'

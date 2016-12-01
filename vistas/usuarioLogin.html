@@ -20,8 +20,12 @@
 
         <input type="password" id="clave" minlength="3" ng-model="usuario.password" placeholder="clave" required="true" value=""><br>
 
- <button class="button-green" id="login" ng-click="Login()" ng-disabled="myForm.$invalid"><span>Login </span></button><br><br>
-    
+  <spinner   name="spinnerMioSolo" img-src="img/miSpinner.gif"></spinner>
+
+
+        <button ng-if="!mostrarMiSpinner" class="button-green" data-toggle="modal" data-target="#myModal" id="login" ng-click="Login()" ng-disabled="myForm.$invalid"><span>Login </span></button><br><br>
+ 
+
 <!--
 
         <button class="button-green" data-toggle="modal" data-target="#myModal" id="login" ng-click="Login()" ng-disabled="myForm.$invalid"><span>Login </span></button><br><br>
